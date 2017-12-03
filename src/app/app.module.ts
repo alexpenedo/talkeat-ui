@@ -1,3 +1,6 @@
+import { UserService } from './services/user/user.service';
+import { HomeComponent } from './components/home/home.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,7 +15,13 @@ import {
   MatGridListModule,
   MatButtonModule,
   MatInputModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatAutocompleteModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSelectModule,
+  MatIconModule,
+  MatMenuModule
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/user/login/login.component';
@@ -21,7 +30,9 @@ import { LoginComponent } from './components/user/login/login.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ToolbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -36,9 +47,15 @@ import { LoginComponent } from './components/user/login/login.component';
     MatButtonModule,
     MatInputModule,
     MatSlideToggleModule,
-    AppRoutingModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    AppRoutingModule,
+    MatIconModule,
+    MatMenuModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

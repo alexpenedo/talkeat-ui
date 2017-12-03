@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <span>
+    <button mat-fab color="primary" [routerLink]="['/']">
+      <img src="/assets/img/logo_white.png">
+    </button>
+  </span>
+  <span class="fill-space"></span>
+  <span>
+    <button mat-raised-button color="accent">PUBLISH MENU</button>
+  </span>
+  <span *ngIf="!user">
+    <button mat-button color="basic" [routerLink]="['/login']">LOGIN</button>
+  </span>
+  <span *ngIf="!user">
+    <button mat-button color="basic" [routerLink]="['/register']">SIGN UP</button>
+  </span>
+  <span *ngIf="user">
+    <button mat-button color="basic" [matMenuTriggerFor]="menu">
+      <span>{{user.name}}</span>
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>account_circle</mat-icon>
+        <span>{{user.name}}</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>close</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </span>
+</mat-toolbar>

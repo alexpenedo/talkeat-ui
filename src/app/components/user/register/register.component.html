@@ -1,66 +1,60 @@
-<div class="container">
-  <div class="col-8 offset-2">
-    <mat-card>
-      <form role="form" (submit)="register()">
-        <div class="col-6 offset-3">
-          <img class="logo" src="/assets/img/logo.png">
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <div class="input-group">
-              <mat-form-field>
-                <input matInput type="text" name="email" [(ngModel)]="user.name" id="name" placeholder="Name">
-              </mat-form-field>
-            </div>
-            <div class="input-group">
-              <mat-form-field>
-                <input matInput type="text" name="surname" [(ngModel)]="user.surname" id="surname" placeholder="Surname">
-              </mat-form-field>
-            </div>
-            <div class="input-group">
-              <mat-form-field>
-                <input matInput type="email" name="email" [(ngModel)]="user.email" id="email" placeholder="Email">
-              </mat-form-field>
-            </div>
-            <div class="input-group">
-              <mat-form-field>
-                <input matInput type="text" name="mobileNumber" [(ngModel)]="user.mobileNumber" id="mobileNumber" placeholder="Mobile Number">
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="input-group">
-              <mat-form-field>
-                <input matInput type="number" name="postalCode" [(ngModel)]="user.postalCode" id="postalCode" placeholder="Postal Code">
-              </mat-form-field>
-            </div>
-            <div class="input-group">
-              <mat-form-field>
-                <input matInput type="text" name="address" [(ngModel)]="user.address" id="address" placeholder="Address">
-              </mat-form-field>
-            </div>
-            <div class="input-group">
-              <mat-form-field>
-                <input matInput type="text" name="country" [(ngModel)]="user.country" id="country" placeholder="Country">
-              </mat-form-field>
-            </div>
-            <div class="input-group">
-              <mat-form-field>
-                <input matInput type="password" name="password" [(ngModel)]="user.password" id="password" placeholder="Password">
-              </mat-form-field>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="col-6 offset-3">
+<div class="col-8 offset-2">
+  <mat-card>
+    <form role="form" (submit)="register()">
+      <div class="row">
+        <div class="col-6">
           <div class="input-group">
-            <button mat-raised-button color="primary" type="submit" name="action">SIGN UP</button>
+            <mat-form-field>
+              <input matInput type="text" name="name" required [(ngModel)]="user.name" id="name" placeholder="Name">
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="input-group">
+            <mat-form-field>
+              <input matInput type="text" name="surname" required [(ngModel)]="user.surname" id="surname" placeholder="Surname">
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="input-group">
+            <mat-form-field>
+              <input matInput type="email" name="email" [(ngModel)]="user.email" id="email" placeholder="Email">
+            </mat-form-field>
+          </div>
+          <div class="input-group">
+            <mat-form-field>
+              <input matInput type="text" name="mobileNumber" [(ngModel)]="user.mobileNumber" id="mobileNumber" placeholder="Mobile Number">
+            </mat-form-field>
           </div>
         </div>
-        <span id="err">
-          <small>{{errorMsg}}</small>
-        </span>
-      </form>
-    </mat-card>
-  </div>
+        <div class="col-6">
+          <div class="input-group">
+            <mat-form-field>
+              <input matInput type="number" name="postalCode" [(ngModel)]="user.postalCode" id="postalCode" placeholder="Postal Code">
+            </mat-form-field>
+          </div>
+          <div class="input-group">
+            <mat-form-field>
+              <input matInput type="text" name="address" [(ngModel)]="user.address" id="address" placeholder="Address">
+            </mat-form-field>
+          </div>
+          <div class="input-group">
+            <mat-form-field>
+              <input matInput type="text" name="country" [(ngModel)]="user.country" id="country" placeholder="Country">
+            </mat-form-field>
+          </div>
+          <div class="input-group">
+            <mat-form-field>
+              <input matInput type="password" name="password" [(ngModel)]="user.password" id="password" placeholder="Password">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-6 offset-3">
+        <div class="input-group">
+          <button mat-raised-button color="primary" type="submit" name="action">SIGN UP</button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
 </div>

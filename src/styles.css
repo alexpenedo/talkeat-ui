@@ -1,11 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "~bootstrap/dist/css/bootstrap.min.css";
-
+  
 body {
     font-family: Roboto, 'Helvetica Neue', sans-serif;
+    background-image: url('/assets/img/background4.jpg');
+    background-size: 100%;
 }
 
 .input-group > * {
     width: 100%;
 }
+mat-form-field {
+    width: 100%;
+}
+button:focus {outline:0;}

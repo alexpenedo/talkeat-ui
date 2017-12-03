@@ -8,5 +8,4 @@ export class User {
     public postalCode: number;
     public address: string;
     public country: string;
-
 }

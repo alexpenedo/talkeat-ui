@@ -1,0 +1,11 @@
+button{
+    float: right;
+}
+img{
+    max-height: 50px;
+    margin-top: -13px;
+}
+.fill-space {
+    flex: 1 1 auto;
+  }
+  

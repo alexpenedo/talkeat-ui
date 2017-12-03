@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="col-4 offset-4">
+    <mat-card>
+      <img class="logo" src="/assets/img/logo.png">
+      <form role="form" (submit)="login()">
+        <div class="input-group">
+          <mat-form-field>
+            <input matInput type="text" name="email" [(ngModel)]="email" id="email" placeholder="Email">
+          </mat-form-field>
+        </div>
+        <div class="input-group">
+          <mat-form-field>
+            <input matInput type="password" name="password" [(ngModel)]="password" id="password" placeholder="Password">
+          </mat-form-field>
+        </div>
+        <div class="input-group">
+          <button mat-raised-button color="basic" [routerLink]="['/register']">SIGN UP</button>
+          <button mat-raised-button color="primary" type="submit" name="action">LOGIN</button>
+        </div>
+        <br>
+        <span id="err">
+          <small>{{errorMsg}}</small>
+        </span>
+        <mat-slide-toggle color="primary">
+          <small>Remember me!</small>
+        </mat-slide-toggle>
+      </form>
+    </mat-card>
+  </div>
+</div>

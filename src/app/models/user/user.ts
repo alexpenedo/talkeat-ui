@@ -5,7 +5,7 @@ export class User {
     public password: string;
     public email: string;
     public mobileNumber: number;
-    public postalCode: number;
+    public postalCode: string;
     public address: string;
     public country: string;
 }

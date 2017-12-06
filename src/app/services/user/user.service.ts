@@ -18,8 +18,11 @@ export class UserService {
     this.url = environment.apiUrl;
   }
 
-  showUser() {
-    this._showUser.next(JSON.parse(localStorage.getItem('user')));
+  public getUser(): User {
+    return JSON.parse(localStorage.getItem('user'));
+  }
+  public showUser() {
+    this._showUser.next(this.getUser());
   }
   public login(email: string, password: string) {
     const user = {

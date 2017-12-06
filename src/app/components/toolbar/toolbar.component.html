@@ -6,7 +6,7 @@
   </span>
   <span class="fill-space"></span>
   <span>
-    <button mat-raised-button color="accent">PUBLISH MENU</button>
+    <button mat-raised-button color="accent" [routerLink]="['/create-menu']">PUBLISH MENU</button>
   </span>
   <span *ngIf="!user">
     <button mat-button color="basic" [routerLink]="['/login']">LOGIN</button>

@@ -1,0 +1,16 @@
+.addDish{
+    float: right;
+    margin-top: -35px;
+}
+
+mat-card-title{
+    margin-top:-60px !important;
+    color:white;
+    position: relative;
+}
+.mat-card-image{
+    filter:brightness(0.4);
+}
+.removeItem{
+    font-size: 20px;
+}

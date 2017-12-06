@@ -1,0 +1,20 @@
+<mat-card>
+  <img mat-card-image [src]="image">
+  <mat-card-title class="title">{{title}}</mat-card-title>
+  <button mat-fab color="warn" class="addDish" (click)="addItem()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <mat-card-content>
+    <p *ngIf='items.length===0'>
+      {{description}}
+    </p>
+    <div *ngFor="let item of items; let index = index; trackBy:trackByIndex">
+      <mat-form-field>
+        <input matInput [(ngModel)]="items[index].name" appAutofocus>
+        <button mat-button matSuffix mat-icon-button class="removeItem" (click)="removeItem(index)" color="warn">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+</mat-card>

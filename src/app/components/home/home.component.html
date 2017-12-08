@@ -1,11 +1,11 @@
 <div class="col-10 offset-1">
   <mat-card>
-    <form role="form" (submit)="search()">
+    <form role="form" (submit)="find()">
       <div class="input-group">
         <div class="col-4">
           <mat-form-field>
             <mat-icon matSuffix>search</mat-icon>
-            <input matInput type="text" name="search" [(ngModel)]="place" id="place" placeholder="Postal Code, Address...">
+            <input matInput type="text" name="search" [(ngModel)]="postalCode" id="postalCode" placeholder="Postal Code">
           </mat-form-field>
         </div>
         <div class="col-1">
@@ -21,7 +21,7 @@
         </div>
         <div class="col-3">
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Date">
+            <input matInput [matDatepicker]="picker" placeholder="Date" [(ngModel)]="date" name="date" id="date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>

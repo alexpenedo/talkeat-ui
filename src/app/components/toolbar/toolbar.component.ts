@@ -10,24 +10,26 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent implements OnInit, OnDestroy {
+export class ToolbarComponent implements OnInit {
 
   user: User;
+  image: string;
 
   constructor(private userService: UserService) {
     this.userService.showUserEmitter.subscribe((user) => {
       this.user = user;
     });
+    this.userService.showImageEmitter.subscribe((image) => {
+      this.image = image + '?' + Math.random();
+    });
   }
 
   ngOnInit() {
-    this.userService.showUser();
+    this.user = this.userService.getUser();
+    this.image = this.userService.getPhotoUrl();
   }
   logout() {
     this.userService.logout();
-  }
-  ngOnDestroy() {
-    console.log('ng on destroy');
   }
 
 }

@@ -1,3 +1,5 @@
+import { AuthGuardService } from './services/user/auth-guard.service';
+import { ProfileComponent } from './components/user/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { NgModule } from '@angular/core';
@@ -10,6 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-menu', component: CreateMenuComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   {
     path: '',
     redirectTo: '/home',
@@ -24,7 +27,8 @@ const routes: Routes = [
       { enableTracing: true }
     )
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuardService]
 })
 
 export class AppRoutingModule { }

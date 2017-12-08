@@ -11,7 +11,6 @@ export class Menu {
     public mains: any[];
     public desserts: any[];
     public date: Date;
-    public time: Time;
     public postalCode: string;
     public country: string;
     public address: string;

@@ -29,6 +29,7 @@ import { LoginComponent } from './components/user/login/login.component';
 import { CreateMenuComponent } from './components/create-menu/create-menu.component';
 import { AddDishesComponent } from './components/create-menu/add-dishes/add-dishes.component';
 import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
+import { ProfileComponent } from './components/user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
     HomeComponent,
     CreateMenuComponent,
     AddDishesComponent,
-    AutofocusDirective
+    AutofocusDirective,
+    ProfileComponent
   ],
   imports: [
     BrowserAnimationsModule,

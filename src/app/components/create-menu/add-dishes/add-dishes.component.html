@@ -6,11 +6,11 @@
   </button>
   <mat-card-content>
     <div [formGroup]="group">
-      <p *ngIf="group.get('array').controls.length===0">
+      <p *ngIf="group.get(arrayName).controls.length===0">
         {{description}}
       </p>
-      <div formArrayName="array">
-        <div *ngFor="let item of group.get('array').controls; let index = index">
+      <div [formArrayName]="arrayName">
+        <div *ngFor="let item of group.get(arrayName).controls; let index = index">
           <mat-form-field [formGroupName]="index">
             <input matInput formControlName="name" appAutofocus required>
             <button mat-button matSuffix mat-icon-button class="removeItem" (click)="removeItem(index)" color="warn">

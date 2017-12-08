@@ -13,17 +13,18 @@ export class AddDishesComponent implements OnInit {
   @Input() title: string;
   @Input() description: string;
   @Input() group: FormGroup;
+  @Input() arrayName: string;
 
   constructor(private formBuilder: FormBuilder) {
   }
   ngOnInit() {
   }
   addItem() {
-    const formArray = <FormArray>this.group.get('array');
+    const formArray = <FormArray>this.group.get(this.arrayName);
     formArray.push(this.formBuilder.group({ name: ['', Validators.required] }));
   }
   removeItem(index: number) {
-    const formArray = <FormArray>this.group.get('array');
+    const formArray = <FormArray>this.group.get(this.arrayName);
     formArray.removeAt(index);
   }
 }

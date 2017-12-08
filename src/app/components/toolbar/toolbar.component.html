@@ -18,9 +18,12 @@
     <button mat-button color="basic" [matMenuTriggerFor]="menu">
       <span>{{user.name}}</span>
       <mat-icon>account_circle</mat-icon>
+      <div class="user-image">
+        <img [src]="image" class="center-cropped">
+      </div>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
+      <button mat-menu-item [routerLink]="['/profile']">
         <mat-icon>account_circle</mat-icon>
         <span>{{user.name}}</span>
       </button>

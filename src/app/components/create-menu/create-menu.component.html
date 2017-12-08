@@ -4,13 +4,11 @@
       <form [formGroup]="menuDescription">
         <ng-template matStepLabel>Describe your menu</ng-template>
         <mat-form-field>
-          <!-- [(ngModel)]="menu.name" -->
-          <input matInput placeholder="Name" name="name" required id="name" formControlName="name" required>
+          <input matInput placeholder="Name" required formControlName="name" required>
         </mat-form-field>
         <mat-form-field>
-          <!-- [(ngModel)]="menu.description"  -->
-          <textarea matInput placeholder="Description" name="description" formControlName="description" requiredid="description" matTextareaAutosize
-            matAutosizeMinRows="4" matAutosizeMaxRows="5"></textarea>
+          <textarea matInput placeholder="Description" formControlName="description" required matTextareaAutosize matAutosizeMinRows="4"
+            matAutosizeMaxRows="5"></textarea>
         </mat-form-field>
         <div>
           <button mat-raised-button color="accent" matStepperNext>Next
@@ -24,14 +22,13 @@
         <ng-template matStepLabel>Add your dishes</ng-template>
         <div class="row">
           <div class="col-4">
-            <app-add-dishes [group]="addDishes.get('starters')" title="Starters" image="/assets/img/background3.jpeg" description="Add here your starters, like a salad or a soup"></app-add-dishes>
+            <app-add-dishes [group]="addDishes" arrayName="starters" title="Starters" image="/assets/img/background3.jpeg" description="Add here your starters, like a salad or a soup"></app-add-dishes>
           </div>
           <div class="col-4">
-            <app-add-dishes [group]="addDishes.get('mains')" title="Mains" image="/assets/img/background.jpeg" description="Add here your main dishes like a paella or a burger"></app-add-dishes>
+            <app-add-dishes [group]="addDishes" arrayName="mains" title="Mains" image="/assets/img/background.jpeg" description="Add here your main dishes like a paella or a burger"></app-add-dishes>
           </div>
           <div class="col-4">
-            <app-add-dishes [group]="addDishes.get('desserts')" title="Desserts/Coffee" image="/assets/img/background2.jpeg"
-              description="Add here your desserts like a cheesecake or coffee"></app-add-dishes>
+            <app-add-dishes [group]="addDishes" arrayName="desserts" title="Desserts/Coffee" image="/assets/img/background2.jpeg" description="Add here your desserts like a cheesecake or coffee"></app-add-dishes>
           </div>
         </div>
         <div>
@@ -50,8 +47,7 @@
         <div class="row">
           <div class="col-3">
             <mat-form-field>
-              <!-- [(ngModel)]="menu.guests"  -->
-              <mat-select placeholder="Guests" name="guests" required id="guests" formControlName="guests">
+              <mat-select placeholder="Guests" required formControlName="guests">
                 <mat-option value="1">1</mat-option>
                 <mat-option value="2">2</mat-option>
                 <mat-option value="3">3</mat-option>
@@ -62,44 +58,43 @@
           </div>
           <div class="col-3">
             <mat-form-field>
-              <!-- [(ngModel)]="menu.price" -->
-              <input matInput placeholder="Price" name="price" required id="price" formControlName="price">
+              <input matInput placeholder="Price" required formControlName="price">
               <mat-icon matSuffix>attach_money</mat-icon>
             </mat-form-field>
           </div>
-          <!-- <div class="col-3">
+          <div class="col-3">
             <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="Choose a date" id="date" name="date" [(ngModel)]="menu.date">
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
           <div class="col-3">
             <mat-form-field>
-              <input matInput placeholder="Time" type="time" (input)="setTime($event.target.value)" required>
+              <input matInput placeholder="Time" type="time" formControlName="time" (input)="setTime($event.target.value)" required>
             </mat-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
             <mat-form-field>
-              <input matInput name="address" required [(ngModel)]="menu.address" id="address" placeholder="Address" required>
+              <input matInput required formControlName="address" placeholder="Address" required>
             </mat-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col-4">
             <mat-form-field>
-              <input matInput name="postalCode" required [(ngModel)]="menu.postalCode" id="postalCode" placeholder="Postal Code" required>
+              <input matInput required formControlName="postalCode" placeholder="Postal Code" required>
             </mat-form-field>
           </div>
           <div class="col-8">
             <mat-form-field>
-              <input matInput name="country" required [(ngModel)]="menu.country" id="country" placeholder="Country" required>
+              <input matInput required formControlName="country" placeholder="Country" required>
             </mat-form-field>
           </div>
-        </div> -->
-          <!-- <div> -->
+        </div>
+        <div>
           <button mat-raised-button color="accent" matStepperPrevious>
             <mat-icon>keyboard_arrow_left</mat-icon>Back
           </button>
@@ -110,32 +105,30 @@
       </form>
     </mat-step>
     <mat-step>
-      <form>
-        <ng-template matStepLabel>Confirm your menu</ng-template>
-        <mat-card>
-          <mat-card-header>
-            <div mat-card-avatar></div>
-            <mat-card-title>{{menu.name}}</mat-card-title>
-            <mat-card-subtitle>Starters</mat-card-subtitle>
-            <mat-card-subtitle>Mains</mat-card-subtitle>
-            <mat-card-subtitle>Desserts</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              {{menu.description}}
-            </p>
-          </mat-card-content>
-        </mat-card>
+      <ng-template matStepLabel>Confirm your menu</ng-template>
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar></div>
+          <!-- <mat-card-title>{{menu.name}}</mat-card-title> -->
+          <mat-card-subtitle>Starters</mat-card-subtitle>
+          <mat-card-subtitle>Mains</mat-card-subtitle>
+          <mat-card-subtitle>Desserts</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <!-- {{menu.description}} -->
+          </p>
+        </mat-card-content>
+      </mat-card>
 
-        <div>
-          <button mat-raised-button color="accent" matStepperPrevious (click)="saveMenu()">
-            <mat-icon>keyboard_arrow_left</mat-icon>Back
-          </button>
-          <button mat-raised-button color="accent" matStepperPrevious (click)="saveMenu()">
-            <mat-icon>keyboard_arrow_left</mat-icon>Back
-          </button>
-        </div>
-      </form>
+      <div>
+        <button mat-raised-button color="accent" matStepperPrevious (click)="saveMenu()">
+          <mat-icon>keyboard_arrow_left</mat-icon>Back
+        </button>
+        <button mat-raised-button color="accent" matStepperPrevious (click)="saveMenu()">
+          <mat-icon>keyboard_arrow_left</mat-icon>Back
+        </button>
+      </div>
     </mat-step>
   </mat-horizontal-stepper>
 </div>

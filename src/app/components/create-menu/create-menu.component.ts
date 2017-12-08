@@ -1,3 +1,4 @@
+import { MenuService } from './../../services/menu/menu.service';
 import { dishValidator } from './validators/dishValidator';
 import { Menu } from './../../models/menu/menu';
 import { UserService } from './../../services/user/user.service';
@@ -8,7 +9,8 @@ import { User } from '../../models/user/user';
 @Component({
   selector: 'app-create-menu',
   templateUrl: './create-menu.component.html',
-  styleUrls: ['./create-menu.component.css']
+  styleUrls: ['./create-menu.component.css'],
+  providers: [MenuService]
 })
 export class CreateMenuComponent implements OnInit {
   user: User;
@@ -17,36 +19,30 @@ export class CreateMenuComponent implements OnInit {
   addDishes: FormGroup;
   completeData: FormGroup;
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) {
-    this.menu = new Menu();
+  constructor(private menuService: MenuService, private userService: UserService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
     this.user = this.userService.getUser();
-    // this.menu.address = this.user.address;
-    // this.menu.country = this.user.country;
-    // this.menu.postalCode = this.user.postalCode;
-    this.menu.date = new Date();
     this.menuDescription = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required]
     });
     this.addDishes = this.formBuilder.group({
-      starters: this.formBuilder.group({
-        array: this.formBuilder.array([])
-      }),
-      mains: this.formBuilder.group({
-        array: this.formBuilder.array([])
-      }),
-      desserts: this.formBuilder.group({
-        array: this.formBuilder.array([])
-      }),
+      starters: this.formBuilder.array([]),
+      mains: this.formBuilder.array([]),
+      desserts: this.formBuilder.array([]),
     },
       { validator: dishValidator }
     );
     this.completeData = this.formBuilder.group({
       guests: ['', Validators.required],
-      price: ['', Validators.required]
+      price: ['', Validators.required],
+      date: [new Date(), Validators.required],
+      time: ['', Validators.required],
+      address: [this.user != null ? this.user.address : '', Validators.required],
+      country: [this.user != null ? this.user.country : '', Validators.required],
+      postalCode: [this.user != null ? this.user.postalCode : '', Validators.required]
     });
   }
 
@@ -54,14 +50,16 @@ export class CreateMenuComponent implements OnInit {
     if (time) {
       const hours = time.split(':')[0];
       const minutes = time.split(':')[1];
-      this.menu.date.setHours(hours);
-      this.menu.date.setMinutes(minutes);
+      const date = <Date>this.completeData.get('date').value;
+      date.setHours(hours);
+      date.setMinutes(minutes);
     }
   }
 
   saveMenu() {
-    console.log(this.menuDescription);
-    console.log(this.addDishes);
+    this.menu = Object.assign({}, this.menuDescription.value, this.addDishes.value, this.completeData.value);
+    this.menu.host = this.user;
+    this.menuService.save(this.menu);
   }
 
 }

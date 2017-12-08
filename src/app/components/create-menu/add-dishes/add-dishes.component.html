@@ -5,16 +5,20 @@
     <mat-icon>add</mat-icon>
   </button>
   <mat-card-content>
-    <p *ngIf='items.length===0'>
-      {{description}}
-    </p>
-    <div *ngFor="let item of items; let index = index; trackBy:trackByIndex">
-      <mat-form-field>
-        <input matInput [(ngModel)]="items[index].name" appAutofocus>
-        <button mat-button matSuffix mat-icon-button class="removeItem" (click)="removeItem(index)" color="warn">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
+    <div [formGroup]="group">
+      <p *ngIf="group.get('array').controls.length===0">
+        {{description}}
+      </p>
+      <div formArrayName="array">
+        <div *ngFor="let item of group.get('array').controls; let index = index">
+          <mat-form-field [formGroupName]="index">
+            <input matInput formControlName="name" appAutofocus required>
+            <button mat-button matSuffix mat-icon-button class="removeItem" (click)="removeItem(index)" color="warn">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

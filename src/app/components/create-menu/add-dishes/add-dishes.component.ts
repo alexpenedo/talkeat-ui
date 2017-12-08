@@ -1,3 +1,4 @@
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from './../../../services/user/user.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../../models/user/user';
@@ -11,18 +12,18 @@ export class AddDishesComponent implements OnInit {
   @Input() image: string;
   @Input() title: string;
   @Input() description: string;
-  @Input() items: any[];
-  constructor() {
+  @Input() group: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
   }
   ngOnInit() {
   }
   addItem() {
-    this.items.push({ name: '' });
+    const formArray = <FormArray>this.group.get('array');
+    formArray.push(this.formBuilder.group({ name: ['', Validators.required] }));
   }
   removeItem(index: number) {
-    this.items.splice(index, 1);
-  }
-  trackByIndex(index: number, obj: any): any {
-    return index;
+    const formArray = <FormArray>this.group.get('array');
+    formArray.removeAt(index);
   }
 }

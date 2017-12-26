@@ -23,6 +23,7 @@ import {
   MatIconModule,
   MatMenuModule,
   MatStepperModule,
+  MatChipsModule,
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/user/login/login.component';
@@ -30,6 +31,7 @@ import { CreateMenuComponent } from './components/create-menu/create-menu.compon
 import { AddDishesComponent } from './components/create-menu/add-dishes/add-dishes.component';
 import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
 import { ProfileComponent } from './components/user/profile/profile.component';
+import { UserImageComponent } from './components/user/user-image/user-image.component';
 
 @NgModule({
   declarations: [
@@ -41,13 +43,15 @@ import { ProfileComponent } from './components/user/profile/profile.component';
     CreateMenuComponent,
     AddDishesComponent,
     AutofocusDirective,
-    ProfileComponent
+    ProfileComponent,
+    UserImageComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    MatChipsModule,
     HttpModule,
     MatToolbarModule,
     MatCardModule,

@@ -14,6 +14,7 @@ import { User } from '../../models/user/user';
 })
 export class CreateMenuComponent implements OnInit {
   user: User;
+  image: string;
   menu: Menu;
   menuDescription: FormGroup;
   addDishes: FormGroup;
@@ -24,6 +25,7 @@ export class CreateMenuComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.getUser();
+    this.image = this.userService.getPhotoUrl();
     this.menuDescription = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required]

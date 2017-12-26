@@ -14,14 +14,17 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService) {
     this.user = this.userService.getUser();
     this.userService.showImageEmitter.subscribe((image) => {
-      this.image = image + '?' + Math.random();
+      this.image = image;
     });
   }
 
   ngOnInit() {
     this.image = this.userService.getPhotoUrl();
   }
-  public uploadPhoto($event) {
+  uploadPhoto($event) {
     this.userService.uploadPhoto($event.target.files[0]);
+  }
+  updateUser() {
+    this.userService.update(this.user);
   }
 }

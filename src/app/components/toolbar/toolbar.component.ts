@@ -20,7 +20,7 @@ export class ToolbarComponent implements OnInit {
       this.user = user;
     });
     this.userService.showImageEmitter.subscribe((image) => {
-      this.image = image + '?' + Math.random();
+      this.image = image;
     });
   }
 

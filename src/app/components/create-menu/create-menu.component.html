@@ -106,18 +106,43 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Confirm your menu</ng-template>
-      <mat-card>
+      <mat-card class="col-4">
+        <img mat-card-image src="/assets/img/dish.jpeg">
+        <mat-chip-list class="chip">
+          <mat-chip color="accent">{{completeData.get('date').value | date: 'dd/MM/yyyy'}} {{completeData.get('time').value}}</mat-chip>
+          <mat-chip color="accent">{{completeData.get('guests').value}}
+            <mat-icon>person_pin</mat-icon>
+          </mat-chip>
+          <mat-chip color="accent">{{completeData.get('price').value}}
+            <mat-icon matSuffix>attach_money</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+        <mat-card-title class="title">
+          {{menuDescription.get('name').value}}
+          <span>
+            <app-user-image [image]="image" diameter="70px" float="right"></app-user-image>
+          </span>
+        </mat-card-title>
         <mat-card-header>
-          <div mat-card-avatar></div>
-          <!-- <mat-card-title>{{menu.name}}</mat-card-title> -->
-          <mat-card-subtitle>Starters</mat-card-subtitle>
-          <mat-card-subtitle>Mains</mat-card-subtitle>
-          <mat-card-subtitle>Desserts</mat-card-subtitle>
+          <mat-card-subtitle>{{menuDescription.get('description').value}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>
-            <!-- {{menu.description}} -->
-          </p>
+          <mat-list>
+            <h3 mat-subheader>Starters</h3>
+            <mat-list-item *ngFor="let dish of addDishes.get('starters').value">
+              {{dish.name}}
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Mains</h3>
+            <mat-list-item *ngFor="let dish of addDishes.get('mains').value">
+              {{dish.name}}
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Desserts</h3>
+            <mat-list-item *ngFor="let dish of addDishes.get('desserts').value">
+              {{dish.name}}
+            </mat-list-item>
+          </mat-list>
         </mat-card-content>
       </mat-card>
 

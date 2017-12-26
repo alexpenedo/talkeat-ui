@@ -10,11 +10,11 @@ import { HttpParams } from '@angular/common/http';
 @Injectable()
 export class UserService {
 
-  public url: string;
+  url: string;
   private _showUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
-  public showUserEmitter: Observable<User> = this._showUser.asObservable();
+  showUserEmitter: Observable<User> = this._showUser.asObservable();
   private _showImage: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  public showImageEmitter: Observable<string> = this._showImage.asObservable();
+  showImageEmitter: Observable<string> = this._showImage.asObservable();
 
   constructor(private http: Http, private router: Router) {
     this.url = environment.apiUrl + 'users';
@@ -49,6 +49,7 @@ export class UserService {
         localStorage.setItem('token', body.token);
         this.router.navigate(['/home']);
         this.showUser();
+        this.showImage();
       });
   }
   public register(user: User) {
@@ -57,10 +58,23 @@ export class UserService {
         const body = response.json();
         localStorage.setItem('user', JSON.stringify(body.user));
         localStorage.setItem('token', body.token);
-        this.showUser();
         this.router.navigate(['/home']);
+        this.showUser();
       });
   }
+  public update(user: User) {
+    const headers: Headers = new Headers();
+    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    const requestOptions = new RequestOptions({ headers, params: new HttpParams() });
+    this.http.put(this.url + '/' + this.getUser()._id, user, requestOptions)
+      .subscribe(response => {
+        const body = response.json();
+        localStorage.setItem('user', JSON.stringify(body));
+        this.router.navigate(['/home']);
+        this.showUser();
+      });
+  }
+
   public logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
@@ -81,7 +95,7 @@ export class UserService {
   }
 
   public getPhotoUrl() {
-    return this.url + '/' + this.getUser()._id + '/picture';
+    return this.url + '/' + this.getUser()._id + '/picture?' + Math.random();
   }
 
 }

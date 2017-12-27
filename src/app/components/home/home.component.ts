@@ -1,3 +1,4 @@
+import { Menu } from './../../models/menu/menu';
 import { User } from './../../models/user/user';
 import { UserService } from './../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit {
   postalCode: string;
   date: Date;
   type: string;
+  menus: Menu[];
 
   constructor(private menuService: MenuService) {
     this.persons = '2';
@@ -23,7 +25,10 @@ export class HomeComponent implements OnInit {
   }
 
   find() {
-    this.menuService.find(this.postalCode, this.persons, this.date, this.type);
+    this.menuService.find(this.postalCode, this.persons, this.date, this.type)
+      .subscribe(menus => {
+        console.log(menus);
+        this.menus = menus;
+      });
   }
-
 }

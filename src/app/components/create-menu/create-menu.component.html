@@ -106,46 +106,11 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Confirm your menu</ng-template>
-      <mat-card class="col-4">
-        <img mat-card-image src="/assets/img/dish.jpeg">
-        <mat-chip-list class="chip">
-          <mat-chip color="accent">{{completeData.get('date').value | date: 'dd/MM/yyyy'}} {{completeData.get('time').value}}</mat-chip>
-          <mat-chip color="accent">{{completeData.get('guests').value}}
-            <mat-icon>person_pin</mat-icon>
-          </mat-chip>
-          <mat-chip color="accent">{{completeData.get('price').value}}
-            <mat-icon matSuffix>attach_money</mat-icon>
-          </mat-chip>
-        </mat-chip-list>
-        <mat-card-title class="title">
-          {{menuDescription.get('name').value}}
-          <span>
-            <app-user-image [image]="image" diameter="70px" float="right"></app-user-image>
-          </span>
-        </mat-card-title>
-        <mat-card-header>
-          <mat-card-subtitle>{{menuDescription.get('description').value}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-list>
-            <h3 mat-subheader>Starters</h3>
-            <mat-list-item *ngFor="let dish of addDishes.get('starters').value">
-              {{dish.name}}
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>Mains</h3>
-            <mat-list-item *ngFor="let dish of addDishes.get('mains').value">
-              {{dish.name}}
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>Desserts</h3>
-            <mat-list-item *ngFor="let dish of addDishes.get('desserts').value">
-              {{dish.name}}
-            </mat-list-item>
-          </mat-list>
-        </mat-card-content>
-      </mat-card>
-
+      <div class="col-5">
+        <app-menu-info [date]="completeData.get('date').value" [date]="completeData.get('time').value" [guests]="completeData.get('guests').value"
+          [price]="completeData.get('price').value" [host]="user._id" [name]="menuDescription.get('name').value" [description]="menuDescription.get('description').value"
+          [starters]="addDishes.get('starters').value" [mains]="addDishes.get('mains').value" [desserts]="addDishes.get('desserts').value"></app-menu-info>
+      </div>
       <div>
         <button mat-raised-button color="accent" matStepperPrevious (click)="saveMenu()">
           <mat-icon>keyboard_arrow_left</mat-icon>Back

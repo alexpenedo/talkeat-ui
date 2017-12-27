@@ -32,6 +32,7 @@ import { AddDishesComponent } from './components/create-menu/add-dishes/add-dish
 import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { UserImageComponent } from './components/user/user-image/user-image.component';
+import { MenuInfoComponent } from './components/create-menu/menu-info/menu-info.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { UserImageComponent } from './components/user/user-image/user-image.comp
     AddDishesComponent,
     AutofocusDirective,
     ProfileComponent,
-    UserImageComponent
+    UserImageComponent,
+    MenuInfoComponent
   ],
   imports: [
     BrowserAnimationsModule,

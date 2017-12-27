@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.image = this.userService.getPhotoUrl();
+    this.image = this.userService.getPhotoUrl(this.userService.getUser()._id);
   }
   uploadPhoto($event) {
     this.userService.uploadPhoto($event.target.files[0]);

@@ -1,0 +1,87 @@
+.time {
+    background: #673ab7;
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.dish {
+    color: black;
+    font-weight: normal;
+    padding: 10px;
+    background: #d2f3ff;
+    border-radius: 20px;
+    margin: 0px 5px;
+    font-size: 12px;
+}
+
+.vertical-divider {
+    border-top-width: 0;
+    border-right-width: 1px;
+    border-right-style: solid;
+    margin: 0px 8px;
+}
+
+mat-card-title {
+    margin-top: -60px !important;
+    color: white;
+    position: relative;
+}
+
+.mat-card-image {
+    margin-top: -120px !important;
+    filter: brightness(0.4);
+}
+
+.user-picture {
+    height: 70px !important;
+    width: 70px !important;
+    float: right;
+}
+
+.chip {
+    position: absolute;
+    z-index: 1;
+    top: 2px;
+    left: 2px;
+}
+
+.menu-info {
+    overflow: hidden;
+}
+
+.price {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    font-size: 25px;
+    background: #edc73c;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.description {
+    font-size: 11px;
+    text-align: justify;
+    padding: 5px;
+    margin: 0;
+}
+
+.datetime {
+    position: absolute;
+    top: 37px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 7px;
+    left: 13px;
+    color: #8a8a9c;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.time-icon {
+    font-size: 27px;
+    margin-right: 10px;
+    float: left;
+    color: #893737;
+}

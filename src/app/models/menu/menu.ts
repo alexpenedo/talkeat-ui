@@ -14,5 +14,4 @@ export class Menu {
     public postalCode: string;
     public country: string;
     public address: string;
-
 }

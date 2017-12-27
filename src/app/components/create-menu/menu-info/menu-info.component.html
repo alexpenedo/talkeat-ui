@@ -1,0 +1,34 @@
+<mat-card class="menu-info">
+  <img mat-card-image src="/assets/img/dish.jpeg">
+  <div class="datetime">
+    <mat-icon class="time-icon">access_time</mat-icon>
+    <span>{{date | date: 'HH:mm'}}</span>
+  </div>
+  <div class="price">{{+price | number : '1.2-2'}}
+    <mat-icon style="font-size: 20px;">attach_money</mat-icon>
+  </div>
+  <mat-card-title class="title">
+    {{name}}
+    <span>
+      <app-user-image [image]="image" diameter="70px" float="right"></app-user-image>
+    </span>
+  </mat-card-title>
+  <mat-card-header>
+    <mat-card-subtitle class="description">{{description}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <h3 mat-subheader>Starters
+        <span *ngFor="let dish of starters" class="dish">{{dish.name}}</span>
+      </h3>
+      <mat-divider></mat-divider>
+      <h3 mat-subheader>Mains
+        <span *ngFor="let dish of mains" class="dish">{{dish.name}}</span>
+      </h3>
+      <mat-divider></mat-divider>
+      <h3 mat-subheader>Desserts
+        <span *ngFor="let dish of desserts" class="dish">{{dish.name}}</span>
+      </h3>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

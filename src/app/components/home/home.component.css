@@ -1,5 +1,9 @@
-.search{
+.search {
     width: 100%;
     line-height: 40px;
     margin-top: 10px;
+}
+
+.menus {
+    padding: 10px;
 }

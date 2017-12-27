@@ -31,7 +31,7 @@ export class UserService {
     this._showUser.next(this.getUser());
   }
   public showImage() {
-    this._showImage.next(this.getPhotoUrl());
+    this._showImage.next(this.getPhotoUrl(this.getUser()._id));
   }
   public isAuthenticated() {
     const token = localStorage.getItem('token');
@@ -94,8 +94,8 @@ export class UserService {
       });
   }
 
-  public getPhotoUrl() {
-    return this.url + '/' + this.getUser()._id + '/picture?' + Math.random();
+  public getPhotoUrl(userId: string) {
+    return this.url + '/' + userId + '/picture?' + Math.random();
   }
 
 }

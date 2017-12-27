@@ -40,4 +40,10 @@
       </div>
     </form>
   </mat-card>
+  <div class="row menus">
+    <div *ngFor="let menu of menus" class="col-4">
+      <app-menu-info [date]="menu.date" [date]="menu.date" [guests]="menu.guests" [price]="menu.price" [name]="menu.name" [description]="menu.description"
+        [starters]="menu.starters" [mains]="menu.mains" [desserts]="menu.desserts" [host]="menu.host"></app-menu-info>
+    </div>
+  </div>
 </div>

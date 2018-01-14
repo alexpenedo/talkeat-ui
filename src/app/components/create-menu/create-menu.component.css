@@ -1,3 +1,11 @@
 .mat-raised-button {
     margin-top: 20px;
 }
+.publish{
+    width: 100%;
+    font-size: 20px;
+    line-height: 60px;
+}
+.publish-container{
+    padding: 60px;
+}

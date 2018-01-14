@@ -106,16 +106,23 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Confirm your menu</ng-template>
-      <div class="col-5">
-        <app-menu-info [date]="completeData.get('date').value" [date]="completeData.get('time').value" [guests]="completeData.get('guests').value"
-          [price]="completeData.get('price').value" [host]="user._id" [name]="menuDescription.get('name').value" [description]="menuDescription.get('description').value"
-          [starters]="addDishes.get('starters').value" [mains]="addDishes.get('mains').value" [desserts]="addDishes.get('desserts').value"></app-menu-info>
+      <div class="row">
+        <div class="col-5">
+          <app-menu-info publish=true [date]="getDate()" [guests]="completeData.get('guests').value" [price]="completeData.get('price').value"
+            [host]="user._id" [name]="menuDescription.get('name').value" [description]="menuDescription.get('description').value"
+            [starters]="addDishes.get('starters').value" [mains]="addDishes.get('mains').value" [desserts]="addDishes.get('desserts').value"></app-menu-info>
+        </div>
+        <div class="col-7 publish-container">
+          <h3>Your menu is finished. Please check your menu information.</h3>
+          <div class="col-8 offset-2">
+            <button mat-raised-button color="primary" class="publish" (click)="saveMenu()">
+              PUBLISH YOUR MENU
+            </button>
+          </div>
+        </div>
       </div>
       <div>
-        <button mat-raised-button color="accent" matStepperPrevious (click)="saveMenu()">
-          <mat-icon>keyboard_arrow_left</mat-icon>Back
-        </button>
-        <button mat-raised-button color="accent" matStepperPrevious (click)="saveMenu()">
+        <button mat-raised-button color="accent" matStepperPrevious>
           <mat-icon>keyboard_arrow_left</mat-icon>Back
         </button>
       </div>

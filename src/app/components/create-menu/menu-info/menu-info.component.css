@@ -48,6 +48,12 @@ mat-card-title {
 
 .menu-info {
     overflow: hidden;
+    margin-bottom:20px;
+}
+.animation:hover {
+    transition: all 200ms ease-in;
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .price {
@@ -84,4 +90,14 @@ mat-card-title {
     margin-right: 10px;
     float: left;
     color: #893737;
+}
+
+.book-button{
+    width: 100%;
+    position: absolute;
+    padding: 0;
+    margin-left: -24px;
+    margin-top: -15px;
+    font-size: 18px;
+    height: 40px;
 }

@@ -1,7 +1,8 @@
-<mat-card class="menu-info">
+<mat-card [ngClass]="classes" (mouseenter)="mouseEnter() " (mouseleave)="mouseLeave()">
   <img mat-card-image src="/assets/img/dish.jpeg">
   <div class="datetime">
     <mat-icon class="time-icon">access_time</mat-icon>
+    <span *ngIf="publish===true">{{date | date: 'dd/MM'}}</span>
     <span>{{date | date: 'HH:mm'}}</span>
   </div>
   <div class="price">{{+price | number : '1.2-2'}}
@@ -31,4 +32,7 @@
       </h3>
     </mat-list>
   </mat-card-content>
+  <button [@visibility]="visibility" class="book-button" mat-raised-button color="warn">
+    BOOK
+  </button>
 </mat-card>

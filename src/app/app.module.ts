@@ -33,6 +33,8 @@ import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { UserImageComponent } from './components/user/user-image/user-image.component';
 import { MenuInfoComponent } from './components/create-menu/menu-info/menu-info.component';
+import { AgmCoreModule } from '@agm/core';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { MenuInfoComponent } from './components/create-menu/menu-info/menu-info.
     AutofocusDirective,
     ProfileComponent,
     UserImageComponent,
-    MenuInfoComponent
+    MenuInfoComponent,
+    MapComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -70,6 +73,9 @@ import { MenuInfoComponent } from './components/create-menu/menu-info/menu-info.
     MatIconModule,
     MatMenuModule,
     MatStepperModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDI4nEy33luOLXI2AZcRllmEdMq9mrWF_g'
+    })
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

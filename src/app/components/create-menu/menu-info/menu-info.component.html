@@ -8,6 +8,14 @@
   <div class="price">{{+price | number : '1.2-2'}}
     <mat-icon style="font-size: 20px;">attach_money</mat-icon>
   </div>
+  <div class="persons">
+    <span style="font-size: 30px;">
+      <span class="available" [style.color] = "available > 1 ? '#80d280' : '#ff6060'">
+        {{available}}
+      </span>
+      /{{guests}}</span>
+    <mat-icon>perm_identity</mat-icon>
+  </div>
   <mat-card-title class="title">
     {{name}}
     <span>

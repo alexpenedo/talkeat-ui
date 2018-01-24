@@ -50,9 +50,13 @@ mat-card-title {
     overflow: hidden;
     margin-bottom:20px;
 }
+.animation {
+    transition: all 0ms ease-in;
+    transform: scale(0.97);
+}
 .animation:hover {
     transition: all 200ms ease-in;
-    transform: scale(1.05);
+    transform: scale(1.00);
     cursor: pointer;
 }
 
@@ -64,6 +68,19 @@ mat-card-title {
     background: #edc73c;
     padding: 7px;
     border-radius: 10px;
+}
+.persons {
+    position: absolute;
+    top: 35px;
+    right: -3px;
+    font-size: 25px;
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+}
+.available{
+    font-weight: bold; 
+    font-size:40px;
 }
 
 .description {

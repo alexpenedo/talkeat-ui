@@ -5,6 +5,7 @@ export class Menu {
     public name: string;
     public description: string;
     public guests: number;
+    public available: number;
     public price: number;
     public host: User;
     public starters: any[];

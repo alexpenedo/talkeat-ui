@@ -24,6 +24,7 @@ export class MenuInfoComponent implements OnInit {
   @Input() publish: string;
   @Input() date: Date;
   @Input() guests: number;
+  @Input() available: number;
   @Input() price: number;
   @Input() name: string;
   @Input() description: string;

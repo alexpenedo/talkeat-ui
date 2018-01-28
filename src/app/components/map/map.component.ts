@@ -1,24 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { GeolocationService } from '../../services/geolocation/geolocation.service';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
+  providers: [GeolocationService]
 })
 export class MapComponent implements OnInit {
-  lat: number;
-  lng: number;
+  errorMsg: string;
+  currentLocation: Coordinates;
+  zoom: number = 15;
 
-  constructor() {
-  }
+  constructor(private ref: ChangeDetectorRef,
+    private geoLocationService: GeolocationService) { }
 
   ngOnInit() {
-    // let latitude:number;
-    // let longitude:number;
-    // window.navigator.geolocation.getCurrentPosition(function (position) {
-    //   latitude = position.coords.latitude;
-    //   this.lng = position.coords.longitude;
-    // });
+    let self = this;
+    const accuracy = { enableHighAccuracy: true };
+    self.geoLocationService.getLocation(accuracy).subscribe(function (position) {
+      self.currentLocation = position;
+      console.log(self.currentLocation);
+      self.ref.detectChanges();
+    }, function (error) { self.errorMsg = error; self.ref.detectChanges(); });
   }
 
 }

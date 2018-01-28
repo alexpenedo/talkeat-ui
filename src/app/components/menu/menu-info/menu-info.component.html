@@ -1,4 +1,4 @@
-<mat-card [ngClass]="classes" (mouseenter)="mouseEnter() " (mouseleave)="mouseLeave()">
+<mat-card [ngClass]="classes" (mouseenter)="mouseEnter() " (mouseleave)="mouseLeave()" [routerLink]="['/booking',id]">
   <img mat-card-image src="/assets/img/dish.jpeg">
   <div class="datetime">
     <mat-icon class="time-icon">access_time</mat-icon>
@@ -10,7 +10,7 @@
   </div>
   <div class="persons">
     <span style="font-size: 30px;">
-      <span class="available" [style.color] = "available > 1 ? '#80d280' : '#ff6060'">
+      <span class="available" [style.color]="available > 1 ? '#80d280' : '#ff6060'">
         {{available}}
       </span>
       /{{guests}}</span>

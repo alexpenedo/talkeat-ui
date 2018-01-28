@@ -1,10 +1,10 @@
-import { MenuService } from './../../services/menu/menu.service';
-import { dishValidator } from './validators/dishValidator';
-import { Menu } from './../../models/menu/menu';
-import { UserService } from './../../services/user/user.service';
+import { MenuService } from './../../../services/menu/menu.service';
+import { dishValidator } from '../validators/dishValidator';
+import { Menu } from './../../../models/menu/menu';
+import { UserService } from './../../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { User } from '../../models/user/user';
+import { User } from '../../../models/user/user';
 
 @Component({
   selector: 'app-create-menu',

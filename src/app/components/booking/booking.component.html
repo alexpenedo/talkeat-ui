@@ -1,0 +1,22 @@
+<div class="col-10 offset-1">
+  <mat-card>
+    <div class="row">
+      <div class="col-5" *ngIf="menu">
+        <app-menu-info publish="true" [date]="menu.date" [guests]="menu.guests" [available]="menu.available" [price]="menu.price"
+          [name]="menu.name" [description]="menu.description" [starters]="menu.starters" [mains]="menu.mains" [desserts]="menu.desserts"
+          [host]="menu.host">
+        </app-menu-info>
+      </div>
+      <div class="col-7 booking-container">
+        <h1 class="text-success">Would you like to book the menu?</h1>
+        <h4>You can chat with the host</h4>
+        <h4>The host will confirm your book</h4>
+        <div class="col-8 offset-2">
+          <button mat-raised-button color="primary" class="booking" (click)="bookMenu()">
+            BOOK MENU
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

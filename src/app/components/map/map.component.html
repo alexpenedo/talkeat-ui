@@ -1,3 +1,5 @@
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+<agm-map *ngIf="currentLocation"  [zoom]="zoom" [latitude]="currentLocation.coords.latitude" [longitude]="currentLocation.coords.longitude">
+  <agm-marker [latitude]="currentLocation.coords.latitude" [longitude]="currentLocation.coords.longitude">
+    <agm-info-window>Me</agm-info-window>
+  </agm-marker>
 </agm-map>

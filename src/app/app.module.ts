@@ -27,14 +27,15 @@ import {
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/user/login/login.component';
-import { CreateMenuComponent } from './components/create-menu/create-menu.component';
-import { AddDishesComponent } from './components/create-menu/add-dishes/add-dishes.component';
+import { AddDishesComponent } from './components/menu/add-dishes/add-dishes.component';
 import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { UserImageComponent } from './components/user/user-image/user-image.component';
-import { MenuInfoComponent } from './components/create-menu/menu-info/menu-info.component';
+import { MenuInfoComponent } from './components/menu/menu-info/menu-info.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './components/map/map.component';
+import { BookingComponent } from './components/booking/booking.component';
+import { CreateMenuComponent } from './components/menu/create-menu/create-menu.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { MapComponent } from './components/map/map.component';
     ProfileComponent,
     UserImageComponent,
     MenuInfoComponent,
-    MapComponent
+    MapComponent,
+    BookingComponent
   ],
   imports: [
     BrowserAnimationsModule,

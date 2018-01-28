@@ -38,4 +38,11 @@ export class MenuService {
     });
   }
 
+  public findById(id: string): Observable<Menu> {
+    const params = new HttpParams();
+    return this.http.get(this.url + '/' + id, this.requestOptions).map((response) => {
+      return <Menu>response.json();
+    });
+  }
+
 }

@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
   find() {
     this.menuService.find(this.postalCode, this.persons, this.date, this.type)
       .subscribe(menus => {
-        console.log(menus);
         this.menus = menus;
       });
   }

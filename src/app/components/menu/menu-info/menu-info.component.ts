@@ -21,6 +21,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class MenuInfoComponent implements OnInit {
 
+  @Input() id: string;
   @Input() publish: string;
   @Input() date: Date;
   @Input() guests: number;
@@ -41,6 +42,7 @@ export class MenuInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.host);
     this.image = this.userService.getPhotoUrl(this.host);
     if (this.publish == "true") {
       this.classes = "menu-info";

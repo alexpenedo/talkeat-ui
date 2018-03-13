@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
     this.persons = '2';
     this.date = new Date();
     this.type = this.date.getHours() > 17 ? "dinner" : "lunch";
+
   }
   ngOnInit() {
     let lastCoordinates: Coordinates = this.geolocationService.getLastCoordinatesSearch();

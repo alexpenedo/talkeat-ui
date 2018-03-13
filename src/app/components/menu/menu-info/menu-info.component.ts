@@ -33,6 +33,7 @@ export class MenuInfoComponent implements OnInit {
   @Input() mains: Array<any>;
   @Input() desserts: Array<any>;
   @Input() host: string;
+  @Input() address: string;
   image: string;
   classes: string;
   visibility:string;

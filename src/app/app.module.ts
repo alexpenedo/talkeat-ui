@@ -33,13 +33,13 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { UserImageComponent } from './components/user/user-image/user-image.component';
 import { MenuInfoComponent } from './components/menu/menu-info/menu-info.component';
 import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { MapComponent } from './components/map/map.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { CreateMenuComponent } from './components/menu/create-menu/create-menu.component';
 import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 import { GeolocationService } from './services/geolocation/geolocation.service';
 import { MenuMarkerComponent } from './components/menu/menu-marker/menu-marker.component';
-import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 @NgModule({
   declarations: [
@@ -84,7 +84,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
       apiKey: 'AIzaSyDI4nEy33luOLXI2AZcRllmEdMq9mrWF_g',
       libraries: ["places"]
     }),
-    ScrollToModule.forRoot(),
+    AgmSnazzyInfoWindowModule,
     Ng4GeoautocompleteModule.forRoot()
   ],
   providers: [UserService, GeolocationService],

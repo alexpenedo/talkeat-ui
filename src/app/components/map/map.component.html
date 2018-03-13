@@ -1,12 +1,18 @@
-<agm-map *ngIf="menus" [zoom]="zoom" [latitude]="latitude" 
-[longitude]="longitude">
-  <!-- <agm-marker [latitude]="currentLocation.coords.latitude" [longitude]="currentLocation.coords.longitude">
-    <agm-info-window>Me</agm-info-window>
-  </agm-marker> -->
+<!-- <agm-map *ngIf="menus" [zoom]="zoom" [latitude]="latitude" [longitude]="longitude">
   <agm-marker *ngFor="let menu of menus" [latitude]="menu.location[1]" [longitude]="menu.location[0]">
-    <agm-info-window [maxWidth]="250">
-        <app-menu-marker [id]="menu._id" [date]="menu.date" [date]="menu.date" [guests]="menu.guests" [available]="menu.available"
+    <agm-snazzy-info-window [maxWidth]="250" [closeWhenOthersOpen]="true">
+      <app-menu-marker [id]="menu._id" [date]="menu.date" [date]="menu.date" [guests]="menu.guests" [available]="menu.available"
         [price]="menu.price" [name]="menu.name" [host]="menu.host"></app-menu-marker>
-    </agm-info-window>
+    </agm-snazzy-info-window>
+  </agm-marker>
+</agm-map> -->
+<agm-map *ngIf="menus" [zoom]="zoom" [latitude]="latitude" [longitude]="longitude">
+  <agm-marker *ngFor="let menu of menus" [latitude]="menu.location[1]" [longitude]="menu.location[0]">
+    <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+      <ng-template>
+        <app-menu-marker [id]="menu._id" [date]="menu.date" [date]="menu.date" [guests]="menu.guests" [available]="menu.available"
+          [price]="menu.price" [name]="menu.name" [host]="menu.host"></app-menu-marker>
+      </ng-template>
+    </agm-snazzy-info-window>
   </agm-marker>
 </agm-map>

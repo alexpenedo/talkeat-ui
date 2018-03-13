@@ -5,6 +5,7 @@ import { UserService } from './../../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { User } from '../../../models/user/user';
+import { GeolocationService } from '../../../services/geolocation/geolocation.service';
 
 @Component({
   selector: 'app-create-menu',
@@ -19,7 +20,8 @@ export class CreateMenuComponent implements OnInit {
   addDishes: FormGroup;
   completeData: FormGroup;
 
-  constructor(private menuService: MenuService, private userService: UserService, private formBuilder: FormBuilder) {
+  constructor(private menuService: MenuService, private userService: UserService,
+    private geolocationService: GeolocationService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class CreateMenuComponent implements OnInit {
     }
   }
 
-  getDate():Date{
+  getDate(): Date {
     const time = this.completeData.get('time').value;
     if (time) {
       const hours = time.split(':')[0];
@@ -68,7 +70,6 @@ export class CreateMenuComponent implements OnInit {
 
   saveMenu() {
     this.menu = Object.assign({}, this.menuDescription.value, this.addDishes.value, this.completeData.value);
-    this.menu.host = this.user;
     this.menuService.save(this.menu);
   }
 

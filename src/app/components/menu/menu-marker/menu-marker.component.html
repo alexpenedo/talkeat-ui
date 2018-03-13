@@ -1,0 +1,24 @@
+<a (click)="scroll()">
+  <mat-card>
+    <div class="datetime">
+      <mat-icon class="time-icon">access_time</mat-icon>
+      <span *ngIf="publish===true">{{date | date: 'dd/MM'}}</span>
+      <span>{{date | date: 'HH:mm'}}</span>
+    </div>
+    <div class="persons">
+      <span>
+        <app-user-image [image]="image" diameter="70px" float="right"></app-user-image>
+      </span>
+      <span style="font-size: 30px;  margin-right:40px;">
+        <span class="available" [style.color]="available > 1 ? '#80d280' : '#ff6060'">
+          {{available}}
+        </span>
+        /{{guests}}
+        <mat-icon>perm_identity</mat-icon>
+      </span>
+    </div>
+    <mat-card-title class="title">
+      {{name}}
+    </mat-card-title>
+  </mat-card>
+</a>

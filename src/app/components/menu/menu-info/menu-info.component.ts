@@ -42,7 +42,6 @@ export class MenuInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.host);
     this.image = this.userService.getPhotoUrl(this.host);
     if (this.publish == "true") {
       this.classes = "menu-info";

@@ -1,51 +1,62 @@
-<div class="col-10 offset-1">
-  <mat-card>
-    <form role="form" (submit)="find()">
-      <div class="input-group">
-        <div class="col-4">
-          <mat-form-field>
-            <mat-icon matSuffix>search</mat-icon>
-            <input matInput type="text" name="search" [(ngModel)]="postalCode" id="postalCode" placeholder="Postal Code">
-          </mat-form-field>
-        </div>
-        <div class="col-1">
-          <mat-form-field>
-            <mat-select placeholder="Pers" [(ngModel)]="persons" name="food">
-              <mat-option value="1">1</mat-option>
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
-              <mat-option value="4">4</mat-option>
-              <mat-option value="5">5</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col-3">
-          <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Date" [(ngModel)]="date" name="date" id="date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="col-2">
-          <mat-form-field>
-            <mat-select placeholder="Lunch/Dinner" [(ngModel)]="type" name="type">
-              <mat-option value="lunch">Lunch</mat-option>
-              <mat-option value="dinner">Dinner</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col-2">
-          <button mat-raised-button color="primary" type="submit" name="action" class="search">SEARCH</button>
-        </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <mat-card>
+        <form role="form">
+          <div class="input-group">
+            <div class="col-3">
+              <mat-form-field>
+                <mat-select placeholder="Persons" [(ngModel)]="persons" name="food">
+                  <mat-option value="1">1</mat-option>
+                  <mat-option value="2">2</mat-option>
+                  <mat-option value="3">3</mat-option>
+                  <mat-option value="4">4</mat-option>
+                  <mat-option value="5">5</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Date" [(ngModel)]="date" name="date" id="date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <mat-select placeholder="Lunch/Dinner" [(ngModel)]="type" name="type">
+                  <mat-option value="lunch">Lunch</mat-option>
+                  <mat-option value="dinner">Dinner</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+      </mat-card>
+      <div class="col-10" style="padding:0">
+        <ng4geo-autocomplete [userSettings]="userSettings" (componentCallback)="autocompleteHandler($event)"></ng4geo-autocomplete>
       </div>
-    </form>
-  </mat-card>
-  <div class="row menus">
-    <div *ngFor="let menu of menus" class="col-4">
-      <app-menu-info publish="false" [id]="menu._id" [date]="menu.date" [date]="menu.date" [guests]="menu.guests" [available]="menu.available"
-        [price]="menu.price" [name]="menu.name" [description]="menu.description" [starters]="menu.starters" [mains]="menu.mains"
-        [desserts]="menu.desserts" [host]="menu.host"></app-menu-info>
+      <div class="col-2" style="float: left; padding: 0;">
+        <button mat-raised-button color="primary" class="search" (click)="find()">SEARCH</button>
+      </div>
     </div>
   </div>
-  <app-map></app-map>
+  <div class="row">
+    <div class="col-12">
+      <div class="row menus">
+        <div class="col-7 menu-cards">
+          <div class="row">
+            <div *ngFor="let menu of menus" class="col-6">
+              <app-menu-info publish="false" [id]="menu._id" [date]="menu.date" [date]="menu.date" [guests]="menu.guests" [available]="menu.available"
+                [price]="menu.price" [name]="menu.name" [description]="menu.description" [starters]="menu.starters" [mains]="menu.mains"
+                [desserts]="menu.desserts" [host]="menu.host"></app-menu-info>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <app-map [menus]="menus"></app-map>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

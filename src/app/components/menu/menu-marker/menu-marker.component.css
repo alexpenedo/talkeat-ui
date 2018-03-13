@@ -1,0 +1,52 @@
+.mat-card{
+    padding: 0;
+}
+.price {
+    font-size: 25px;
+    background: #edc73c;
+    padding: 7px;
+    border-radius: 10px;
+}
+.time {
+    background: #673ab7;
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+}
+.persons {
+    background: #0c3e57;
+    font-size: 25px;
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+}
+.available{
+    font-weight: bold; 
+    font-size:40px;
+}
+.datetime {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 7px;
+    color: #8a8a9c;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.time-icon {
+    font-size: 27px;
+    margin-right: 10px;
+    float: left;
+    color: #893737;
+}
+
+
+.user-picture {
+    height: 70px !important;
+    width: 70px !important;
+    float: right;
+}
+mat-card-title {
+    margin-top: 20px !important;
+    position: relative;
+}

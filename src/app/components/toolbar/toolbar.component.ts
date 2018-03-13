@@ -26,7 +26,8 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.getUser();
-    this.image = this.userService.getPhotoUrl(this.userService.getUser()._id);
+    if (this.user)
+      this.image = this.userService.getPhotoUrl(this.userService.getUser()._id);
   }
   logout() {
     this.userService.logout();

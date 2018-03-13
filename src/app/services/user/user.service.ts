@@ -60,6 +60,7 @@ export class UserService {
         localStorage.setItem('token', body.token);
         this.router.navigate(['/home']);
         this.showUser();
+        this.showImage();
       });
   }
   public update(user: User) {

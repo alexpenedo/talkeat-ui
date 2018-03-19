@@ -17,7 +17,7 @@
   <span *ngIf="user">
     <button mat-button color="basic" [matMenuTriggerFor]="menu">
       <span>{{user.name}}</span>
-      <mat-icon>account_circle</mat-icon>
+      <mat-icon *ngIf="!image">account_circle</mat-icon>
       <app-user-image [image]="image" diameter="50px">
       </app-user-image>
     </button>
@@ -29,6 +29,14 @@
       <button mat-menu-item (click)="logout()">
         <mat-icon>close</mat-icon>
         <span>Logout</span>
+      </button>
+    </mat-menu>
+    <button mat-fab color="primary" class="chat-btn" [matMenuTriggerFor]="chat">
+      <mat-icon>chat</mat-icon>
+    </button>
+    <mat-menu #chat="matMenu">
+      <button *ngFor="let chat of chats" mat-menu-item>
+        <span>{{chat._id}}</span>
       </button>
     </mat-menu>
   </span>

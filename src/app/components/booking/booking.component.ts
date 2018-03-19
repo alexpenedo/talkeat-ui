@@ -33,6 +33,8 @@ export class BookingComponent implements OnInit {
     let booking = new Booking();
     booking.guest = this.userService.getUser();
     booking.menu = this.menu;
+    booking.host = this.menu.host;
+    booking.menuDate = this.menu.date;
     this.bookingService.save(booking);
   }
 

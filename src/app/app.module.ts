@@ -40,6 +40,7 @@ import { CreateMenuComponent } from './components/menu/create-menu/create-menu.c
 import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 import { GeolocationService } from './services/geolocation/geolocation.service';
 import { MenuMarkerComponent } from './components/menu/menu-marker/menu-marker.component';
+import { ChatComponent } from './components/chat/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { MenuMarkerComponent } from './components/menu/menu-marker/menu-marker.c
     MapComponent,
     BookingComponent,
     MenuMarkerComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserAnimationsModule,

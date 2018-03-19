@@ -32,13 +32,13 @@ export class GeolocationService {
 
   public getLastCoordinatesSearch(): Coordinates {
     let recentSearches = this.getRecentSearches();
-    if (recentSearches.length > 0) {
+    if (recentSearches!=undefined && recentSearches.length > 0) {
       return new Coordinates(recentSearches[0].geometry.location.lat, recentSearches[0].geometry.location.lng);
     }
   }
   public getLastLocationSearch(): string {
     let recentSearches = this.getRecentSearches();
-    if (recentSearches.length > 0) {
+    if (recentSearches!=undefined && recentSearches.length > 0) {
       return recentSearches[0].description;
     }
   }

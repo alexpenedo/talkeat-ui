@@ -28,6 +28,8 @@ export class UserService {
     return null;
   }
   public showUser() {
+    console.log("showUser");
+    console.log(this.getUser());
     this._showUser.next(this.getUser());
   }
   public showImage() {
@@ -55,12 +57,7 @@ export class UserService {
   public register(user: User) {
     this.http.post(this.url, user)
       .subscribe(response => {
-        const body = response.json();
-        localStorage.setItem('user', JSON.stringify(body.user));
-        localStorage.setItem('token', body.token);
-        this.router.navigate(['/home']);
-        this.showUser();
-        this.showImage();
+        this.login(user.email, user.password);
       });
   }
   public update(user: User) {

@@ -7,6 +7,10 @@ img {
     margin-top: -13px;
 }
 
+.chat-btn{
+    margin-left: 25px;
+}
+
 .fill-space {
     flex: 1 1 auto;
 }

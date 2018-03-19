@@ -4,7 +4,6 @@
     cursor: pointer;
     overflow: hidden;
     position: relative;
-    margin-left: -25px;
     margin-bottom: -15px;
 }
 .center-cropped {

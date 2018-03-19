@@ -4,4 +4,6 @@ export class Booking {
     public _id: string;
     public guest: User;
     public menu: Menu;
+    public menuDate: Date;
+    public host: User;
 }

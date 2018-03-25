@@ -16,6 +16,8 @@ export class ChatComponent implements OnInit {
   @Input() user: User;
   chatUser: User;
   messageContent: string;
+  maximized: boolean;
+  windowIcon: string;
   @Input() index: number;
   @Input() chat: Chat;
   @ViewChild('scrollMe') private chatContent: ElementRef;
@@ -23,6 +25,8 @@ export class ChatComponent implements OnInit {
 
 
   constructor(private chatService: ChatService, private userService: UserService) {
+    this.maximized = true;
+    this.windowIcon = "keyboard_arrow_down";
   }
 
   ngOnInit() {
@@ -31,7 +35,6 @@ export class ChatComponent implements OnInit {
     } else {
       this.chatUser = this.chat.host;
     }
-    this.scrollToBottom();
   }
 
   ngAfterViewChecked() {
@@ -52,7 +55,8 @@ export class ChatComponent implements OnInit {
 
 
   scrollToBottom(): void {
-    this.chatContent.nativeElement.scrollTop = this.chatContent.nativeElement.scrollHeight;
+    if (this.chatContent !== undefined)
+      this.chatContent.nativeElement.scrollTop = this.chatContent.nativeElement.scrollHeight;
   }
 
 
@@ -67,11 +71,20 @@ export class ChatComponent implements OnInit {
     if (this.index == 0)
       return 0;
     else
-      return (this.index * 300 + 10) + "px";
+      return (this.index * 300 + (this.index * 10)) + "px";
   }
 
   close() {
     this.onDelete.emit(this.index);
   }
-
+  toogleWindow() {
+    if (this.maximized) {
+      this.maximized = false;
+      this.windowIcon = "keyboard_arrow_up";
+    }
+    else {
+      this.maximized = true;
+      this.windowIcon = "keyboard_arrow_down";
+    }
+  }
 }

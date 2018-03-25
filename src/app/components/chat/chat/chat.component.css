@@ -17,25 +17,34 @@ mat-card-title{
 mat-card-content{
     padding:10px;
     height: 250px;
+    margin-bottom: 0;
     max-height: 250px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 mat-card-actions{
-    margin: 0px 5px;
+    margin: 0px 2px;
     font-size: 15px;
+    margin-bottom: 2px !important;
 }
 .chat-user-name{
     margin-left: 20px;
     line-height: 3;
 }
-.btn-close{
+.btn-window{
     position: absolute;
-    right:5px;
     border: 0;
     background: inherit;
     box-shadow: none;
     color: #4c4c4c;
+    width: 30px;
+    height: 35px;
+}
+.btn-close{
+    right:5px;
+}
+.btn-toogle{
+    right: 40px;
 }
 .user-message{
     float: left;
@@ -58,4 +67,11 @@ mat-card-actions{
 }
 .message-fill{
     height: 37px;
+}
+.input-group > * {
+    width: auto;
+    font-size: 13px;
+}
+.btn-send{
+    padding-bottom: 3px;
 }

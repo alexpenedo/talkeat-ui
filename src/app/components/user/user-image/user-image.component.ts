@@ -7,14 +7,19 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./user-image.component.css']
 })
 export class UserImageComponent implements OnInit {
-  @Input() image: string;
+  image: string;
+  @Input() userId: string;
   @Input() diameter: string;
   @Input() float: string;
-  constructor(private userServie: UserService) {
-
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
+    this.image = this.userService.getPhotoUrl(this.userId);
+    this.userService.showUserEmitter.subscribe((user) => {
+      if (user == this.userId) {
+        this.image = this.userService.getPhotoUrl(user);
+      }
+    });
   }
-
 }

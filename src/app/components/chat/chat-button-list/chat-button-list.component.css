@@ -1,0 +1,21 @@
+.chat-user-name{
+    margin-left: 15px;
+
+}
+.chat-btn{
+    margin-left: 25px;
+    margin-right:40px;
+}
+.chat-user-btn{
+    width:200px;
+    height: 60px;
+}
+.chat-message{
+    color: gray;
+    font-size: 11px;
+    margin-top: -30px;
+    padding-left: 45px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

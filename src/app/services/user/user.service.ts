@@ -11,10 +11,8 @@ import { HttpParams } from '@angular/common/http';
 export class UserService {
 
   url: string;
-  private _showUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
-  showUserEmitter: Observable<User> = this._showUser.asObservable();
-  private _showImage: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  showImageEmitter: Observable<string> = this._showImage.asObservable();
+  private _showUser: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+  showUserEmitter: Observable<string> = this._showUser.asObservable();
 
   constructor(private http: Http, private router: Router) {
     this.url = environment.apiUrl + 'users';
@@ -27,31 +25,27 @@ export class UserService {
     }
     return null;
   }
-  public showUser() {
-    console.log("showUser");
-    console.log(this.getUser());
-    this._showUser.next(this.getUser());
+  public showUser(userId: string) {
+    this._showUser.next(userId);
   }
-  public showImage() {
-    this._showImage.next(this.getPhotoUrl(this.getUser()._id));
-  }
+
   public isAuthenticated() {
     const token = localStorage.getItem('token');
     return token != null;
   }
 
-  public login(email: string, password: string) {
+  public login(email: string, password: string): Observable<User> {
     const user = {
       email, password
     };
-    this.http.post(this.url + '/login', user)
-      .subscribe(response => {
+    return this.http.post(this.url + '/login', user)
+      .map((response) => {
         const body = response.json();
-        localStorage.setItem('user', JSON.stringify(body.user));
+        const user: User = body.user;
+        localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('token', body.token);
-        this.router.navigate(['/home']);
-        this.showUser();
-        this.showImage();
+        this.showUser(user._id);
+        return user;
       });
   }
   public register(user: User) {
@@ -69,7 +63,7 @@ export class UserService {
         const body = response.json();
         localStorage.setItem('user', JSON.stringify(body));
         this.router.navigate(['/home']);
-        this.showUser();
+        this.showUser("id");
       });
   }
 
@@ -77,18 +71,19 @@ export class UserService {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
-    this.showUser();
+    this.showUser(null);
   }
 
-  public uploadPhoto(file: File) {
+  public uploadPhoto(file: File): Observable<any> {
     const formdata: FormData = new FormData();
     formdata.append('file', file);
     const headers: Headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
     const requestOptions = new RequestOptions({ headers, params: new HttpParams() });
-    this.http.post(this.url + '/' + this.getUser()._id + '/picture', formdata, requestOptions)
-      .subscribe(response => {
-        this.showImage();
+    const user: User = this.getUser();
+    return this.http.post(this.url + '/' + user._id + '/picture', formdata, requestOptions)
+      .map((response) => {
+        this.showUser(user._id);
       });
   }
 

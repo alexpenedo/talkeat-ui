@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { User } from '../../../models/user/user';
 import { Message } from '../../../models/message/message';
 import { ChatService } from '../../../services/chat/chat.service';
@@ -14,21 +14,55 @@ import { Chat } from '../../../models/chat/chat';
 })
 export class ChatComponent implements OnInit {
 
-  user: User;
-  messages: Message[] = [];
+  @Input() user: User;
+  chatUser: User;
   messageContent: string;
   ioConnection: any;
-  chat: Chat;
+  @Input() index: number;
+  @Input() chat: Chat;
+  @ViewChild('scrollMe') private chatContent: ElementRef;
+  @Output() onDelete = new EventEmitter<number>();
 
-  constructor(private chatService: ChatService, private userService: UserService) { }
+
+  constructor(private chatService: ChatService, private userService: UserService) {
+  }
 
   ngOnInit() {
+    if (this.chat.host._id == this.user._id) {
+      this.chatUser = this.chat.guest;
+    } else {
+      this.chatUser = this.chat.host;
+    }
     this.initIoConnection();
-    this.user = this.userService.getUser();
-    //MOCK
-    this.chat = new Chat();
-    this.chat._id = "5aaecb0931d7c86f5faedb88";
+    this.scrollToBottom();
+  }
 
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+
+  scrollToBottom(): void {
+    this.chatContent.nativeElement.scrollTop = this.chatContent.nativeElement.scrollHeight;
+  }
+
+
+  getClass(message: Message) {
+    if (message.from == this.user._id)
+      return "user-message message";
+    else
+      return "chat-message message"
+  }
+
+  getChatPosition() {
+    if (this.index == 0)
+      return 0;
+    else
+      return (this.index * 300 + 10) + "px";
+  }
+  
+  close() {
+    this.onDelete.emit(this.index);
   }
 
   private initIoConnection(): void {
@@ -36,10 +70,10 @@ export class ChatComponent implements OnInit {
 
     this.ioConnection = this.chatService.onMessage()
       .subscribe((message: Message) => {
-        //TO-DO filter message
-        console.log(message);
-        if (message)
-          this.messages.push(message);
+        if (message.chat._id == this.chat._id) {
+          this.chat.messages.push(message);
+          this.scrollToBottom();
+        }
       });
   }
 
@@ -49,7 +83,7 @@ export class ChatComponent implements OnInit {
     }
     this.chatService.sendMessage({
       chat: this.chat,
-      from: this.user,
+      from: this.user._id,
       message
     });
     this.messageContent = null;

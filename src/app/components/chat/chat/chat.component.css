@@ -1,0 +1,61 @@
+mat-card{
+    position: absolute;
+    z-index: 1;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    padding: 0;
+    width:300px;
+}
+mat-card-header{
+    background: #e6e6e6;
+    height: 60px;
+}
+mat-card-title{
+    font-weight: bold;
+}
+mat-card-content{
+    padding:10px;
+    height: 250px;
+    max-height: 250px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+mat-card-actions{
+    margin: 0px 5px;
+    font-size: 15px;
+}
+.chat-user-name{
+    margin-left: 20px;
+    line-height: 3;
+}
+.btn-close{
+    position: absolute;
+    right:5px;
+    border: 0;
+    background: inherit;
+    box-shadow: none;
+    color: #4c4c4c;
+}
+.user-message{
+    float: left;
+    background: purple;
+    color:white;
+}
+.chat-message{
+    float: right;
+    background: rgb(221, 221, 221);
+    color:black;
+}
+
+.message{
+    padding:0px 10px;
+    width: fit-content;
+    font-size:12px;
+    font-weight: normal;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+.message-fill{
+    height: 37px;
+}

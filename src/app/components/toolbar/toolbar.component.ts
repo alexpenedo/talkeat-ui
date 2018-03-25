@@ -17,28 +17,14 @@ import { Chat } from '../../models/chat/chat';
 })
 export class ToolbarComponent implements OnInit {
   user: User;
-  image: string;
-  chats: Chat[];
 
   constructor(private userService: UserService, private chatService: ChatService) {
-    this.userService.showUserEmitter.subscribe((user) => {
-      console.log(user);
-      this.user = user;
-    });
-    this.userService.showImageEmitter.subscribe((image) => {
-      this.image = image;
-    });
-    if (this.user) {
-      this.chatService.findByHostIdOrGuestId().subscribe(chats => {
-        this.chats = chats;
-      });
-    }
   }
 
   ngOnInit() {
-    this.user = this.userService.getUser();
-    if (this.user)
-      this.image = this.userService.getPhotoUrl(this.userService.getUser()._id);
+    this.userService.showUserEmitter.subscribe((user) => {
+      this.user = this.userService.getUser();
+    });
   }
   logout() {
     this.userService.logout();

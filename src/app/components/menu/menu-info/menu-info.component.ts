@@ -34,7 +34,6 @@ export class MenuInfoComponent implements OnInit {
   @Input() desserts: Array<any>;
   @Input() host: string;
   @Input() address: string;
-  image: string;
   classes: string;
   visibility:string;
 
@@ -43,7 +42,6 @@ export class MenuInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.image = this.userService.getPhotoUrl(this.host);
     if (this.publish == "true") {
       this.classes = "menu-info";
     }

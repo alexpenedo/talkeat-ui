@@ -51,7 +51,7 @@ export class ChatService {
     const params = new HttpParams();
     this.requestOptions.params.set('hostId', user._id);
     this.requestOptions.params.set('guestId', user._id);
-
+    console.log(this.url);
     return this.http.get(this.url, this.requestOptions).map((response) => {
       return <Chat[]>response.json();
     });

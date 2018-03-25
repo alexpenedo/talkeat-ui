@@ -1,0 +1,24 @@
+<button mat-fab color="primary" class="chat-btn" [matMenuTriggerFor]="chat">
+  <mat-icon>chat</mat-icon>
+</button>
+<mat-menu #chat="matMenu">
+  <button class="chat-user-btn" *ngFor="let chat of chats" mat-menu-item (click)="openChat(chat)">
+    <span *ngIf="user._id==chat.guest._id">
+      <app-user-image [userId]="chat.host._id" diameter="40px">
+      </app-user-image>
+      <span class="chat-user-name">{{chat.host.name}} </span>
+    </span>
+    <span *ngIf="user._id==chat.host._id">
+      <app-user-image [userId]="chat.guest._id" diameter="40px">
+      </app-user-image>
+      <span class="chat-user-name">{{chat.guest.name}}</span>
+    </span>
+    <div class="chat-message">
+      {{chat.messages[chat.messages.length-1].message}}
+    </div>
+  </button>
+  <mat-divider></mat-divider>
+</mat-menu>
+<div *ngFor="let activeChat of openedChats; let i = index">
+  <app-chat [chat]="activeChat" [user]="user" [index]="i" (onDelete)="onDelete($event)"></app-chat>
+</div>

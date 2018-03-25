@@ -16,12 +16,10 @@ export class MenuMarkerComponent implements OnInit {
   @Input() price: number;
   @Input() name: string;
   @Input() host: string;
-  image: string;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.image = this.userService.getPhotoUrl(this.host);
   }
 
   scroll() {

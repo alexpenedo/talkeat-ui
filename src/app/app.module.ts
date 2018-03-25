@@ -42,6 +42,7 @@ import { GeolocationService } from './services/geolocation/geolocation.service';
 import { MenuMarkerComponent } from './components/menu/menu-marker/menu-marker.component';
 import { ChatComponent } from './components/chat/chat/chat.component';
 import { ChatButtonListComponent } from './components/chat/chat-button-list/chat-button-list.component';
+import { ChatService } from './services/chat/chat.service';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,7 @@ import { ChatButtonListComponent } from './components/chat/chat-button-list/chat
     AgmSnazzyInfoWindowModule,
     Ng4GeoautocompleteModule.forRoot()
   ],
-  providers: [UserService, GeolocationService],
+  providers: [UserService, GeolocationService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

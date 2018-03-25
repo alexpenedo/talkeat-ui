@@ -3,18 +3,19 @@ import { ChatService } from '../../../services/chat/chat.service';
 import { UserService } from '../../../services/user/user.service';
 import { User } from '../../../models/user/user';
 import { Chat } from '../../../models/chat/chat';
+import { Message } from '../../../models/message/message';
 
 @Component({
   selector: 'app-chat-button-list',
   templateUrl: './chat-button-list.component.html',
-  styleUrls: ['./chat-button-list.component.css'],
-  providers: [ChatService]
+  styleUrls: ['./chat-button-list.component.css']
 })
 export class ChatButtonListComponent implements OnInit {
 
   @Input() user: User;
   chats: Chat[];
   openedChats: Chat[];
+
   constructor(private chatService: ChatService, private userService: UserService) {
     this.openedChats = [];
   }
@@ -25,6 +26,14 @@ export class ChatButtonListComponent implements OnInit {
         this.chats = chats;
       });
     }
+    this.initIoConnection();
+    this.chatService.onMessage()
+      .subscribe((message: Message) => {
+        let chat: Chat = this.chats.find((chat) => {
+          return chat._id == message.chat._id;
+        })
+        chat.messages = message.chat.messages;
+      });
   }
 
   openChat(activeChat: Chat) {
@@ -32,8 +41,12 @@ export class ChatButtonListComponent implements OnInit {
       this.openedChats.push(activeChat);
   }
 
-  onDelete(index:number){
-    this.openedChats.splice(index,1);
+  onDelete(index: number) {
+    this.openedChats.splice(index, 1);
+  }
+
+  private initIoConnection(): void {
+    this.chatService.initSocket();
   }
 
 }

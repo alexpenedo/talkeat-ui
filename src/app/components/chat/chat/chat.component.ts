@@ -9,15 +9,13 @@ import { Chat } from '../../../models/chat/chat';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css'],
-  providers: [ChatService]
+  styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
 
   @Input() user: User;
   chatUser: User;
   messageContent: string;
-  ioConnection: any;
   @Input() index: number;
   @Input() chat: Chat;
   @ViewChild('scrollMe') private chatContent: ElementRef;
@@ -33,12 +31,23 @@ export class ChatComponent implements OnInit {
     } else {
       this.chatUser = this.chat.host;
     }
-    this.initIoConnection();
     this.scrollToBottom();
   }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
+  }
+
+  public sendMessage(message: string): void {
+    if (!message) {
+      return;
+    }
+    this.chatService.sendMessage({
+      chat: this.chat,
+      from: this.user._id,
+      message
+    });
+    this.messageContent = null;
   }
 
 
@@ -60,33 +69,9 @@ export class ChatComponent implements OnInit {
     else
       return (this.index * 300 + 10) + "px";
   }
-  
+
   close() {
     this.onDelete.emit(this.index);
-  }
-
-  private initIoConnection(): void {
-    this.chatService.initSocket();
-
-    this.ioConnection = this.chatService.onMessage()
-      .subscribe((message: Message) => {
-        if (message.chat._id == this.chat._id) {
-          this.chat.messages.push(message);
-          this.scrollToBottom();
-        }
-      });
-  }
-
-  public sendMessage(message: string): void {
-    if (!message) {
-      return;
-    }
-    this.chatService.sendMessage({
-      chat: this.chat,
-      from: this.user._id,
-      message
-    });
-    this.messageContent = null;
   }
 
 }

@@ -36,13 +36,17 @@ export class ChatService {
   public chatsOpened(chats: Chat[]) {
     this.socket.emit('chatsOpened', chats);
   }
-  
+
   public sendMessage(message: Message) {
     this.socket.emit('message', message);
   }
 
   public createFirstMessage(booking: Booking) {
     this.socket.emit('firstMessage', booking);
+  }
+
+  public closeChat(chat: Chat) {
+    this.socket.emit('closeChat', chat);
   }
 
   public onMessage(): Observable<Message> {
@@ -55,7 +59,6 @@ export class ChatService {
       this.socket.on('newChat', (data: Chat) => observer.next(data));
     });
   }
-
   public onEvent(event: Event): Observable<any> {
     return new Observable<Event>(observer => {
       this.socket.on(event, () => observer.next());

@@ -6,7 +6,7 @@
 </button>
 
 <mat-menu #chat="matMenu">
-  <button class="no-chats-btn" *ngIf="!chats" mat-menu-item disabled="true">
+  <button class="no-chats-btn" *ngIf="!chats || chats.length==0" mat-menu-item disabled="true">
     <mat-icon class="no-chats-icon">not_interested</mat-icon>
     <span>There isn't active chats</span>
   </button>

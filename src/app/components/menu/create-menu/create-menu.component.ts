@@ -78,7 +78,6 @@ export class CreateMenuComponent implements OnInit {
       this.menu.location.push(coordinates.longitude);
       this.menu.location.push(coordinates.latitude);
       this.menuService.save(this.menu).subscribe(menu => {
-        console.log("navigate");
         this.router.navigate(['/home']);
       });
     });

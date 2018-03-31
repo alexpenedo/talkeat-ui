@@ -98,6 +98,7 @@ export class ChatComponent implements OnInit {
   }
 
   close() {
+    this.chatService.closeChat(this.chat);
     this.onDelete.emit(this.index);
   }
 

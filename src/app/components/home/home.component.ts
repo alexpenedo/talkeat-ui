@@ -57,6 +57,12 @@ export class HomeComponent implements OnInit {
   find() {
     this.menuService.find(this.longitude, this.latitude, this.persons, this.date, this.type)
       .subscribe(menus => {
+        menus.map((menu) => {
+          menu.label = {
+            fontSize: '15px',
+            text: menu.price.toFixed(2) + ' $'
+          };
+        })
         this.menus = menus;
       });
   }

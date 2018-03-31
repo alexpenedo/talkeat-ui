@@ -15,3 +15,22 @@ mat-form-field {
     width: 100%;
 }
 button:focus {outline:0;}
+
+
+
+.gm-style > div > div > div > div > div > div > div {
+    margin-top: 60px;
+    background-color: #edc73c;
+    padding: 3px;
+    border-radius: 5px;
+}
+.gm-style-iw > div > div{
+    margin-top: 0px !important;
+    background: none !important;
+}
+
+.si-content{
+    margin-top: 0px !important;
+    background: none !important;
+    padding:0 !important;
+}

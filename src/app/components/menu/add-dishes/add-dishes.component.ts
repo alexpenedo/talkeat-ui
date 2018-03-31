@@ -20,7 +20,6 @@ export class AddDishesComponent implements OnInit {
   }
   ngOnInit() {
     this.formArray = <FormArray>this.group.get(this.arrayName);
-    console.log(this.group);
   }
 
   addItem() {

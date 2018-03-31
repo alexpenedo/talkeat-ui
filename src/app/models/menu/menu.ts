@@ -16,4 +16,5 @@ export class Menu {
     public country: string;
     public address: string;
     public location: number[];
+    public label: any;
 }

@@ -40,30 +40,36 @@ export class UserService {
     };
     return this.http.post(this.url + '/login', user)
       .map((response) => {
-        const body = response.json();
-        const user: User = body.user;
-        localStorage.setItem('user', JSON.stringify(user));
-        localStorage.setItem('token', body.token);
-        this.showUser(user._id);
-        return user;
+        return this.storageUserAndToken(response);
       });
   }
-  public register(user: User) {
-    this.http.post(this.url, user)
-      .subscribe(response => {
-        this.login(user.email, user.password);
+  private storageUserAndToken(response): User {
+    const body = response.json();
+    const user: User = body.user;
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('token', body.token);
+    this.showUser(user._id);
+    return user;
+  }
+  private storageUser(response): User {
+    const user = <User>response.json();
+    localStorage.setItem('user', JSON.stringify(user));
+    this.showUser(user._id);
+    return user;
+  }
+  public register(user: User): Observable<User> {
+    return this.http.post(this.url, user)
+      .map(response => {
+        return this.storageUserAndToken(response);
       });
   }
-  public update(user: User) {
+  public update(user: User): Observable<User> {
     const headers: Headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
     const requestOptions = new RequestOptions({ headers, params: new HttpParams() });
-    this.http.put(this.url + '/' + this.getUser()._id, user, requestOptions)
-      .subscribe(response => {
-        const body = response.json();
-        localStorage.setItem('user', JSON.stringify(body));
-        this.router.navigate(['/home']);
-        this.showUser("id");
+    return this.http.put(this.url + '/' + this.getUser()._id, user, requestOptions)
+      .map(response => {
+        return this.storageUser(response);
       });
   }
 
@@ -83,7 +89,7 @@ export class UserService {
     const user: User = this.getUser();
     return this.http.post(this.url + '/' + user._id + '/picture', formdata, requestOptions)
       .map((response) => {
-        this.showUser(user._id);
+        this.storageUser(response);
       });
   }
 

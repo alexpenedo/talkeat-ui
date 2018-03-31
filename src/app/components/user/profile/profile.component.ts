@@ -1,6 +1,7 @@
 import { UserService } from './../../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,7 @@ export class ProfileComponent implements OnInit {
   user: User;
   image: string;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.user = this.userService.getUser();
   }
 
@@ -24,6 +25,8 @@ export class ProfileComponent implements OnInit {
     });
   }
   updateUser() {
-    this.userService.update(this.user);
+    this.userService.update(this.user).subscribe((user:User)=>{
+      this.router.navigate(['/home']);
+    });
   }
 }

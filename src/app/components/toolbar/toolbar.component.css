@@ -10,3 +10,8 @@ img {
 .fill-space {
     flex: 1 1 auto;
 }
+.home-btn{
+    font-weight: normal;
+    font-family: monospace;
+    font-size: 25px;
+}

@@ -8,6 +8,7 @@ import { UserService } from '../user/user.service';
 import { HttpParams } from '@angular/common/http';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { Chat } from '../../models/chat/chat';
+import { Booking } from '../../models/booking/booking';
 
 
 @Injectable()
@@ -28,15 +29,30 @@ export class ChatService {
 
   public initSocket(): void {
     this.socket = io(this.serverUrl);
+    let user = this.userService.getUser();
+    this.socket.emit('online', user);
   }
 
+  public chatsOpened(chats: Chat[]) {
+    this.socket.emit('chatsOpened', chats);
+  }
+  
   public sendMessage(message: Message) {
     this.socket.emit('message', message);
+  }
+
+  public createFirstMessage(booking: Booking) {
+    this.socket.emit('firstMessage', booking);
   }
 
   public onMessage(): Observable<Message> {
     return new Observable<Message>(observer => {
       this.socket.on('message', (data: Message) => observer.next(data));
+    });
+  }
+  public onNewChat(): Observable<Chat> {
+    return new Observable<Chat>(observer => {
+      this.socket.on('newChat', (data: Chat) => observer.next(data));
     });
   }
 
@@ -51,7 +67,6 @@ export class ChatService {
     const params = new HttpParams();
     this.requestOptions.params.set('hostId', user._id);
     this.requestOptions.params.set('guestId', user._id);
-    console.log(this.url);
     return this.http.get(this.url, this.requestOptions).map((response) => {
       return <Chat[]>response.json();
     });

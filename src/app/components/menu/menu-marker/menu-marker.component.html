@@ -2,12 +2,12 @@
   <mat-card>
     <div class="datetime">
       <mat-icon class="time-icon">access_time</mat-icon>
-      <span *ngIf="publish===true">{{date | date: 'dd/MM'}}</span>
+      <span *ngIf="publish">{{date | date: 'dd/MM'}}</span>
       <span>{{date | date: 'HH:mm'}}</span>
     </div>
     <div class="persons">
       <span>
-        <app-user-image [userId]="hot" diameter="70px" float="right"></app-user-image>
+        <app-user-image [userId]="host" diameter="70px" float="right"></app-user-image>
       </span>
       <span style="font-size: 30px;  margin-right:40px;">
         <span class="available" [style.color]="available > 1 ? '#80d280' : '#ff6060'">

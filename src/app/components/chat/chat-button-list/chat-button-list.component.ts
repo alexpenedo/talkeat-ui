@@ -22,31 +22,80 @@ export class ChatButtonListComponent implements OnInit {
 
   ngOnInit() {
     if (this.user) {
-      this.chatService.findByHostIdOrGuestId().subscribe(chats => {
-        this.chats = chats;
-      });
+      this.getChats();
     }
-    this.initIoConnection();
+    this.chatService.initSocket();
+    this.chatService.onNewChat()
+      .subscribe((chat: Chat) => {
+        chat.notRead=1;
+        if (this.chats===undefined){
+          this.chats=[];
+        }
+        this.chats.push(chat);
+      });
     this.chatService.onMessage()
       .subscribe((message: Message) => {
         let chat: Chat = this.chats.find((chat) => {
           return chat._id == message.chat._id;
-        })
+        });
         chat.messages = message.chat.messages;
+        if (!this.openedChats.find(element => element == chat))
+          chat.notRead++;
       });
   }
 
   openChat(activeChat: Chat) {
-    if (!this.openedChats.find(element => element == activeChat))
+    if (!this.openedChats.find(element => element == activeChat)) {
       this.openedChats.push(activeChat);
+      this.chatService.chatsOpened(this.openedChats);
+      activeChat.notRead = 0;
+    }
+
   }
 
   onDelete(index: number) {
     this.openedChats.splice(index, 1);
   }
 
-  private initIoConnection(): void {
-    this.chatService.initSocket();
+
+  getChats() {
+    this.chatService.findByHostIdOrGuestId().subscribe(chats => {
+      this.chats = chats;
+      this.setChatsNotRead();
+    });
+  }
+  setChatsNotRead() {
+    this.chats.forEach(chat => {
+      let notRead = 0;
+      let messages: Message[] = chat.messages;
+      let isHost = (chat.host._id == this.user._id);
+      messages.forEach(message => {
+        let messageDate = new Date(message.date).getTime();
+        let hostLastConnection = new Date(chat.hostLastConnection).getTime();
+        let guestLastConnection = new Date(chat.guestLastConnection).getTime();
+        if (isHost) {
+          if (messageDate >= hostLastConnection) {
+            notRead++;
+          }
+        }
+        else {
+          if (messageDate >= guestLastConnection) {
+            notRead++;
+          }
+        }
+      });
+      chat.notRead = notRead;
+    });
+  }
+
+  getTotalNotRead(): number {
+    let notRead = 0;
+    if (this.chats !== undefined) {
+      this.chats.forEach(chat => {
+        notRead += chat.notRead;
+      });
+      return notRead;
+    }
   }
 
 }

@@ -34,7 +34,7 @@ mat-card-actions{
 .btn-window{
     position: absolute;
     border: 0;
-    background: inherit;
+    background: none;
     box-shadow: none;
     color: #4c4c4c;
     width: 30px;
@@ -75,3 +75,10 @@ mat-card-actions{
 .btn-send{
     padding-bottom: 3px;
 }
+.blink {
+    animation: blinker 1s linear infinite;
+  }
+  
+  @keyframes blinker {  
+    50% { background: #ffd740; }
+  }

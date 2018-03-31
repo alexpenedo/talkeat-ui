@@ -14,7 +14,7 @@ export class BookingService {
   url: string;
   requestOptions: RequestOptions;
 
-  constructor(private http: Http, private router: Router, private userService: UserService) {
+  constructor(private http: Http, private userService: UserService) {
     this.url = environment.apiUrl + 'booking';
     const headers: Headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
@@ -22,12 +22,10 @@ export class BookingService {
   }
 
 
-  public save(booking: Booking) {
-    this.http.post(this.url, booking, this.requestOptions)
-      .subscribe(response => {
-        const body = response.json();
-        this.router.navigate(['/home']);
-      });
+  public save(booking: Booking): Observable<Booking> {
+    return this.http.post(this.url, booking, this.requestOptions).map((response) => {
+      return <Booking>response.json();
+    });
   }
 
 }

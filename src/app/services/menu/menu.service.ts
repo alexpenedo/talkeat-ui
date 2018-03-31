@@ -22,19 +22,11 @@ export class MenuService {
     this.requestOptions = new RequestOptions({ headers: headers, params: new HttpParams() });
   }
 
-  public save(menu: Menu) {
+  public save(menu: Menu):Observable<Menu> {
     menu.host = this.userService.getUser();
-    let completeAddress = menu.address + "," + menu.postalCode + "," + menu.country;
-    this.geolocationService.getCoordinatesByAddress(completeAddress).subscribe(coordinates => {
-      menu.location = [];
-      menu.location.push(coordinates.longitude);
-      menu.location.push(coordinates.latitude);
-      this.http.post(this.url, menu, this.requestOptions)
-        .subscribe(response => {
-          const body = response.json();
-          this.router.navigate(['/home']);
-        });
-    });
+    return this.http.post(this.url, menu, this.requestOptions).map((response) => {
+        return <Menu>response.json();
+      });
   }
 
   public find(longitude: number, latitude: number, persons: string, date: Date, type: string): Observable<Menu[]> {

@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
   date: Date;
   type: string;
   menus: Menu[];
-
   userSettings: any;
 
 

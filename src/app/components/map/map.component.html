@@ -6,7 +6,7 @@
     </agm-snazzy-info-window>
   </agm-marker>
 </agm-map> -->
-<agm-map *ngIf="menus" [zoom]="zoom" [latitude]="latitude" [longitude]="longitude">
+<agm-map [zoom]="zoom" [latitude]="latitude" [longitude]="longitude">
   <agm-marker *ngFor="let menu of menus" [latitude]="menu.location[1]" [longitude]="menu.location[0]">
     <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
       <ng-template>

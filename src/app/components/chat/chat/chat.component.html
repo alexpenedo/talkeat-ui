@@ -1,5 +1,5 @@
 <mat-card class="chat-card" [style.right]="getChatPosition()">
-  <mat-card-header>
+  <mat-card-header [class]="getHeaderClass()">
     <span>
       <app-user-image [userId]="chatUser._id" diameter="60px"></app-user-image>
     </span>
@@ -22,7 +22,8 @@
   </mat-card-content>
   <mat-card-actions *ngIf="maximized">
     <div class="input-group">
-      <input class="form-control" maxlength="50" placeholder="Send a message " [(ngModel)]="messageContent" (keyup.enter)="sendMessage(messageContent) ">
+      <input autofocus class="form-control" maxlength="50" placeholder="Send a message" (blur)="onBlur()" (focus)="onFocus()" [(ngModel)]="messageContent"
+        (keyup.enter)="sendMessage(messageContent) ">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary btn-send" type="button" (click)="sendMessage(messageContent)">
           <mat-icon>send</mat-icon>

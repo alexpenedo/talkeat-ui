@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../services/menu/menu.service';
 import { BookingService } from '../../services/booking/booking.service';
 import { Menu } from '../../models/menu/menu';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Booking } from '../../models/booking/booking';
 import { UserService } from '../../services/user/user.service';
+import { ChatService } from '../../services/chat/chat.service';
 
 @Component({
   selector: 'app-booking',
@@ -19,7 +20,9 @@ export class BookingComponent implements OnInit {
   constructor(private menuService: MenuService,
     private userService: UserService,
     private bookingService: BookingService,
-    private route: ActivatedRoute) {
+    private chatService: ChatService,
+    private route: ActivatedRoute,
+    private router: Router) {
     this.route.params.subscribe(params => this.menuService.findById(params.id)
       .subscribe(menu =>
         this.menu = menu
@@ -27,6 +30,7 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.chatService.initSocket();
   }
 
   bookMenu() {
@@ -35,7 +39,10 @@ export class BookingComponent implements OnInit {
     booking.menu = this.menu;
     booking.host = this.menu.host;
     booking.menuDate = this.menu.date;
-    this.bookingService.save(booking);
+    this.bookingService.save(booking).subscribe((booking) => {
+      this.chatService.createFirstMessage(booking);
+      this.router.navigate(['/home']);
+    });
   }
 
 }

@@ -9,4 +9,7 @@ export class Chat {
     public host: User;
     public guest: User;
     public messages: Message[];
+    public notRead: number;
+    public hostLastConnection: Date;
+    public guestLastConnection: Date;
 }

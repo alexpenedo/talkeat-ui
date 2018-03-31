@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { User } from '../../../models/user/user';
 import { GeolocationService } from '../../../services/geolocation/geolocation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-menu',
@@ -21,7 +22,8 @@ export class CreateMenuComponent implements OnInit {
   completeData: FormGroup;
 
   constructor(private menuService: MenuService, private userService: UserService,
-    private geolocationService: GeolocationService, private formBuilder: FormBuilder) {
+    private geolocationService: GeolocationService, private formBuilder: FormBuilder,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -70,7 +72,15 @@ export class CreateMenuComponent implements OnInit {
 
   saveMenu() {
     this.menu = Object.assign({}, this.menuDescription.value, this.addDishes.value, this.completeData.value);
-    this.menuService.save(this.menu);
+    let completeAddress = this.menu.address + "," + this.menu.postalCode + "," + this.menu.country;
+    this.geolocationService.getCoordinatesByAddress(completeAddress).subscribe(coordinates => {
+      this.menu.location = [];
+      this.menu.location.push(coordinates.longitude);
+      this.menu.location.push(coordinates.latitude);
+      this.menuService.save(this.menu).subscribe(menu => {
+        console.log("navigate");
+        this.router.navigate(['/home']);
+      });
+    });
   }
-
 }

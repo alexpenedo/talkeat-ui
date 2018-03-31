@@ -2,7 +2,7 @@
   <img mat-card-image src="/assets/img/dish.jpeg">
   <div class="datetime">
     <mat-icon class="time-icon">access_time</mat-icon>
-    <span *ngIf="publish===true">{{date | date: 'dd/MM'}}</span>
+    <span *ngIf="publish">{{date | date: 'dd/MM'}}</span>
     <span>{{date | date: 'HH:mm'}}</span>
   </div>
   <div class="price">{{+price | number : '1.2-2'}}

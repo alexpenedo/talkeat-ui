@@ -66,6 +66,12 @@ import { ChatService } from './services/chat/chat.service';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDI4nEy33luOLXI2AZcRllmEdMq9mrWF_g',
+      libraries: ["places"],
+      language: 'es',
+      region: 'ES'
+    }),
     FormsModule,
     ReactiveFormsModule,
     MatChipsModule,
@@ -85,10 +91,6 @@ import { ChatService } from './services/chat/chat.service';
     MatIconModule,
     MatMenuModule,
     MatStepperModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDI4nEy33luOLXI2AZcRllmEdMq9mrWF_g',
-      libraries: ["places"]
-    }),
     AgmSnazzyInfoWindowModule,
     Ng4GeoautocompleteModule.forRoot()
   ],

@@ -11,6 +11,7 @@ import { Chat } from '../../../models/chat/chat';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
+
 export class ChatComponent implements OnInit {
 
   @Input() user: User;
@@ -22,11 +23,14 @@ export class ChatComponent implements OnInit {
   @Input() chat: Chat;
   @ViewChild('scrollMe') private chatContent: ElementRef;
   @Output() onDelete = new EventEmitter<number>();
+  messageSize: number;
+  focused: boolean;
 
 
   constructor(private chatService: ChatService, private userService: UserService) {
     this.maximized = true;
     this.windowIcon = "keyboard_arrow_down";
+    this.focused = true;
   }
 
   ngOnInit() {
@@ -35,12 +39,30 @@ export class ChatComponent implements OnInit {
     } else {
       this.chatUser = this.chat.host;
     }
+    this.messageSize = this.chat.messages.length;
   }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
 
+  onFocus() {
+    this.focused = true;
+    this.messageSize = this.chat.messages.length
+  }
+
+  onBlur() {
+    this.focused = false;
+  }
+  getHeaderClass() {
+    if ((this.messageSize != this.chat.messages.length) && (this.focused == false)) {
+      return "mat-card-header blink";
+    }
+    else {
+      this.messageSize = this.chat.messages.length;
+      return "mat-card-header";
+    }
+  }
   public sendMessage(message: string): void {
     if (!message) {
       return;
@@ -48,7 +70,8 @@ export class ChatComponent implements OnInit {
     this.chatService.sendMessage({
       chat: this.chat,
       from: this.user._id,
-      message
+      message,
+      date: new Date()
     });
     this.messageContent = null;
   }
@@ -77,6 +100,7 @@ export class ChatComponent implements OnInit {
   close() {
     this.onDelete.emit(this.index);
   }
+
   toogleWindow() {
     if (this.maximized) {
       this.maximized = false;

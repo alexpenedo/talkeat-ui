@@ -1,7 +1,15 @@
 <button mat-fab color="primary" class="chat-btn" [matMenuTriggerFor]="chat">
   <mat-icon>chat</mat-icon>
+  <button mat-mini-fab color="warn" class="notification-btn" *ngIf="getTotalNotRead()>0">
+    <span class="notification-number">{{getTotalNotRead()}}</span>
+  </button>
 </button>
+
 <mat-menu #chat="matMenu">
+  <button class="no-chats-btn" *ngIf="!chats" mat-menu-item disabled="true">
+    <mat-icon class="no-chats-icon">not_interested</mat-icon>
+    <span>There isn't active chats</span>
+  </button>
   <button class="chat-user-btn" *ngFor="let chat of chats" mat-menu-item (click)="openChat(chat)">
     <span *ngIf="user._id==chat.guest._id">
       <app-user-image [userId]="chat.host._id" diameter="40px">
@@ -12,6 +20,11 @@
       <app-user-image [userId]="chat.guest._id" diameter="40px">
       </app-user-image>
       <span class="chat-user-name">{{chat.guest.name}}</span>
+    </span>
+    <span>
+      <button mat-mini-fab color="basic" class="notification-btn-chat" *ngIf="chat.notRead>0">
+        <span class="notification-number-chat">{{chat.notRead}}</span>
+      </button>
     </span>
     <div class="chat-message">
       {{chat.messages[chat.messages.length-1].message}}

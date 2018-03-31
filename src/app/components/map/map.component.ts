@@ -21,11 +21,10 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     let self = this;
     const accuracy = { enableHighAccuracy: true };
-    self.geoLocationService.getLocation(accuracy).subscribe(function (position) {
-      self.currentLocation = position;
-      console.log(position);
-      self.ref.detectChanges();
-    }, function (error) { self.errorMsg = error; self.ref.detectChanges(); });
+    // self.geoLocationService.getLocation(accuracy).subscribe(function (position) {
+    //   self.currentLocation = position;
+    //   self.ref.detectChanges();
+    // }, function (error) { self.errorMsg = error; self.ref.detectChanges(); });
 
   }
 

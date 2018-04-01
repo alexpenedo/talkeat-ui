@@ -25,12 +25,12 @@ export class HomeComponent implements OnInit {
 
 
   constructor(private menuService: MenuService, private geolocationService: GeolocationService) {
-    this.persons = '2';
-    this.date = new Date();
-    this.type = this.date.getHours() > 17 ? "dinner" : "lunch";
 
   }
   ngOnInit() {
+    this.persons = '2';
+    this.date = new Date();
+    this.type = this.date.getHours() > 17 ? "dinner" : "lunch";
     let lastCoordinates: Coordinates = this.geolocationService.getLastCoordinatesSearch();
     if (lastCoordinates != undefined) {
       this.longitude = lastCoordinates.longitude;

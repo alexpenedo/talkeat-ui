@@ -73,13 +73,13 @@ export class CreateMenuComponent implements OnInit {
   saveMenu() {
     this.menu = Object.assign({}, this.menuDescription.value, this.addDishes.value, this.completeData.value);
     let completeAddress = this.menu.address + "," + this.menu.postalCode + "," + this.menu.country;
-    this.geolocationService.getCoordinatesByAddress(completeAddress).subscribe(coordinates => {
+    this.geolocationService.getCoordinatesByAddress(completeAddress).map(coordinates => {
       this.menu.location = [];
       this.menu.location.push(coordinates.longitude);
       this.menu.location.push(coordinates.latitude);
-      this.menuService.save(this.menu).subscribe(menu => {
-        this.router.navigate(['/home']);
-      });
+      this.menuService.save(this.menu);
+    }).subscribe(() => {
+      this.router.navigate(['/home']);
     });
   }
 }

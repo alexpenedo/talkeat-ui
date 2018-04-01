@@ -36,6 +36,7 @@ export class MenuService {
     this.requestOptions.params.set('persons', persons);
     this.requestOptions.params.set('date', date.toString());
     this.requestOptions.params.set('type', type);
+    this.requestOptions.params.set('user', this.userService.getUser()._id);
     return this.http.get(this.url, this.requestOptions).map((response) => {
       return <Menu[]>response.json();
     });

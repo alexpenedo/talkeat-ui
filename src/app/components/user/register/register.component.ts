@@ -2,6 +2,7 @@ import { User } from './../../../models/user/user';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user/user.service';
 import { Router } from '@angular/router';
+import { UserToken } from '../../../models/user/userToken';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.userService.register(this.user).subscribe((user: User) => {
+    this.userService.register(this.user).subscribe((userToken: UserToken) => {
+      this.userService.storageUserAndToken(userToken);
       this.router.navigate(['/home']);
     });
   }

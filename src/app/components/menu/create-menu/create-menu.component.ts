@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { User } from '../../../models/user/user';
 import { GeolocationService } from '../../../services/geolocation/geolocation.service';
 import { Router } from '@angular/router';
+import { Coordinates } from '../../../models/coordinates/coordinates';
 
 @Component({
   selector: 'app-create-menu',
@@ -20,6 +21,7 @@ export class CreateMenuComponent implements OnInit {
   menuDescription: FormGroup;
   addDishes: FormGroup;
   completeData: FormGroup;
+  coordinates: Coordinates;
 
   constructor(private menuService: MenuService, private userService: UserService,
     private geolocationService: GeolocationService, private formBuilder: FormBuilder,
@@ -48,6 +50,7 @@ export class CreateMenuComponent implements OnInit {
       country: [this.user != null ? this.user.country : '', Validators.required],
       postalCode: [this.user != null ? this.user.postalCode : '', Validators.required]
     });
+    this.getCoordinates();
   }
 
   setTime(time) {
@@ -69,16 +72,21 @@ export class CreateMenuComponent implements OnInit {
       return date;
     }
   }
+  getCoordinates() {
+    let completeAddress = this.completeData.get("address").value + ","
+      + this.completeData.get("postalCode").value + ","
+      + this.completeData.get("country").value;
+    this.geolocationService.getCoordinatesByAddress(completeAddress).subscribe(coordinates => {
+      this.coordinates = coordinates;
+    });
+  }
 
   saveMenu() {
     this.menu = Object.assign({}, this.menuDescription.value, this.addDishes.value, this.completeData.value);
-    let completeAddress = this.menu.address + "," + this.menu.postalCode + "," + this.menu.country;
-    this.geolocationService.getCoordinatesByAddress(completeAddress).map(coordinates => {
-      this.menu.location = [];
-      this.menu.location.push(coordinates.longitude);
-      this.menu.location.push(coordinates.latitude);
-      this.menuService.save(this.menu);
-    }).subscribe(() => {
+    this.menu.location = [];
+    this.menu.location.push(this.coordinates.longitude);
+    this.menu.location.push(this.coordinates.latitude);
+    this.menuService.save(this.menu).subscribe((menu) => {
       this.router.navigate(['/home']);
     });
   }

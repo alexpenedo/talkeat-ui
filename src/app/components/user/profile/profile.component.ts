@@ -20,12 +20,14 @@ export class ProfileComponent implements OnInit {
     this.image = this.userService.getPhotoUrl(this.userService.getUser()._id);
   }
   uploadPhoto($event) {
-    this.userService.uploadPhoto($event.target.files[0]).subscribe(() => {
-      this.image = this.userService.getPhotoUrl(this.userService.getUser()._id);
+    this.userService.uploadPhoto($event.target.files[0]).subscribe((user: User) => {
+      this.userService.storageUser(user);
+      this.image = this.userService.getPhotoUrl(user._id);
     });
   }
   updateUser() {
-    this.userService.update(this.user).subscribe((user:User)=>{
+    this.userService.update(this.user).subscribe((user: User) => {
+      this.userService.storageUser(user);
       this.router.navigate(['/home']);
     });
   }

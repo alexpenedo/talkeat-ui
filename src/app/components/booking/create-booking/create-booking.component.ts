@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuService } from '../../services/menu/menu.service';
-import { BookingService } from '../../services/booking/booking.service';
-import { Menu } from '../../models/menu/menu';
+import { MenuService } from '../../../services/menu/menu.service';
+import { BookingService } from '../../../services/booking/booking.service';
+import { Menu } from '../../../models/menu/menu';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Booking } from '../../models/booking/booking';
-import { UserService } from '../../services/user/user.service';
-import { ChatService } from '../../services/chat/chat.service';
+import { Booking } from '../../../models/booking/booking';
+import { UserService } from '../../../services/user/user.service';
+import { ChatService } from '../../../services/chat/chat.service';
 
 @Component({
-  selector: 'app-booking',
-  templateUrl: './booking.component.html',
-  styleUrls: ['./booking.component.css'],
+  selector: 'app-create-booking',
+  templateUrl: './create-booking.component.html',
+  styleUrls: ['./create-booking.component.css'],
   providers: [MenuService, BookingService]
 })
-export class BookingComponent implements OnInit {
+export class CreateBookingComponent implements OnInit {
 
   menu: Menu;
 

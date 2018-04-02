@@ -6,7 +6,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { AppComponent } from './app.component';
 import {
   MatToolbarModule,
@@ -35,7 +37,7 @@ import { MenuInfoComponent } from './components/menu/menu-info/menu-info.compone
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { MapComponent } from './components/map/map.component';
-import { BookingComponent } from './components/booking/booking.component';
+import { CreateBookingComponent } from './components/booking/create-booking/create-booking.component';
 import { CreateMenuComponent } from './components/menu/create-menu/create-menu.component';
 import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 import { GeolocationService } from './services/geolocation/geolocation.service';
@@ -43,6 +45,7 @@ import { MenuMarkerComponent } from './components/menu/menu-marker/menu-marker.c
 import { ChatComponent } from './components/chat/chat/chat.component';
 import { ChatButtonListComponent } from './components/chat/chat-button-list/chat-button-list.component';
 import { ChatService } from './services/chat/chat.service';
+import { MyBookingsComponent } from './components/booking/my-bookings/my-bookings.component';
 
 @NgModule({
   declarations: [
@@ -58,10 +61,11 @@ import { ChatService } from './services/chat/chat.service';
     UserImageComponent,
     MenuInfoComponent,
     MapComponent,
-    BookingComponent,
+    CreateBookingComponent,
     MenuMarkerComponent,
     ChatComponent,
     ChatButtonListComponent,
+    MyBookingsComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -75,7 +79,9 @@ import { ChatService } from './services/chat/chat.service';
     FormsModule,
     ReactiveFormsModule,
     MatChipsModule,
-    HttpModule,
+    HttpClientModule,
+    NgProgressModule.forRoot(),
+    NgProgressHttpModule,
     MatToolbarModule,
     MatCardModule,
     MatListModule,

@@ -5,10 +5,10 @@ import { Observer } from 'rxjs/Observer';
 import * as io from 'socket.io-client';
 import { Message } from './../../models/message/message';
 import { UserService } from '../user/user.service';
-import { HttpParams } from '@angular/common/http';
-import { Http, RequestOptions, Headers } from '@angular/http';
 import { Chat } from '../../models/chat/chat';
 import { Booking } from '../../models/booking/booking';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { headers } from '../../util/util';
 
 
 @Injectable()
@@ -17,14 +17,10 @@ export class ChatService {
   serverUrl: string;
   socket;
   url: string;
-  requestOptions: RequestOptions;
 
-  constructor(private http: Http, private userService: UserService) {
+  constructor(private http: HttpClient, private userService: UserService) {
     this.serverUrl = environment.serverUrl;
     this.url = environment.apiUrl + 'chat';
-    const headers: Headers = new Headers();
-    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    this.requestOptions = new RequestOptions({ headers: headers, params: new HttpParams() });
   }
 
   public initSocket(): void {
@@ -67,11 +63,7 @@ export class ChatService {
 
   public findByHostIdOrGuestId(): Observable<Chat[]> {
     let user = this.userService.getUser();
-    const params = new HttpParams();
-    this.requestOptions.params.set('hostId', user._id);
-    this.requestOptions.params.set('guestId', user._id);
-    return this.http.get(this.url, this.requestOptions).map((response) => {
-      return <Chat[]>response.json();
-    });
+    const params = new HttpParams().set('hostId', user._id);
+    return this.http.get<Chat[]>(this.url, { headers, params });
   }
 }

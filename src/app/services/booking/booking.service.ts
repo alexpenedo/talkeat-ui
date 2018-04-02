@@ -1,31 +1,24 @@
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
-import { Http, RequestOptions, Headers } from '@angular/http';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Booking } from '../../models/booking/booking';
 import { UserService } from '../user/user.service';
+import { HttpClient } from '@angular/common/http';
+import { headers } from '../../util/util';
 
 
 @Injectable()
 export class BookingService {
   url: string;
-  requestOptions: RequestOptions;
 
-  constructor(private http: Http, private userService: UserService) {
+  constructor(private http: HttpClient, private userService: UserService) {
     this.url = environment.apiUrl + 'booking';
-    const headers: Headers = new Headers();
-    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    this.requestOptions = new RequestOptions({ headers: headers, params: new HttpParams() });
   }
 
-
   public save(booking: Booking): Observable<Booking> {
-    return this.http.post(this.url, booking, this.requestOptions).map((response) => {
-      return <Booking>response.json();
-    });
+    return this.http.post<Booking>(this.url, booking, { headers });
   }
 
 }

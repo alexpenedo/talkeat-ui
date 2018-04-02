@@ -2,6 +2,7 @@ import { UserService } from './../../../services/user/user.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from '../../../models/user/user';
 import { Router } from '@angular/router';
+import { UserToken } from '../../../models/user/userToken';
 
 @Component({
   templateUrl: './login.component.html',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.userService.login(this.email, this.password).subscribe((user: User) => {
+    this.userService.login(this.email, this.password).subscribe((userToken: UserToken) => {
+      this.userService.storageUserAndToken(userToken);
       this.router.navigate(['/home']);
     });
   }

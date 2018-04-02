@@ -2,10 +2,13 @@ import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { User } from '../../models/user/user';
+import { UserToken } from '../../models/user/userToken';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { headers } from '../../util/util';
+
 
 @Injectable()
 export class UserService {
@@ -14,7 +17,7 @@ export class UserService {
   private _showUser: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   showUserEmitter: Observable<string> = this._showUser.asObservable();
 
-  constructor(private http: Http, private router: Router) {
+  constructor(private http: HttpClient, private router: Router) {
     this.url = environment.apiUrl + 'users';
   }
 
@@ -34,43 +37,31 @@ export class UserService {
     return token != null;
   }
 
-  public login(email: string, password: string): Observable<User> {
+  public login(email: string, password: string): Observable<UserToken> {
     const user = {
       email, password
     };
-    return this.http.post(this.url + '/login', user)
-      .map((response) => {
-        return this.storageUserAndToken(response);
-      });
+    return this.http.post<UserToken>(this.url + '/login', user);
   }
-  private storageUserAndToken(response): User {
-    const body = response.json();
-    const user: User = body.user;
-    localStorage.setItem('user', JSON.stringify(user));
-    localStorage.setItem('token', body.token);
-    this.showUser(user._id);
-    return user;
+  public storageUserAndToken(userToken: UserToken): User {
+    localStorage.setItem('user', JSON.stringify(userToken.user));
+    localStorage.setItem('token', userToken.token);
+    this.showUser(userToken.user._id);
+    return userToken.user;
   }
-  private storageUser(response): User {
-    const user = <User>response.json();
+
+  public storageUser(user: User): User {
     localStorage.setItem('user', JSON.stringify(user));
     this.showUser(user._id);
     return user;
   }
-  public register(user: User): Observable<User> {
-    return this.http.post(this.url, user)
-      .map(response => {
-        return this.storageUserAndToken(response);
-      });
+
+  public register(user: User): Observable<UserToken> {
+    return this.http.post<UserToken>(this.url, user);
   }
+
   public update(user: User): Observable<User> {
-    const headers: Headers = new Headers();
-    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    const requestOptions = new RequestOptions({ headers, params: new HttpParams() });
-    return this.http.put(this.url + '/' + this.getUser()._id, user, requestOptions)
-      .map(response => {
-        return this.storageUser(response);
-      });
+    return this.http.put<User>(this.url + '/' + this.getUser()._id, user, { headers });
   }
 
   public logout() {
@@ -83,14 +74,8 @@ export class UserService {
   public uploadPhoto(file: File): Observable<any> {
     const formdata: FormData = new FormData();
     formdata.append('file', file);
-    const headers: Headers = new Headers();
-    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    const requestOptions = new RequestOptions({ headers, params: new HttpParams() });
     const user: User = this.getUser();
-    return this.http.post(this.url + '/' + user._id + '/picture', formdata, requestOptions)
-      .map((response) => {
-        this.storageUser(response);
-      });
+    return this.http.post<User>(this.url + '/' + user._id + '/picture', formdata, { headers });
   }
 
   public getPhotoUrl(userId: string) {

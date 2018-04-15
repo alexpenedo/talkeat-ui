@@ -1,0 +1,57 @@
+<mat-card [id]="booking.id" class="animation" (mouseenter)="mouseEnter() " (mouseleave)="mouseLeave()">
+    <img mat-card-image src="/assets/img/booking.jpg">
+    <div class="datetime">
+        <mat-icon class="time-icon">access_time</mat-icon>
+        <span>{{booking.menu.date | date: 'dd/MM HH:mm'}}</span>
+    </div>
+    <div class="price">{{+booking.menu.price | number : '1.2-2'}}
+        <mat-icon style="font-size: 20px;">attach_money</mat-icon>
+    </div>
+    <mat-card-title class="title">
+        {{booking.menu.name}}
+        <span>
+            <app-user-image [userId]="booking.host._id" diameter="70px" float="right"></app-user-image>
+        </span>
+    </mat-card-title>
+    <mat-card-header>
+        <mat-card-subtitle class="description">{{booking.menu.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-card-header>
+            <mat-card-subtitle>
+                <span>
+                    <mat-icon class="text-danger">person_pin_circle</mat-icon>
+                </span>
+                <span>
+                    {{booking.menu.address}}</span>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <div class="row mb-5">
+            <div class="col-4">Starters
+                <span *ngFor="let dish of booking.menu.starters" class="dish">{{dish.name}}</span>
+            </div>
+            <div class="col-4">Mains
+                <span *ngFor="let dish of booking.menu.mains" class="dish">{{dish.name}}</span>
+            </div>
+            <div class="col-4">Desserts
+                <span *ngFor="let dish of booking.menu.desserts" class="dish">{{dish.name}}</span>
+            </div>
+        </div>
+    </mat-card-content>
+    <div *ngIf="booking.rate">
+            <rating class="booking-rate" fullIcon="◉" emptyIcon="○"  [(ngModel)]="booking.rate.rate" [readonly]="true"></rating>
+        {{booking.rate.comment}}
+    </div>
+    <form *ngIf="!booking.rate" role="form" (submit)="saveRate()">
+        <div *ngIf="visibility=='show'" class="valoration">
+            <rating [float]="true" fullIcon="◉" emptyIcon="○"  [(ngModel)]="rate" name="rate"></rating>
+        </div>
+        <mat-form-field *ngIf="visibility=='show'" class="comment">
+            <textarea matInput (focus)="onFocus()" placeholder="Comment" name="commnet" [(ngModel)]="comment" id="comment" required matTextareaAutosize
+                matAutosizeMinRows="4" matAutosizeMaxRows="4"></textarea>
+        </mat-form-field>
+        <button class="valorate-button" mat-raised-button color="accent" type="submit" name="action" [@visibility]="visibility">
+            VALORATE
+        </button>
+    </form>
+</mat-card>

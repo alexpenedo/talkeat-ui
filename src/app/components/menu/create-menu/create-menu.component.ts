@@ -62,16 +62,6 @@ export class CreateMenuComponent implements OnInit {
     }
   }
 
-  getDate(): Date {
-    const time = this.completeData.get('time').value;
-    if (time) {
-      const hours = time.split(':')[0];
-      const minutes = time.split(':')[1];
-      const date = <Date>this.completeData.get('date').value;
-      date.setHours(hours, minutes);
-      return date;
-    }
-  }
   getCoordinates() {
     let completeAddress = this.completeData.get("address").value + ","
       + this.completeData.get("postalCode").value + ","

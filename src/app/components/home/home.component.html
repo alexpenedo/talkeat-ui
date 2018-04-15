@@ -47,7 +47,7 @@
         <div class="col-7 menu-cards">
           <div class="row">
             <div *ngFor="let menu of menus" class="col-6">
-              <app-menu-info publish="false" [id]="menu._id" [date]="menu.date" [date]="menu.date" [guests]="menu.guests" [available]="menu.available"
+              <app-menu-info state="show" [id]="menu._id" [date]="menu.date" [date]="menu.date" [guests]="menu.guests" [available]="menu.available"
                 [price]="menu.price" [name]="menu.name" [description]="menu.description" [starters]="menu.starters" [mains]="menu.mains"
                 [desserts]="menu.desserts" [host]="menu.host" [address]="menu.address"></app-menu-info>
             </div>

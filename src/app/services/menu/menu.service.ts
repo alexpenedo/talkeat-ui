@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 import { UserService } from '../user/user.service';
 import { GeolocationService } from '../geolocation/geolocation.service';
 import { headers } from '../../util/util';
+import { User } from '../../models/user/user';
 
 @Injectable()
 export class MenuService {
@@ -22,9 +23,10 @@ export class MenuService {
   }
 
   public find(longitude: number, latitude: number, persons: string, date: Date, type: string): Observable<Menu[]> {
+    const user: User = this.userService.getUser();
     const params: HttpParams = new HttpParams().set('longitude', longitude.toString())
       .set('latitude', latitude.toString()).set('persons', persons)
-      .set('date', date.toString()).set('type', type).set('user', this.userService.getUser()._id);
+      .set('date', date.toString()).set('type', type).set('user', user._id);
 
     return this.http.get<Menu[]>(this.url, { headers, params });
   }

@@ -14,6 +14,12 @@
     margin: 0px 5px;
     font-size: 12px;
 }
+.valoration{
+    margin-bottom: -33px;
+    font-size: 25px;
+    text-align: center;
+    margin-top: -35px;
+}
 
 .vertical-divider {
     border-top-width: 0;
@@ -32,7 +38,7 @@ mat-card-title {
 }
 
 .mat-card-image {
-    margin-top: -120px !important;
+    margin-top: -150px !important;
     filter: brightness(0.4);
 }
 
@@ -60,13 +66,12 @@ mat-card-title {
 .animation:hover {
     transition: all 200ms ease-in;
     transform: scale(1.00);
-    cursor: pointer;
 }
 
 .price {
     position: absolute;
-    top: -3px;
-    right: -3px;
+    top: 9px;
+    right: 0px;
     font-size: 25px;
     background: #edc73c;
     padding: 7px;
@@ -86,6 +91,14 @@ mat-card-title {
     font-size:40px;
 }
 
+.booking-rate{
+    margin-right: 20px;
+}
+
+.comment{
+    margin-bottom:20px;
+}
+
 .description {
     font-size: 11px;
     text-align: justify;
@@ -95,7 +108,7 @@ mat-card-title {
 
 .datetime {
     position: absolute;
-    top: 12px;
+    top: 37px;
     background-color: #fff;
     border-radius: 5px;
     padding: 7px;
@@ -112,18 +125,13 @@ mat-card-title {
     color: #893737;
 }
 
-.book-button{
+.valorate-button{
     width: 100%;
     position: absolute;
     padding: 0;
     margin-left: -24px;
     margin-top: -15px;
+    margin-bottom: 20px;
     font-size: 18px;
     height: 40px;
-}
-
-.rate{
-    font-size:12px;
-    top:60px;
-    position: absolute;
-}
+}   

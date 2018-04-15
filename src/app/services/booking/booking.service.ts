@@ -5,8 +5,9 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Booking } from '../../models/booking/booking';
 import { UserService } from '../user/user.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { headers } from '../../util/util';
+import { User } from '../../models/user/user';
 
 
 @Injectable()
@@ -19,6 +20,13 @@ export class BookingService {
 
   public save(booking: Booking): Observable<Booking> {
     return this.http.post<Booking>(this.url, booking, { headers });
+  }
+
+  public findBookingsByGuest(): Observable<Booking[]> {
+    const guest: User = this.userService.getUser();
+    const params: HttpParams = new HttpParams().set('guestId', guest._id);
+
+    return this.http.get<Booking[]>(this.url, { headers, params });
   }
 
 }

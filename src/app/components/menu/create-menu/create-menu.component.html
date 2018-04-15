@@ -71,7 +71,7 @@
           </div>
           <div class="col-3">
             <mat-form-field>
-              <input matInput placeholder="Time" type="time" formControlName="time" (input)="setTime($event.target.value)" required>
+              <input matInput placeholder="Time" type="time" formControlName="time" (blur)="setTime()" required>
             </mat-form-field>
           </div>
         </div>
@@ -108,9 +108,10 @@
       <ng-template matStepLabel>Confirm your menu</ng-template>
       <div class="row">
         <div class="col-5">
-          <app-menu-info publish=true [date]="getDate()" [guests]="completeData.get('guests').value" [price]="completeData.get('price').value"
-            [host]="user._id" [name]="menuDescription.get('name').value" [description]="menuDescription.get('description').value"
-            [starters]="addDishes.get('starters').value" [mains]="addDishes.get('mains').value" [desserts]="addDishes.get('desserts').value"></app-menu-info>
+          <app-menu-info state="publish" [date]="completeData.get('date').value" [time]="completeData.get('time').value" [guests]="completeData.get('guests').value"
+            [price]="completeData.get('price').value" [host]="user._id" [name]="menuDescription.get('name').value" [description]="menuDescription.get('description').value"
+            [starters]="addDishes.get('starters').value" [mains]="addDishes.get('mains').value" [desserts]="addDishes.get('desserts').value"
+            [address]="completeData.get('address').value + ', ' +completeData.get('postalCode').value"></app-menu-info>
         </div>
         <div class="col-7 publish-container">
           <h3>Your menu is finished. Please check your menu information.</h3>

@@ -1,11 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../services/user/user.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { RateService } from '../../../services/rate/rate.service';
 
 @Component({
   selector: 'app-menu-info',
   templateUrl: './menu-info.component.html',
   styleUrls: ['./menu-info.component.css'],
+  providers: [RateService],
   animations: [
     trigger('visibility', [
       state('show', style({
@@ -22,8 +24,9 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class MenuInfoComponent implements OnInit {
 
   @Input() id: string;
-  @Input() publish: string;
+  @Input() state: string;
   @Input() date: Date;
+  @Input() time: string;
   @Input() guests: number;
   @Input() available: number;
   @Input() price: number;
@@ -35,27 +38,31 @@ export class MenuInfoComponent implements OnInit {
   @Input() host: string;
   @Input() address: string;
   classes: string;
-  visibility:string;
+  visibility: string;
+  average: number;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private rateService: RateService) {
     this.visibility = 'hide';
   }
 
   ngOnInit() {
-    if (this.publish == "true") {
+    if (this.state == "publish" || this.state == "booking") {
       this.classes = "menu-info";
     }
     else {
+      this.rateService.getRateAverage(this.host).subscribe((average: any) => {
+        this.average = average.average;
+      });
       this.classes = "menu-info animation";
     }
   }
   mouseEnter() {
-    if (this.publish == "false") {
+    if (this.state == "show") {
       this.visibility = 'show';
     }
   }
   mouseLeave() {
-    if (this.publish == "false") {
+    if (this.state == "show") {
       this.visibility = 'hide';
     }
   }

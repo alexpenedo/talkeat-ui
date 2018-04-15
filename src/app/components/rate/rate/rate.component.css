@@ -1,0 +1,16 @@
+.booking-rate {
+    margin-top: -8px;
+    font-size: 13px;
+}
+.rate { 
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 14px;
+}
+.comment{
+    color: #909090;
+    padding-left: 40px;
+}
+.guest-name{
+    padding-left: 10px;
+}

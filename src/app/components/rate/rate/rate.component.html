@@ -1,0 +1,10 @@
+<div class="rate">
+  <app-user-image [userId]="rate.guest._id" diameter="40px" float="left"></app-user-image>
+  <span class="guest-name">{{rate.guest.name}}</span>
+  <div class="booking-rate">
+    <rating fullIcon="◉" emptyIcon="○" [(ngModel)]="rate.rate" [readonly]="true"></rating>
+  </div>
+  <div class="comment">
+    {{rate.comment}}
+  </div>
+</div>

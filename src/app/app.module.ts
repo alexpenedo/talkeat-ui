@@ -46,6 +46,10 @@ import { ChatComponent } from './components/chat/chat/chat.component';
 import { ChatButtonListComponent } from './components/chat/chat-button-list/chat-button-list.component';
 import { ChatService } from './services/chat/chat.service';
 import { MyBookingsComponent } from './components/booking/my-bookings/my-bookings.component';
+import { BookingInfoComponent } from './components/booking/booking-info/booking-info.component';
+import { RatingModule } from "ngx-rating";
+import { RateComponent } from './components/rate/rate/rate.component';
+
 
 @NgModule({
   declarations: [
@@ -66,6 +70,8 @@ import { MyBookingsComponent } from './components/booking/my-bookings/my-booking
     ChatComponent,
     ChatButtonListComponent,
     MyBookingsComponent,
+    BookingInfoComponent,
+    RateComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -98,7 +104,8 @@ import { MyBookingsComponent } from './components/booking/my-bookings/my-booking
     MatMenuModule,
     MatStepperModule,
     AgmSnazzyInfoWindowModule,
-    Ng4GeoautocompleteModule.forRoot()
+    Ng4GeoautocompleteModule.forRoot(),
+    RatingModule
   ],
   providers: [UserService, GeolocationService, ChatService],
   bootstrap: [AppComponent]

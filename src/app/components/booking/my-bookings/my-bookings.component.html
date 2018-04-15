@@ -1,3 +1,9 @@
-<p>
-  my-bookings works!
-</p>
+<div class="row">
+    <div class="col-8 offset-2">
+        <div class="row">
+            <div *ngFor="let booking of bookings" class="booking-row">
+                <app-booking-info [booking]="booking"></app-booking-info>
+            </div>
+        </div>
+    </div>
+</div>

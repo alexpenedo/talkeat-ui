@@ -1,9 +1,7 @@
-<div class="row">
-    <div class="col-8 offset-2">
-        <div class="row">
-            <div *ngFor="let booking of bookings" class="booking-row">
-                <app-booking-info [booking]="booking"></app-booking-info>
-            </div>
+<div class="col-8 offset-2">
+    <perfect-scrollbar style="max-height: 580px;">
+        <div *ngFor="let booking of bookings" class="booking-row">
+            <app-booking-info [booking]="booking" state="show"></app-booking-info>
         </div>
-    </div>
+    </perfect-scrollbar>
 </div>

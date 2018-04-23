@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/user/register/register.component
 import { CreateMenuComponent } from './components/menu/create-menu/create-menu.component';
 import { CreateBookingComponent } from './components/booking/create-booking/create-booking.component';
 import { MyBookingsComponent } from './components/booking/my-bookings/my-bookings.component';
+import { BookingRateComponent } from './components/rate/booking-rate/booking-rate.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'my-bookings', component: MyBookingsComponent, canActivate: [AuthGuardService] },
   { path: 'booking/:id', component: CreateBookingComponent, canActivate: [AuthGuardService] },
+  { path: 'rating/:id', component: BookingRateComponent, canActivate: [AuthGuardService] },
   {
     path: '',
     redirectTo: '/home',

@@ -50,10 +50,12 @@ export class MenuInfoComponent implements OnInit {
       this.classes = "menu-info";
     }
     else {
+      this.classes = "menu-info animation";
+    }
+    if (this.state == "show" || this.state == "booking") {
       this.rateService.getRateAverage(this.host).subscribe((average: any) => {
         this.average = average.average;
       });
-      this.classes = "menu-info animation";
     }
   }
   mouseEnter() {

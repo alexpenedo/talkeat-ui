@@ -7,6 +7,7 @@ export class Rate {
     public comment: string;
     public rate: number;
     public booking: Booking;
+    public date: Date;
 
     constructor(guest: User, host: User, comment: string, rate: number, booking: Booking) {
         this.guest = guest;

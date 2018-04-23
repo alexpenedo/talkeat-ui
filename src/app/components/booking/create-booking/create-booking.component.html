@@ -6,18 +6,19 @@
           [name]="menu.name" [description]="menu.description" [starters]="menu.starters" [mains]="menu.mains" [desserts]="menu.desserts"
           [host]="menu.host" [address]="menu.address">
         </app-menu-info>
+        <button mat-raised-button color="warn" class="booking" (click)="bookMenu()">
+          BOOK MENU
+        </button>
       </div>
       <div class="col-7 booking-container">
-        <div *ngFor="let rate of rates">
-          <app-rate [rate]="rate"></app-rate>
-        </div>
         <h2 class="text-success">Would you like to book the menu?</h2>
         <h5>You can chat with the host</h5>
         <h5>The host will confirm your book</h5>
-        <div class="col-8 offset-2">
-          <button mat-raised-button color="primary" class="booking" (click)="bookMenu()">
-            BOOK MENU
-          </button>
+        <div class="ratings">
+          <h6>Ratings</h6>
+          <div *ngFor="let rate of rates">
+            <app-rate [rate]="rate"></app-rate>
+          </div>
         </div>
       </div>
     </div>

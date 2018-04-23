@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Booking } from '../../../models/booking/booking';
 import { Rate } from '../../../models/rate/rate';
 import { RateService } from '../../../services/rate/rate.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,24 +21,26 @@ import { RateService } from '../../../services/rate/rate.service';
       })),
       transition('show => hide', animate('500ms ease-out')),
       transition('hide => show', animate('500ms ease-in'))
-    ]),
+    ])
   ]
 })
 export class BookingInfoComponent implements OnInit {
 
   @Input() booking: Booking;
+  @Input() state: string;
   visibility: string;
-  focus: boolean;
   comment: string;
   rate: number;
+  classes: string;
 
 
-  constructor(private rateService: RateService) {
-    this.focus = false;
+  constructor(private rateService: RateService, private router: Router) {
     this.visibility = "hide";
   }
 
   ngOnInit() {
+    if (!this.booking.rate && this.state == "show")
+      this.classes = "animation";
   }
 
   mouseEnter() {
@@ -45,17 +48,13 @@ export class BookingInfoComponent implements OnInit {
   }
 
   mouseLeave() {
-    if (!this.focus)
-      this.visibility = 'hide';
-  }
-  onFocus() {
-    this.focus = true;
+    this.visibility = 'hide';
   }
 
   saveRate() {
     this.rateService.save(new Rate(this.booking.guest, this.booking.host,
       this.comment, this.rate, this.booking)).subscribe((rate: Rate) => {
-        this.booking.rate = rate;
+        this.router.navigate(['/my-bookings']);
       });
   }
 

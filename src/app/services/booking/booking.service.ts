@@ -29,4 +29,8 @@ export class BookingService {
     return this.http.get<Booking[]>(this.url, { headers, params });
   }
 
+  public findById(id: string): Observable<Booking> {
+    return this.http.get<Booking>(this.url + '/' + id, { headers });
+  }
+
 }

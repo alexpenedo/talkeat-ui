@@ -12,7 +12,5 @@
 }
 
 .menu-cards{
-    overflow-y: scroll;
-    max-height: 410px;
     padding: 0px 45px;
 }

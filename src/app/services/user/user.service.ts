@@ -1,12 +1,11 @@
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
 import { User } from '../../models/user/user';
 import { UserToken } from '../../models/user/userToken';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { headers } from '../../util/util';
 
 
@@ -73,9 +72,12 @@ export class UserService {
 
   public uploadPhoto(file: File): Observable<any> {
     const formdata: FormData = new FormData();
-    formdata.append('file', file);
+    formdata.append('file', file, file.name);
     const user: User = this.getUser();
-    return this.http.post<User>(this.url + '/' + user._id + '/picture', formdata, { headers });
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.post<any>(this.url + '/' + user._id + '/picture', formdata, { headers });
   }
 
   public getPhotoUrl(userId: string) {

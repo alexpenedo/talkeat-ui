@@ -51,7 +51,8 @@ export class MenuInfoComponent implements OnInit {
     }
     else {
       this.rateService.getRateAverage(this.host).subscribe((average: any) => {
-        this.average = average.average;
+        if (average != null)
+          this.average = average.average;
       });
       this.classes = "menu-info animation";
     }

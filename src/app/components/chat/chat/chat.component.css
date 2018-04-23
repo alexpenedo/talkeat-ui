@@ -46,6 +46,9 @@ mat-card-actions{
 .btn-toogle{
     right: 40px;
 }
+.btn-menu{
+    right: -40px;
+}
 .user-message{
     float: left;
     background: #6b50b7;

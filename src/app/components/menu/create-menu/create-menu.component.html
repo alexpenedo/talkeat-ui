@@ -71,7 +71,7 @@
           </div>
           <div class="col-3">
             <mat-form-field>
-              <input matInput placeholder="Time" type="time" formControlName="time" (blur)="setTime()" required>
+              <input matInput placeholder="Time" type="time" formControlName="time" (input)="setTime($event.target.value)" required>
             </mat-form-field>
           </div>
         </div>

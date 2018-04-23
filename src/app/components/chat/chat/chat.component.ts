@@ -5,11 +5,15 @@ import { ChatService } from '../../../services/chat/chat.service';
 import { Booking } from '../../../models/booking/booking';
 import { UserService } from '../../../services/user/user.service';
 import { Chat } from '../../../models/chat/chat';
+import { BookingService } from '../../../services/booking/booking.service';
+import { MatDialog } from '@angular/material';
+import { MenuInfoComponent } from '../../menu/menu-info/menu-info.component';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  providers: [BookingService]
 })
 
 export class ChatComponent implements OnInit {
@@ -27,7 +31,8 @@ export class ChatComponent implements OnInit {
   focused: boolean;
 
 
-  constructor(private chatService: ChatService, private userService: UserService) {
+  constructor(private chatService: ChatService, private bookingService: BookingService, private userService: UserService,
+    private dialog: MatDialog) {
     this.maximized = true;
     this.windowIcon = "keyboard_arrow_down";
     this.focused = true;
@@ -111,5 +116,24 @@ export class ChatComponent implements OnInit {
       this.maximized = true;
       this.windowIcon = "keyboard_arrow_down";
     }
+  }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(MenuInfoComponent, {
+      width: '400px'
+    })
+    let instance = dialogRef.componentInstance;
+    instance.date = this.chat.booking.menuDate;
+    instance.address = this.chat.booking.menu.address;
+    instance.available = this.chat.booking.menu.available;
+    instance.description = this.chat.booking.menu.description;
+    instance.host = this.chat.booking.host.toString();
+    instance.state = "booking";
+    instance.name = this.chat.booking.menu.name;
+    instance.price = this.chat.booking.menu.price;
+    instance.guests = this.chat.booking.menu.guests;
+    instance.starters = this.chat.booking.menu.starters;
+    instance.mains = this.chat.booking.menu.mains;
+    instance.desserts = this.chat.booking.menu.desserts;
   }
 }

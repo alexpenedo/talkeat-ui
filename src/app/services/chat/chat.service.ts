@@ -63,7 +63,9 @@ export class ChatService {
 
   public findByHostIdOrGuestId(): Observable<Chat[]> {
     let user = this.userService.getUser();
-    const params = new HttpParams().set('hostId', user._id);
+    const params = new HttpParams().set('hostId', user._id)
+      .set('guestId', user._id);
+
     return this.http.get<Chat[]>(this.url, { headers, params });
   }
 }

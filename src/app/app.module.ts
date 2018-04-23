@@ -26,6 +26,7 @@ import {
   MatMenuModule,
   MatStepperModule,
   MatChipsModule,
+  MatDialogModule
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/user/login/login.component';
@@ -103,11 +104,13 @@ import { RateComponent } from './components/rate/rate/rate.component';
     MatIconModule,
     MatMenuModule,
     MatStepperModule,
+    MatDialogModule,
     AgmSnazzyInfoWindowModule,
     Ng4GeoautocompleteModule.forRoot(),
     RatingModule
   ],
   providers: [UserService, GeolocationService, ChatService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MenuInfoComponent]
 })
 export class AppModule { }

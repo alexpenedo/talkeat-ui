@@ -6,6 +6,9 @@
     <span class="chat-user-name">
       {{chatUser.name}}
     </span>
+    <button mat-icon-button color="basic" class="btn-menu" (click)="openDialog()">
+      <mat-icon>info</mat-icon>
+    </button>
     <button mat-mini-fab color="basic" class="btn-window btn-toogle" (click)="toogleWindow()">
       <mat-icon>{{windowIcon}}</mat-icon>
     </button>

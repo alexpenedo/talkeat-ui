@@ -50,7 +50,14 @@ import { MyBookingsComponent } from './components/booking/my-bookings/my-booking
 import { BookingInfoComponent } from './components/booking/booking-info/booking-info.component';
 import { RatingModule } from "ngx-rating";
 import { RateComponent } from './components/rate/rate/rate.component';
+import { BookingRateComponent } from './components/rate/booking-rate/booking-rate.component';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 @NgModule({
   declarations: [
@@ -73,6 +80,7 @@ import { RateComponent } from './components/rate/rate/rate.component';
     MyBookingsComponent,
     BookingInfoComponent,
     RateComponent,
+    BookingRateComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -107,9 +115,14 @@ import { RateComponent } from './components/rate/rate/rate.component';
     MatDialogModule,
     AgmSnazzyInfoWindowModule,
     Ng4GeoautocompleteModule.forRoot(),
-    RatingModule
+    RatingModule,
+    PerfectScrollbarModule
   ],
-  providers: [UserService, GeolocationService, ChatService],
+  providers: [UserService, GeolocationService, ChatService,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }],
   bootstrap: [AppComponent],
   entryComponents: [MenuInfoComponent]
 })

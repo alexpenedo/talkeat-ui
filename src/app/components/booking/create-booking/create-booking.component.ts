@@ -36,8 +36,7 @@ export class CreateBookingComponent implements OnInit {
     this.route.params.subscribe(params => this.menuService.findById(params.id)
       .subscribe((menu) => {
         this.menu = menu;
-        self.rateService.getRatesByHostId(this.menu.host).subscribe((rates: Rate[]) => {
-          console.log(rates);
+        self.rateService.getRatesByHostId(this.menu.host.toString()).subscribe((rates: Rate[]) => {
           self.rates = rates;
         });
       }));

@@ -27,8 +27,8 @@ export class RateService {
     return this.http.get<any>(this.url + "/average", { headers, params });
   }
 
-  public getRatesByHostId(host: User): Observable<Rate[]> {
-    const params: HttpParams = new HttpParams().set('hostId', host.toString());
+  public getRatesByHostId(host: string): Observable<Rate[]> {
+    const params: HttpParams = new HttpParams().set('hostId', host);
     return this.http.get<Rate[]>(this.url, { headers, params });
   }
 

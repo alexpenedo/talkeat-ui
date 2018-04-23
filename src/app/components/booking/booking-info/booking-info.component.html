@@ -1,4 +1,4 @@
-<mat-card [id]="booking.id" class="animation" (mouseenter)="mouseEnter() " (mouseleave)="mouseLeave()">
+<mat-card [id]="booking.id" [ngClass]="classes" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" [routerLink]="(state=='show') ? ['/rating',booking._id] : []">
     <img mat-card-image src="/assets/img/booking.jpg">
     <div class="datetime">
         <mat-icon class="time-icon">access_time</mat-icon>
@@ -39,19 +39,22 @@
         </div>
     </mat-card-content>
     <div *ngIf="booking.rate">
-            <rating class="booking-rate" fullIcon="◉" emptyIcon="○"  [(ngModel)]="booking.rate.rate" [readonly]="true"></rating>
+        <rating class="booking-rate" fullIcon="◉" emptyIcon="○" [(ngModel)]="booking.rate.rate" [readonly]="true"></rating>
         {{booking.rate.comment}}
     </div>
-    <form *ngIf="!booking.rate" role="form" (submit)="saveRate()">
-        <div *ngIf="visibility=='show'" class="valoration">
-            <rating [float]="true" fullIcon="◉" emptyIcon="○"  [(ngModel)]="rate" name="rate"></rating>
+    <form *ngIf="state=='rating'" role="form" (submit)="saveRate()">
+        <div class="valoration">
+            <rating [float]="true" fullIcon="◉" emptyIcon="○" [(ngModel)]="rate" name="rate"></rating>
         </div>
-        <mat-form-field *ngIf="visibility=='show'" class="comment">
-            <textarea matInput (focus)="onFocus()" placeholder="Comment" name="commnet" [(ngModel)]="comment" id="comment" required matTextareaAutosize
-                matAutosizeMinRows="4" matAutosizeMaxRows="4"></textarea>
+        <mat-form-field class="comment">
+            <textarea matInput placeholder="Comment" name="commnet" [(ngModel)]="comment" id="comment" required matTextareaAutosize matAutosizeMinRows="4"
+                matAutosizeMaxRows="4"></textarea>
         </mat-form-field>
-        <button class="valorate-button" mat-raised-button color="accent" type="submit" name="action" [@visibility]="visibility">
+        <button class="valorate-button" mat-raised-button color="accent" type="submit" name="action">
             VALORATE
         </button>
     </form>
+    <button *ngIf="(state=='show') && (!booking.rate)" class="valorate-button" mat-raised-button color="accent" [@visibility]="visibility">
+        VALORATE
+    </button>
 </mat-card>

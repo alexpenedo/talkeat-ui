@@ -80,8 +80,15 @@ export class UserService {
     return this.http.post<any>(this.url + '/' + user._id + '/picture', formdata, { headers });
   }
 
-  public getPhotoUrl(userId: string) {
-    return this.url + '/' + userId + '/picture?' + Math.random();
+  public getPhotoUrl(picture: string) {
+    if (picture === undefined || picture == null) {
+      return '#';
+    }
+    return this.url + '/image?id=' + picture;
+  };
+
+  public findById(id: string): Observable<User> {
+    return this.http.get<User>(this.url + '/' + id, { headers });
   }
 
 }

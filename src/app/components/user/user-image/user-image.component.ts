@@ -1,5 +1,6 @@
 import { UserService } from './../../../services/user/user.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { User } from '../../../models/user/user';
 
 @Component({
   selector: 'app-user-image',
@@ -12,14 +13,23 @@ export class UserImageComponent implements OnInit {
   @Input() diameter: string;
   @Input() float: string;
   constructor(private userService: UserService) {
+    this.image = '#';
   }
 
   ngOnInit() {
-    this.image = this.userService.getPhotoUrl(this.userId);
+    this.setImageUrl(this.userId);
     this.userService.showUserEmitter.subscribe((user) => {
       if (user == this.userId) {
-        this.image = this.userService.getPhotoUrl(user);
+        this.setImageUrl(user);
       }
     });
+  }
+
+  setImageUrl(userId: string) {
+    if (userId !== undefined && userId != null)
+      this.userService.findById(userId).subscribe((user: User) => {
+        console.log(user);
+        this.image = this.userService.getPhotoUrl(user.picture);
+      });
   }
 }

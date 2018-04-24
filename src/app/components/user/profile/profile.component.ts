@@ -17,12 +17,12 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.image = this.userService.getPhotoUrl(this.userService.getUser()._id);
+    this.image = this.userService.getPhotoUrl(this.userService.getUser().picture);
   }
   uploadPhoto($event) {
     this.userService.uploadPhoto($event.target.files[0]).subscribe((user: User) => {
       this.userService.storageUser(user);
-      this.image = this.userService.getPhotoUrl(user._id);
+      this.image = this.userService.getPhotoUrl(user.picture);
     });
   }
   updateUser() {

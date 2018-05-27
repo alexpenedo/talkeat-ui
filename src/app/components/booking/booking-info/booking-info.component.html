@@ -1,4 +1,4 @@
-<mat-card [id]="booking.id" [ngClass]="classes" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" [routerLink]="(state=='show') ? ['/rating',booking._id] : []">
+<mat-card [id]="booking._id" [ngClass]="classes" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" [routerLink]="(state=='show') ? ['/rating',booking._id] : []">
     <img mat-card-image src="/assets/img/booking.jpg">
     <div class="datetime">
         <mat-icon class="time-icon">access_time</mat-icon>

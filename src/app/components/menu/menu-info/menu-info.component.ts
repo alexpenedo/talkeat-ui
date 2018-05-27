@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../services/user/user.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { RateService } from '../../../services/rate/rate.service';
+import { UtilService } from '../../../services/util/util.service';
 
 @Component({
   selector: 'app-menu-info',
@@ -41,7 +42,7 @@ export class MenuInfoComponent implements OnInit {
   visibility: string;
   average: number;
 
-  constructor(private userService: UserService, private rateService: RateService) {
+  constructor(private userService: UserService, private rateService: RateService, private utilService: UtilService) {
     this.visibility = 'hide';
   }
 
@@ -58,6 +59,14 @@ export class MenuInfoComponent implements OnInit {
           this.average = average.average;
       });
     }
+    this.utilService.activeMenuEmitter.subscribe((menuId) => {
+      if (menuId == this.id) {
+        this.visibility = 'show';
+      }
+    });
+    this.utilService.disableMenusEmitter.subscribe(() => {
+      this.visibility = 'hide';
+    });
   }
   mouseEnter() {
     if (this.state == "show") {

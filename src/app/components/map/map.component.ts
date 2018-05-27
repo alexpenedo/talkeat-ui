@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { GeolocationService } from '../../services/geolocation/geolocation.service';
 import { Menu } from '../../models/menu/menu';
+import { Marker } from '@agm/core/services/google-maps-types';
+import { UtilService } from '../../services/util/util.service';
 
 @Component({
   selector: 'app-map',
@@ -14,9 +16,9 @@ export class MapComponent implements OnInit {
   @Input() latitude: number;
   @Input() longitude: number;
   @Input() menus: Menu[];
-  
+
   constructor(private ref: ChangeDetectorRef,
-    private geoLocationService: GeolocationService) {
+    private geoLocationService: GeolocationService, private utilService: UtilService) {
   }
 
   ngOnInit() {
@@ -30,7 +32,13 @@ export class MapComponent implements OnInit {
       }
       self.ref.detectChanges();
     }, function (error) { self.errorMsg = error; self.ref.detectChanges(); });
-
   }
 
+
+  markerClicked(marker: Marker, menu: Menu) {
+    this.utilService.disableMenus();
+    let element: Element = document.getElementById(menu._id);
+    element.scrollIntoView({ block: "end", behavior: "smooth" });
+    this.utilService.activeMenu(menu._id);
+  }
 }

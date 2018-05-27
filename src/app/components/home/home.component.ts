@@ -4,7 +4,6 @@ import { UserService } from './../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../services/menu/menu.service';
 import { } from 'googlemaps';
-import { MapsAPILoader } from '@agm/core';
 import { GeolocationService } from '../../services/geolocation/geolocation.service';
 import { Coordinates } from './../../models/coordinates/coordinates';
 
@@ -60,7 +59,8 @@ export class HomeComponent implements OnInit {
         menus.map((menu) => {
           menu.label = {
             fontSize: '15px',
-            text: menu.price.toFixed(2) + ' $'
+            text: menu.price.toFixed(2) + ' $',
+            fontWeight: 'bold',
           };
         })
         this.menus = menus;

@@ -56,6 +56,7 @@ mat-card-title {
     overflow: hidden;
     margin-bottom:20px;
 }
+
 .animation {
     transition: all 0ms ease-in;
     transform: scale(0.97);

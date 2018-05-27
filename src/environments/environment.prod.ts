@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://talkeat-be.sloppy.zone/api/',
-  serverUrl: 'https://talkeat-be.sloppy.zone/'
+  apiUrl: 'http://backend.talkeat.es/api/',
+  serverUrl: 'http://backend.talkeat.es/'
 };

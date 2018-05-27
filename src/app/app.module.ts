@@ -46,6 +46,7 @@ import { MenuMarkerComponent } from './components/menu/menu-marker/menu-marker.c
 import { ChatComponent } from './components/chat/chat/chat.component';
 import { ChatButtonListComponent } from './components/chat/chat-button-list/chat-button-list.component';
 import { ChatService } from './services/chat/chat.service';
+import { UtilService } from './services/util/util.service';
 import { MyBookingsComponent } from './components/booking/my-bookings/my-bookings.component';
 import { BookingInfoComponent } from './components/booking/booking-info/booking-info.component';
 import { RatingModule } from "ngx-rating";
@@ -86,7 +87,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule,
     BrowserModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDI4nEy33luOLXI2AZcRllmEdMq9mrWF_g',
+      apiKey: 'AIzaSyDTq3GP-AKwTNHxe-Yq8Wg_l5BrorbnxC4',
       libraries: ["places"],
       language: 'es',
       region: 'ES'
@@ -118,7 +119,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RatingModule,
     PerfectScrollbarModule
   ],
-  providers: [UserService, GeolocationService, ChatService,
+  providers: [UserService, GeolocationService, ChatService, UtilService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

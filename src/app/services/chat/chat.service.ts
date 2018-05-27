@@ -29,6 +29,10 @@ export class ChatService {
     this.socket.emit('online', user);
   }
 
+  public disconnectSocket(): void {
+    this.socket.emit('disconnect');
+  }
+
   public chatsOpened(chats: Chat[]) {
     this.socket.emit('chatsOpened', chats);
   }

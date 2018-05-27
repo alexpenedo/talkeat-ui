@@ -27,7 +27,7 @@ export class ToolbarComponent implements OnInit {
     });
   }
   logout() {
+    this.chatService.disconnectSocket();
     this.userService.logout();
   }
-
 }

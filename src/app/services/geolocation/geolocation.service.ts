@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { MapsAPILoader } from '@agm/core';
-import { Coordinates } from './../../models/coordinates/coordinates';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {MapsAPILoader} from '@agm/core';
+import {Coordinates} from './../../models/coordinates/coordinates';
+import {} from '@types/googlemaps';
 
 
 const GEOLOCATION_ERRORS = {
@@ -14,14 +15,15 @@ const GEOLOCATION_ERRORS = {
 @Injectable()
 export class GeolocationService {
 
-  constructor(private mapsAPILoader: MapsAPILoader) { }
+  constructor(private mapsAPILoader: MapsAPILoader) {
+  }
 
   public getCoordinatesByAddress(address: string): Observable<Coordinates> {
     return Observable.create(observer => {
       this.mapsAPILoader.load().then(() => {
-        let geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'address': address }, (results, status) => {
-          let coordinates: Coordinates = new Coordinates(results[0].geometry.location.lat(),
+        const geoCoder = new google.maps.Geocoder();
+        geoCoder.geocode({'address': address}, (results) => {
+          const coordinates: Coordinates = new Coordinates(results[0].geometry.location.lat(),
             results[0].geometry.location.lng());
           observer.next(coordinates);
           observer.complete();
@@ -31,26 +33,28 @@ export class GeolocationService {
   }
 
   public getLastCoordinatesSearch(): Coordinates {
-    let recentSearches = this.getRecentSearches();
-    if (recentSearches!=undefined && recentSearches.length > 0) {
+    const recentSearches = this.getRecentSearches();
+    if (recentSearches !== undefined && recentSearches != null && recentSearches.length > 0) {
       return new Coordinates(recentSearches[0].geometry.location.lat, recentSearches[0].geometry.location.lng);
     }
   }
+
   public getLastLocationSearch(): string {
-    let recentSearches = this.getRecentSearches();
-    if (recentSearches!=undefined && recentSearches.length > 0) {
+    const recentSearches = this.getRecentSearches();
+    if (recentSearches !== undefined && recentSearches != null && recentSearches.length > 0) {
       return recentSearches[0].description;
     }
   }
+
   private getRecentSearches(): any[] {
-    let recentSearches = localStorage.getItem("recentSearches");
-    if (recentSearches != undefined) {
+    const recentSearches = localStorage.getItem('recentSearches');
+    if (recentSearches !== undefined) {
       return JSON.parse(recentSearches);
     }
   }
 
   public getLocation(geoLocationOptions?: any): Observable<any> {
-    geoLocationOptions = geoLocationOptions || { timeout: 5000 };
+    geoLocationOptions = geoLocationOptions || {timeout: 5000};
 
     return Observable.create(observer => {
       if (window.navigator && window.navigator.geolocation) {

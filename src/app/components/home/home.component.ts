@@ -1,11 +1,8 @@
-import { Menu } from './../../models/menu/menu';
-import { User } from './../../models/user/user';
-import { UserService } from './../../services/user/user.service';
-import { Component, OnInit } from '@angular/core';
-import { MenuService } from '../../services/menu/menu.service';
-import { } from 'googlemaps';
-import { GeolocationService } from '../../services/geolocation/geolocation.service';
-import { Coordinates } from './../../models/coordinates/coordinates';
+import {Menu} from './../../models/menu/menu';
+import {Component, OnInit} from '@angular/core';
+import {MenuService} from '../../services/menu/menu.service';
+import {GeolocationService} from '../../services/geolocation/geolocation.service';
+import {Coordinates} from './../../models/coordinates/coordinates';
 
 @Component({
   selector: 'app-home',
@@ -30,8 +27,8 @@ export class HomeComponent implements OnInit {
     this.persons = '2';
     this.date = new Date();
     this.type = this.date.getHours() > 17 ? "dinner" : "lunch";
-    let lastCoordinates: Coordinates = this.geolocationService.getLastCoordinatesSearch();
-    if (lastCoordinates != undefined) {
+    const lastCoordinates: Coordinates = this.geolocationService.getLastCoordinatesSearch();
+    if (lastCoordinates !== undefined) {
       this.longitude = lastCoordinates.longitude;
       this.latitude = lastCoordinates.latitude;
       this.find();

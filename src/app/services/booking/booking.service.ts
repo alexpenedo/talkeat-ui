@@ -1,13 +1,11 @@
-import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
-import { environment } from './../../../environments/environment';
-import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {environment} from './../../../environments/environment';
+import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
-import { Booking } from '../../models/booking/booking';
-import { UserService } from '../user/user.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { headers } from '../../util/util';
-import { User } from '../../models/user/user';
+import {Booking} from '../../models/booking/booking';
+import {UserService} from '../user/user.service';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {User} from '../../models/user/user';
 
 
 @Injectable()
@@ -19,18 +17,18 @@ export class BookingService {
   }
 
   public save(booking: Booking): Observable<Booking> {
-    return this.http.post<Booking>(this.url, booking, { headers });
+    return this.http.post<Booking>(this.url, booking);
   }
 
   public findBookingsByGuest(): Observable<Booking[]> {
     const guest: User = this.userService.getUser();
     const params: HttpParams = new HttpParams().set('guestId', guest._id);
 
-    return this.http.get<Booking[]>(this.url, { headers, params });
+    return this.http.get<Booking[]>(this.url, {params});
   }
 
   public findById(id: string): Observable<Booking> {
-    return this.http.get<Booking>(this.url + '/' + id, { headers });
+    return this.http.get<Booking>(this.url + '/' + id);
   }
 
 }

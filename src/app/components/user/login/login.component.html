@@ -1,15 +1,20 @@
 <div class="col-4 offset-4">
   <mat-card>
     <img mat-card-image class="logo" src="/assets/img/logo.png">
+    <div class="alert alert-danger" role="alert" *ngIf="errorMsg">
+      {{errorMsg}}
+    </div>
     <form role="form" (submit)="login()">
       <div class="input-group">
         <mat-form-field>
-          <input matInput type="text" name="email" [(ngModel)]="email" id="email" placeholder="Email">
+          <input matInput type="email" name="email" [(ngModel)]="email" id="email" placeholder="Email" required
+                 pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
         </mat-form-field>
       </div>
       <div class="input-group">
         <mat-form-field>
-          <input matInput type="password" name="password" [(ngModel)]="password" id="password" placeholder="Password">
+          <input matInput type="password" name="password" [(ngModel)]="password" id="password" placeholder="Password"
+                 required>
         </mat-form-field>
       </div>
       <div class="input-group">
@@ -17,12 +22,6 @@
         <button mat-raised-button color="basic" [routerLink]="['/register']">SIGN UP</button>
       </div>
       <br>
-      <!-- <span id="err">
-        <small>{{errorMsg}}</small>
-      </span> -->
-      <mat-slide-toggle color="primary">
-        <small>Remember me!</small>
-      </mat-slide-toggle>
     </form>
   </mat-card>
 </div>

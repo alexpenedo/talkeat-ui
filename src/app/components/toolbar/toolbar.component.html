@@ -35,6 +35,6 @@
         <span>Logout</span>
       </button>
     </mat-menu>
-    <app-chat-button-list [user]="user"></app-chat-button-list>
+    <app-chat-button-list [user]="user" *ngIf="user"></app-chat-button-list>
   </span>
 </mat-toolbar>

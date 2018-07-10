@@ -1,12 +1,11 @@
-import { environment } from './../../../environments/environment';
-import { Injectable } from '@angular/core';
-import { User } from '../../models/user/user';
-import { UserToken } from '../../models/user/userToken';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { headers } from '../../util/util';
+import {environment} from './../../../environments/environment';
+import {Injectable} from '@angular/core';
+import {User} from '../../models/user/user';
+import {UserToken} from '../../models/user/userToken';
+import {Router} from '@angular/router';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import {HttpClient} from '@angular/common/http';
 
 
 @Injectable()
@@ -27,6 +26,7 @@ export class UserService {
     }
     return null;
   }
+
   public showUser(userId: string) {
     this._showUser.next(userId);
   }
@@ -42,6 +42,7 @@ export class UserService {
     };
     return this.http.post<UserToken>(this.url + '/login', user);
   }
+
   public storageUserAndToken(userToken: UserToken): User {
     localStorage.setItem('user', JSON.stringify(userToken.user));
     localStorage.setItem('token', userToken.token);
@@ -60,7 +61,7 @@ export class UserService {
   }
 
   public update(user: User): Observable<User> {
-    return this.http.put<User>(this.url + '/' + this.getUser()._id, user, { headers });
+    return this.http.put<User>(this.url + '/' + this.getUser()._id, user);
   }
 
   public logout() {
@@ -71,13 +72,10 @@ export class UserService {
   }
 
   public uploadPhoto(file: File): Observable<any> {
-    const formdata: FormData = new FormData();
-    formdata.append('file', file, file.name);
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
     const user: User = this.getUser();
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    });
-    return this.http.post<any>(this.url + '/' + user._id + '/picture', formdata, { headers });
+    return this.http.post<any>(this.url + '/' + user._id + '/picture', formData);
   }
 
   public getPhotoUrl(picture: string) {
@@ -85,10 +83,13 @@ export class UserService {
       return '#';
     }
     return this.url + '/image?id=' + picture;
-  };
-
-  public findById(id: string): Observable<User> {
-    return this.http.get<User>(this.url + '/' + id, { headers });
   }
 
+  public findById(id: string): Observable<User> {
+    return this.http.get<User>(this.url + '/' + id);
+  }
+
+  public getToken(): string {
+    return localStorage.getItem('token');
+  }
 }

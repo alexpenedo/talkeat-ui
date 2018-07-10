@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "~bootstrap/dist/css/bootstrap.min.css";
-  
+
 body {
     font-family: Roboto, 'Helvetica Neue', sans-serif;
     background-image: url('/assets/img/background4.jpg');
@@ -17,6 +17,11 @@ mat-form-field {
 button:focus {outline:0;}
 
 
+snack-bar-container.error {
+  text-align: center !important;
+  background: #c33d3d !important;
+  font-size: 14px !important;
+}
 
  .gm-style > div > div > div > div > div > div > div{
     margin-top: 60px;

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Rate } from '../../../models/rate/rate';
+import {Component, OnInit, Input} from '@angular/core';
+import {Rate} from '../../../models/rate/rate';
 
 @Component({
   selector: 'app-rate',
@@ -9,7 +9,8 @@ import { Rate } from '../../../models/rate/rate';
 export class RateComponent implements OnInit {
   @Input() rate: Rate;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

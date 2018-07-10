@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from '../../../services/user/user.service';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { RateService } from '../../../services/rate/rate.service';
-import { UtilService } from '../../../services/util/util.service';
+import {Component, OnInit, Input} from '@angular/core';
+import {UserService} from '../../../services/user/user.service';
+import {trigger, state, style, animate, transition} from '@angular/animations';
+import {RateService} from '../../../services/rate/rate.service';
+import {UtilService} from '../../../services/util/util.service';
 
 @Component({
   selector: 'app-menu-info',
@@ -47,20 +47,20 @@ export class MenuInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.state == "publish" || this.state == "booking") {
-      this.classes = "menu-info";
+    if (this.state === 'publish' || this.state === 'booking') {
+      this.classes = 'menu-info';
+    } else {
+      this.classes = 'menu-info animation';
     }
-    else {
-      this.classes = "menu-info animation";
-    }
-    if (this.state == "show" || this.state == "booking") {
+    if (this.state === 'show' || this.state === 'booking') {
       this.rateService.getRateAverage(this.host).subscribe((average: any) => {
-        if (average != null)
+        if (average != null) {
           this.average = average.average;
+        }
       });
     }
     this.utilService.activeMenuEmitter.subscribe((menuId) => {
-      if (menuId == this.id) {
+      if (menuId === this.id) {
         this.visibility = 'show';
       }
     });
@@ -68,13 +68,15 @@ export class MenuInfoComponent implements OnInit {
       this.visibility = 'hide';
     });
   }
+
   mouseEnter() {
-    if (this.state == "show") {
+    if (this.state === 'show') {
       this.visibility = 'show';
     }
   }
+
   mouseLeave() {
-    if (this.state == "show") {
+    if (this.state === 'show') {
       this.visibility = 'hide';
     }
   }

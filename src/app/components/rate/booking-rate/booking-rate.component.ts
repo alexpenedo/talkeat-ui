@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { BookingService } from '../../../services/booking/booking.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Booking } from '../../../models/booking/booking';
-import { Rate } from '../../../models/rate/rate';
-import { RateService } from '../../../services/rate/rate.service';
+import {Component, OnInit} from '@angular/core';
+import {BookingService} from '../../../services/booking/booking.service';
+import {ActivatedRoute} from '@angular/router';
+import {Booking} from '../../../models/booking/booking';
+import {Rate} from '../../../models/rate/rate';
+import {RateService} from '../../../services/rate/rate.service';
 
 @Component({
   selector: 'app-booking-rate',
@@ -16,10 +16,10 @@ export class BookingRateComponent implements OnInit {
   rates: Rate[];
 
   constructor(private bookingService: BookingService, private rateService: RateService,
-    private route: ActivatedRoute, private router: Router) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let self = this;
+    const self = this;
     this.route.params.subscribe(params => this.bookingService.findById(params.id)
       .subscribe((booking) => {
         this.booking = booking;

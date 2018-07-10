@@ -1,7 +1,7 @@
-import { UserService } from './../../../services/user/user.service';
-import { Component, OnInit } from '@angular/core';
-import { User } from '../../../models/user/user';
-import { Router } from '@angular/router';
+import {UserService} from './../../../services/user/user.service';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../../models/user/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -19,12 +19,14 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.image = this.userService.getPhotoUrl(this.userService.getUser().picture);
   }
+
   uploadPhoto($event) {
     this.userService.uploadPhoto($event.target.files[0]).subscribe((user: User) => {
       this.userService.storageUser(user);
       this.image = this.userService.getPhotoUrl(user.picture);
     });
   }
+
   updateUser() {
     this.userService.update(this.user).subscribe((user: User) => {
       this.userService.storageUser(user);

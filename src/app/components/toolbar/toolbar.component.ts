@@ -1,13 +1,7 @@
-import { UserService } from './../../services/user/user.service';
-import { User } from './../../models/user/user';
-import { Component, OnInit, Input } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
-import { Observable } from 'rxjs/Observable';
-import { BookingService } from '../../services/booking/booking.service';
-import { Booking } from '../../models/booking/booking';
-import { ChatService } from '../../services/chat/chat.service';
-import { Chat } from '../../models/chat/chat';
+import {UserService} from './../../services/user/user.service';
+import {User} from './../../models/user/user';
+import {Component, OnInit} from '@angular/core';
+import {ChatService} from '../../services/chat/chat.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -22,12 +16,13 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.showUserEmitter.subscribe((user) => {
+    this.userService.showUserEmitter.subscribe(() => {
       this.user = this.userService.getUser();
     });
   }
+
   logout() {
-    this.chatService.disconnectSocket();
+    this.chatService.closeOpenedChats();
     this.userService.logout();
   }
 }

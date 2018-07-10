@@ -4,11 +4,11 @@
       <form [formGroup]="menuDescription">
         <ng-template matStepLabel>Describe your menu</ng-template>
         <mat-form-field>
-          <input matInput placeholder="Name" required formControlName="name" required>
+          <input matInput placeholder="Name" required formControlName="name" required maxlength="20">
         </mat-form-field>
         <mat-form-field>
           <textarea matInput placeholder="Description" formControlName="description" required matTextareaAutosize matAutosizeMinRows="4"
-            matAutosizeMaxRows="5"></textarea>
+            matAutosizeMaxRows="5" maxlength="100"></textarea>
         </mat-form-field>
         <div>
           <button mat-raised-button color="accent" matStepperNext>Next

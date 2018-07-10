@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    let self = this;
+    const self = this;
     const accuracy = { enableHighAccuracy: true };
     self.geoLocationService.getLocation(accuracy).subscribe(function (position) {
       self.currentLocation = position;
@@ -37,7 +37,7 @@ export class MapComponent implements OnInit {
 
   markerClicked(marker: Marker, menu: Menu) {
     this.utilService.disableMenus();
-    let element: Element = document.getElementById(menu._id);
+    const element: Element = document.getElementById(menu._id);
     element.scrollIntoView({ block: "end", behavior: "smooth" });
     this.utilService.activeMenu(menu._id);
   }

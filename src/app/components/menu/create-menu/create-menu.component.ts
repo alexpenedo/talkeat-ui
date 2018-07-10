@@ -1,13 +1,13 @@
-import { MenuService } from './../../../services/menu/menu.service';
-import { dishValidator } from '../validators/dishValidator';
-import { Menu } from './../../../models/menu/menu';
-import { UserService } from './../../../services/user/user.service';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { User } from '../../../models/user/user';
-import { GeolocationService } from '../../../services/geolocation/geolocation.service';
-import { Router } from '@angular/router';
-import { Coordinates } from '../../../models/coordinates/coordinates';
+import {MenuService} from './../../../services/menu/menu.service';
+import {dishValidator} from '../validators/dishValidator';
+import {Menu} from './../../../models/menu/menu';
+import {UserService} from './../../../services/user/user.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../../models/user/user';
+import {GeolocationService} from '../../../services/geolocation/geolocation.service';
+import {Router} from '@angular/router';
+import {Coordinates} from '../../../models/coordinates/coordinates';
 
 @Component({
   selector: 'app-create-menu',
@@ -24,8 +24,8 @@ export class CreateMenuComponent implements OnInit {
   coordinates: Coordinates;
 
   constructor(private menuService: MenuService, private userService: UserService,
-    private geolocationService: GeolocationService, private formBuilder: FormBuilder,
-    private router: Router) {
+              private geolocationService: GeolocationService, private formBuilder: FormBuilder,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -35,11 +35,11 @@ export class CreateMenuComponent implements OnInit {
       description: ['', Validators.required]
     });
     this.addDishes = this.formBuilder.group({
-      starters: this.formBuilder.array([]),
-      mains: this.formBuilder.array([]),
-      desserts: this.formBuilder.array([]),
-    },
-      { validator: dishValidator }
+        starters: this.formBuilder.array([]),
+        mains: this.formBuilder.array([]),
+        desserts: this.formBuilder.array([]),
+      },
+      {validator: dishValidator}
     );
     this.completeData = this.formBuilder.group({
       guests: ['', Validators.required],
@@ -58,14 +58,14 @@ export class CreateMenuComponent implements OnInit {
       const hours = time.split(':')[0];
       const minutes = time.split(':')[1];
       const date = <Date>this.completeData.get('date').value;
-      date.setHours(hours, minutes);
+      date.setHours(+hours, +minutes);
     }
   }
 
   getCoordinates() {
-    let completeAddress = this.completeData.get("address").value + ","
-      + this.completeData.get("postalCode").value + ","
-      + this.completeData.get("country").value;
+    const completeAddress = this.completeData.get('address').value + ','
+      + this.completeData.get('postalCode').value + ','
+      + this.completeData.get('country').value;
     this.geolocationService.getCoordinatesByAddress(completeAddress).subscribe(coordinates => {
       this.coordinates = coordinates;
     });

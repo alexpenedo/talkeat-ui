@@ -39,7 +39,7 @@ export class BookingInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.booking.rate && this.state == "show")
+    if (!this.booking.rate && this.state === "show")
       this.classes = "animation";
   }
 

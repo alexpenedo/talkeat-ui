@@ -19,11 +19,10 @@ const routes: Routes = [
   { path: 'my-bookings', component: MyBookingsComponent, canActivate: [AuthGuardService] },
   { path: 'booking/:id', component: CreateBookingComponent, canActivate: [AuthGuardService] },
   { path: 'rating/:id', component: BookingRateComponent, canActivate: [AuthGuardService] },
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
+  // {path: '',
+  //   redirectTo: '/home',
+  //   pathMatch: 'full'
+  // },
   { path: '**', component: HomeComponent }
 ];
 @NgModule({

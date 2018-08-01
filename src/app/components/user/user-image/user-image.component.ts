@@ -1,4 +1,4 @@
-import {UserService} from './../../../services/user/user.service';
+import {UserService} from '../../../services/user/user.service';
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../../models/user/user';
 
@@ -10,6 +10,7 @@ import {User} from '../../../models/user/user';
 export class UserImageComponent implements OnInit {
   image: string;
   @Input() userId: string;
+  @Input() username: string;
   @Input() diameter: string;
   @Input() float: string;
 

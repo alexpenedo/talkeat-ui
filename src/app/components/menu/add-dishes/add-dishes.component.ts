@@ -1,7 +1,5 @@
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from './../../../services/user/user.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../../models/user/user';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-add-dishes',
@@ -14,20 +12,30 @@ export class AddDishesComponent implements OnInit {
   @Input() description: string;
   @Input() group: FormGroup;
   @Input() arrayName: string;
+
   formArray: FormArray;
 
   constructor(private formBuilder: FormBuilder) {
   }
+
   ngOnInit() {
     this.formArray = <FormArray>this.group.get(this.arrayName);
   }
 
-  addItem() {
-    this.formArray.push(this.formBuilder.group({ name: ['', Validators.required] }));
+  addItem(name?: string) {
+    if (this.formArray.length < 2) {
+      this.formArray.push(this.formBuilder.group(
+        {
+          name: [name ? name : '',
+            Validators.compose([Validators.required, Validators.maxLength(20)])]
+        }));
+    }
   }
+
   removeItem(index: number) {
     this.formArray.removeAt(index);
   }
+
   getControls() {
     return (<FormArray>this.group.controls[this.arrayName]).controls;
   }

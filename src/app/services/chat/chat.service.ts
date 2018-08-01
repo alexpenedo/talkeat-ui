@@ -35,9 +35,9 @@ export class ChatService {
     this._closeOpenedChats.next(null);
   }
 
-  public chatsOpened(chats: Chat[]) {
-    this.socket.emit('chatsOpened', chats);
-  }
+  // public chatsOpened(chats: Chat[]) {
+  //   this.socket.emit('chatsOpened', chats);
+  // }
 
   public sendMessage(message: Message) {
     this.socket.emit('message', message);

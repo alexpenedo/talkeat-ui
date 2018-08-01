@@ -47,7 +47,7 @@ export class ChatButtonListComponent implements OnInit {
   openChat(activeChat: Chat) {
     if (!this.openedChats.find(element => element === activeChat)) {
       this.openedChats.push(activeChat);
-      this.chatService.chatsOpened(this.openedChats);
+      // this.chatService.chatsOpened(this.openedChats);
       activeChat.notRead = 0;
     }
 

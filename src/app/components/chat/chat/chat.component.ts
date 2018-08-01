@@ -106,7 +106,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     if (this.index === 0) {
       return 0;
     } else {
-      return (this.index * 300 + (this.index * 10)) + 'px';
+      return (this.index * 350 + (this.index * 10)) + 'px';
     }
   }
 

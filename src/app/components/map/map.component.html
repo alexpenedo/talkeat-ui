@@ -7,7 +7,7 @@
   </agm-marker>
 </agm-map> -->
 <agm-map [zoom]="zoom" [latitude]="latitude" [longitude]="longitude" [clickableIcons]="false">
-  <agm-marker *ngIf="currentLocation" [latitude]="currentLocation.coords.latitude" [longitude]="currentLocation.coords.longitude"
+  <agm-marker *ngIf="currentLocation" [latitude]="currentLocation.latitude" [longitude]="currentLocation.longitude"
     iconUrl="/assets/icons/pin-me.svg">
   </agm-marker>
   <agm-marker *ngFor="let menu of menus" [latitude]="menu.location[1]" [longitude]="menu.location[0]" 

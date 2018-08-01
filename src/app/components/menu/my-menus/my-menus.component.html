@@ -2,15 +2,15 @@
   <mat-tab-group mat-stretch-tabs position="0" >
     <mat-tab label="Pending">
       <perfect-scrollbar style="max-height: 580px;">
-        <div *ngFor="let booking of bookingsPending" class="booking-row">
-          <app-booking-info [booking]="booking" state="info"></app-booking-info>
+        <div *ngFor="let menu of menusPending" class="menu-row">
+          <app-host-menu-info [menu]="menu" state="info"></app-host-menu-info>
         </div>
       </perfect-scrollbar>
     </mat-tab>
     <mat-tab label="Finished">
       <perfect-scrollbar style="max-height: 580px;">
-        <div *ngFor="let booking of bookingsFinished" class="booking-row">
-          <app-booking-info [booking]="booking" state="show"></app-booking-info>
+        <div *ngFor="let menu of menusFinished" class="menu-row">
+          <app-host-menu-info [menu]="menu" state="show"></app-host-menu-info>
         </div>
       </perfect-scrollbar>
     </mat-tab>

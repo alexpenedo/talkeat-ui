@@ -27,7 +27,8 @@ import {
   MatSlideToggleModule,
   MatSnackBarModule,
   MatStepperModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTabsModule, MatExpansionModule
 } from '@angular/material';
 import {AppRoutingModule} from './app-routing.module';
 import {LoginComponent} from './components/user/login/login.component';
@@ -39,7 +40,7 @@ import {MenuInfoComponent} from './components/menu/menu-info/menu-info.component
 import {AgmCoreModule} from '@agm/core';
 import {MapComponent} from './components/map/map.component';
 import {CreateBookingComponent} from './components/booking/create-booking/create-booking.component';
-import {CreateMenuComponent} from './components/menu/create-menu/create-menu.component';
+import {CreateEditMenuComponent} from './components/menu/create-menu/create-edit-menu.component';
 import {Ng4GeoautocompleteModule} from 'ng4-geoautocomplete';
 import {GeolocationService} from './services/geolocation/geolocation.service';
 import {ChatComponent} from './components/chat/chat/chat.component';
@@ -53,6 +54,8 @@ import {RateComponent} from './components/rate/rate/rate.component';
 import {BookingRateComponent} from './components/rate/booking-rate/booking-rate.component';
 import {PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {HttpClientInterceptor} from './interceptors/httpInterceptor';
+import {MyMenusComponent} from './components/menu/my-menus/my-menus.component';
+import { HostMenuInfoComponent } from './components/menu/host-menu-info/host-menu-info.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -65,7 +68,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RegisterComponent,
     ToolbarComponent,
     HomeComponent,
-    CreateMenuComponent,
+    CreateEditMenuComponent,
     AddDishesComponent,
     AutofocusDirective,
     ProfileComponent,
@@ -79,6 +82,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BookingInfoComponent,
     RateComponent,
     BookingRateComponent,
+    MyMenusComponent,
+    HostMenuInfoComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -112,6 +117,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatStepperModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatExpansionModule,
+    MatTabsModule,
     Ng4GeoautocompleteModule.forRoot(),
     RatingModule,
     PerfectScrollbarModule

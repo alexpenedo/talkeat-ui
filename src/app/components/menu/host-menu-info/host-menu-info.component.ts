@@ -1,16 +1,16 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Booking} from '../../../models/booking/booking';
-import {Rate} from '../../../models/rate/rate';
-import {RateService} from '../../../services/rate/rate.service';
 import {Router} from '@angular/router';
+import {Menu} from '../../../models/menu/menu';
+import {MenuService} from '../../../services/menu/menu.service';
+import {Booking} from '../../../models/booking/booking';
 
 
 @Component({
-  selector: 'app-booking-info',
-  templateUrl: './booking-info.component.html',
-  styleUrls: ['./booking-info.component.css'],
-  providers: [RateService],
+  selector: 'app-host-menu-info',
+  templateUrl: './host-menu-info.component.html',
+  styleUrls: ['./host-menu-info.component.css'],
+  providers: [MenuService],
   animations: [
     trigger('visibility', [
       state('show', style({
@@ -24,22 +24,27 @@ import {Router} from '@angular/router';
     ])
   ]
 })
-export class BookingInfoComponent implements OnInit {
+export class HostMenuInfoComponent implements OnInit {
 
-  @Input() booking: Booking;
+  @Input() menu: Menu;
   @Input() state: string;
   visibility: string;
   comment: string;
   rate: number;
   classes: string;
+  bookings: Booking[];
 
 
-  constructor(private rateService: RateService, private router: Router) {
+  constructor(private menuService: MenuService, private router: Router) {
     this.visibility = 'hide';
   }
 
   ngOnInit() {
-    if (!this.booking.rate && this.state === 'show') {
+    this.menuService.findBookingsByMenuId(this.menu._id).subscribe(bookings => {
+      this.bookings = bookings;
+    });
+
+    if (this.state === 'show') {
       this.classes = 'animation';
     }
   }
@@ -50,13 +55,6 @@ export class BookingInfoComponent implements OnInit {
 
   mouseLeave() {
     this.visibility = 'hide';
-  }
-
-  saveRate() {
-    this.rateService.save(new Rate(this.booking.guest, this.booking.host,
-      this.comment, this.rate, this.booking)).subscribe((rate: Rate) => {
-      this.router.navigate(['/my-bookings']);
-    });
   }
 
 }

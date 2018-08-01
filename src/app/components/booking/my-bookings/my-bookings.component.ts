@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { BookingService } from '../../../services/booking/booking.service';
-import { Booking } from '../../../models/booking/booking';
+import {Component, OnInit} from '@angular/core';
+import {BookingService} from '../../../services/booking/booking.service';
+import {Booking} from '../../../models/booking/booking';
 
 @Component({
   selector: 'app-my-bookings',
@@ -10,14 +10,20 @@ import { Booking } from '../../../models/booking/booking';
 })
 export class MyBookingsComponent implements OnInit {
 
-  bookings: Booking[];
+  bookingsFinished: Booking[];
+  bookingsPending: Booking[];
+  date: Date;
 
   constructor(private bookingService: BookingService) {
   }
 
   ngOnInit() {
-    this.bookingService.findBookingsByGuest().subscribe((bookings: Booking[]) => {
-      this.bookings = bookings;
+    this.date = new Date();
+    this.bookingService.findBookingsByGuestFinished().subscribe((bookings: Booking[]) => {
+      this.bookingsFinished = bookings;
+    });
+    this.bookingService.findBookingsByGuestPending().subscribe((bookings: Booking[]) => {
+      this.bookingsPending = bookings;
     });
   }
 }

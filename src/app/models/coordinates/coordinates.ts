@@ -5,4 +5,4 @@ export class Coordinates {
         this.latitude = latitude;
         this.longitude = longitude;
     }
-}
+};

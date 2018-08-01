@@ -1,0 +1,75 @@
+<mat-card [id]="menu._id" [ngClass]="classes" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
+  <img mat-card-image src="/assets/img/menu.jpeg">
+  <div class="datetime">
+    <mat-icon class="time-icon">access_time</mat-icon>
+    <span>{{menu.date | date: 'dd/MM HH:mm'}}</span>
+  </div>
+  <div class="price">{{+menu.price | number : '1.2-2'}}
+    <mat-icon style="font-size: 20px;">attach_money</mat-icon>
+  </div>
+  <div class="persons">
+    <span style="font-size: 30px;">
+      <span class="available" [style.color]="menu.available > 1 ? '#80d280' : '#ff6060'">
+        {{menu.available}}
+      </span>
+      /{{menu.guests}}</span>
+    <mat-icon>perm_identity</mat-icon>
+  </div>
+  <mat-card-title class="title">
+    {{menu.name}}
+    <span>
+        <app-user-image [userId]="menu.host" diameter="70px" float="right"></app-user-image>
+    </span>
+  </mat-card-title>
+  <mat-card-header>
+    <mat-card-subtitle class="description">{{menu.description}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card-header>
+      <mat-card-subtitle>
+                <span>
+                    <mat-icon class="text-danger">person_pin_circle</mat-icon>
+                </span>
+        <span>
+                    {{menu.address}}</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <div class="row mb-5">
+      <div class="col-4">Starters
+        <mat-chip-list>
+          <mat-chip *ngFor="let dish of menu.starters"> {{dish.name}}</mat-chip>
+        </mat-chip-list>
+      </div>
+      <div class="col-4">Mains
+        <mat-chip-list>
+          <mat-chip *ngFor="let dish of menu.mains"> {{dish.name}}</mat-chip>
+        </mat-chip-list>
+      </div>
+      <div class="col-4">Desserts
+        <mat-chip-list>
+          <mat-chip *ngFor="let dish of menu.desserts"> {{dish.name}}</mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+    <div *ngIf="(bookings && bookings.length!=0)">
+      <mat-divider></mat-divider>
+      <div class="col-10 offset-1 guests">
+        <h4 class="guests-text">Guests</h4>
+        <span *ngFor="let booking of bookings" class="guest">
+         <app-user-image [userId]="booking.guest._id" diameter="70px" [username]="booking.guest.name"></app-user-image>
+        </span>
+      </div>
+    </div>
+  </mat-card-content>
+  <!--<button *ngIf="(state=='show')" class="valorate-button" mat-raised-button color="accent" [@visibility]="visibility">-->
+  <!--VALORATE YOUR GUESTS-->
+  <!--</button>-->
+  <div *ngIf="(state=='info')" [@visibility]="visibility">
+    <button class="edit-remove-button" mat-raised-button color="basic" [routerLink]="['/edit-menu',menu._id]">
+      EDIT
+    </button>
+    <button class="edit-remove-button" mat-raised-button color="warn">
+      REMOVE
+    </button>
+  </div>
+</mat-card>

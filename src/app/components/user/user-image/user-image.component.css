@@ -17,3 +17,9 @@
     bottom: -100%;
     height: 80px;
 }
+.user-name{
+  text-align: center;
+  margin-top: 67px;
+  position: fixed;
+  width: inherit;
+}

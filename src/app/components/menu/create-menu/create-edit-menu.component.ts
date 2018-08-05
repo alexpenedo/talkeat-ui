@@ -1,7 +1,7 @@
-import {MenuService} from './../../../services/menu/menu.service';
+import {MenuService} from '../../../services/menu/menu.service';
 import {dishValidator} from '../validators/dishValidator';
-import {Menu} from './../../../models/menu/menu';
-import {UserService} from './../../../services/user/user.service';
+import {Menu} from '../../../models/menu/menu';
+import {UserService} from '../../../services/user/user.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../../models/user/user';
@@ -9,16 +9,19 @@ import {GeolocationService} from '../../../services/geolocation/geolocation.serv
 import {ActivatedRoute, Router} from '@angular/router';
 import {Coordinates} from '../../../models/coordinates/coordinates';
 import {AddDishesComponent} from '../add-dishes/add-dishes.component';
+import {DatePipe} from '@angular/common';
+import {ChatService} from '../../../services/chat/chat.service';
 
 @Component({
   selector: 'app-create-menu',
   templateUrl: './create-edit-menu.component.html',
   styleUrls: ['./create-edit-menu.component.css'],
-  providers: [MenuService]
+  providers: [MenuService, DatePipe]
 })
 export class CreateEditMenuComponent implements OnInit {
   user: User;
   menu: Menu;
+  date: Date;
   menuDescription: FormGroup;
   addDishes: FormGroup;
   completeData: FormGroup;
@@ -30,9 +33,9 @@ export class CreateEditMenuComponent implements OnInit {
   @ViewChild('desserts')
   desserts: AddDishesComponent;
 
-  constructor(private menuService: MenuService, private userService: UserService,
+  constructor(private menuService: MenuService, private userService: UserService, private chatService: ChatService,
               private geolocationService: GeolocationService, private formBuilder: FormBuilder,
-              private router: Router, private route: ActivatedRoute) {
+              private router: Router, private route: ActivatedRoute, private  datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -59,15 +62,26 @@ export class CreateEditMenuComponent implements OnInit {
             this.menu.desserts.forEach(dishComponent => {
               this.desserts.addItem(dishComponent.name);
             });
+            this.completeData.get('guests').setValue(menu.guests.toString());
+            this.completeData.get('price').setValue(menu.price.toFixed(2));
+            this.completeData.get('date').setValue(menu.date);
+            this.completeData.get('time').setValue(this.datePipe.transform(menu.date, 'HH:mm').toString());
+            this.completeData.get('country').setValue(menu.country);
+            this.completeData.get('address').setValue(menu.address);
+            this.completeData.get('postalCode').setValue(menu.postalCode);
+            this.completeData.get('country').disable();
+            this.completeData.get('address').disable();
+            this.completeData.get('postalCode').disable();
           });
       }
     });
   }
 
   private initializeForm() {
+    this.user = this.userService.getUser();
     this.menuDescription = this.formBuilder.group({
-      name: [this.menu ? this.menu.name : '', Validators.required],
-      description: [this.menu ? this.menu.description : '', Validators.required]
+      name: ['', Validators.required],
+      description: ['', Validators.required]
     });
     this.addDishes = this.formBuilder.group({
         starters: this.formBuilder.array([]),
@@ -77,9 +91,9 @@ export class CreateEditMenuComponent implements OnInit {
       {validator: dishValidator}
     );
     this.completeData = this.formBuilder.group({
-      guests: [this.menu ? this.menu.guests : '', Validators.required],
-      price: [this.menu ? this.menu.price : '', Validators.required],
-      date: [this.menu ? this.menu.date : new Date(), Validators.required],
+      guests: ['', Validators.required],
+      price: ['', Validators.required],
+      date: [new Date(), Validators.required],
       time: ['', Validators.required],
       address: [this.user != null ? this.user.address : '', Validators.required],
       country: [this.user != null ? this.user.country : '', Validators.required],
@@ -91,8 +105,8 @@ export class CreateEditMenuComponent implements OnInit {
     if (time) {
       const hours = time.split(':')[0];
       const minutes = time.split(':')[1];
-      const date = <Date>this.completeData.get('date').value;
-      date.setHours(+hours, +minutes);
+      this.date = new Date(this.completeData.get('date').value);
+      this.date.setHours(+hours, +minutes);
     }
   }
 
@@ -107,11 +121,21 @@ export class CreateEditMenuComponent implements OnInit {
 
   saveMenu() {
     this.menu = Object.assign({}, this.menuDescription.value, this.addDishes.value, this.completeData.value);
+    this.menu.date = this.date;
     this.menu.location = [];
     this.menu.location.push(this.coordinates.longitude);
     this.menu.location.push(this.coordinates.latitude);
-    this.menuService.save(this.menu).subscribe((menu) => {
-      this.router.navigate(['/home']);
+    this.menuService.save(this.menu).subscribe(() => {
+      this.router.navigate(['/home']).catch();
+    });
+  }
+
+  updateMenu() {
+    this.menu = Object.assign(this.menu, this.menuDescription.value, this.addDishes.value, this.completeData.value);
+    this.menu.date = this.date;
+    this.menuService.update(this.menu).subscribe((menu) => {
+      this.chatService.sendNotification(menu);
+      this.router.navigate(['/home']).catch();
     });
   }
 }

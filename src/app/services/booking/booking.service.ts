@@ -1,11 +1,12 @@
 import {Observable} from 'rxjs/Observable';
-import {environment} from './../../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {Booking} from '../../models/booking/booking';
 import {UserService} from '../user/user.service';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {User} from '../../models/user/user';
+import {Status} from '../util/status.enum';
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class BookingService {
   url: string;
 
   constructor(private http: HttpClient, private userService: UserService) {
-    this.url = environment.apiUrl + 'booking';
+    this.url = `${environment.apiUrl}bookings`;
   }
 
   public save(booking: Booking): Observable<Booking> {
@@ -22,22 +23,20 @@ export class BookingService {
 
   public findBookingsByGuestFinished(): Observable<Booking[]> {
     const guest: User = this.userService.getUser();
-    const today: string = new Date().toString();
-    const params: HttpParams = new HttpParams().set('guestId', guest._id).set('dateTo', today);
+    const params: HttpParams = new HttpParams().set('guestId', guest._id).set('status', Status.FINISHED.toString());
 
     return this.http.get<Booking[]>(this.url, {params});
   }
 
   public findBookingsByGuestPending(): Observable<Booking[]> {
     const guest: User = this.userService.getUser();
-    const today: string = new Date().toString();
-    const params: HttpParams = new HttpParams().set('guestId', guest._id).set('dateFrom', today);
+    const params: HttpParams = new HttpParams().set('guestId', guest._id).set('status', Status.PENDING.toString());
 
     return this.http.get<Booking[]>(this.url, {params});
   }
 
   public findById(id: string): Observable<Booking> {
-    return this.http.get<Booking>(this.url + '/' + id);
+    return this.http.get<Booking>(`${this.url}/${id}`);
   }
 
 }

@@ -1,6 +1,11 @@
-import { User } from './user';
+import {User} from './user';
 
 export interface UserToken {
-    user: User;
-    token: string;
+  user: User;
+  tokens: Tokens;
+}
+
+export interface Tokens {
+  accessToken: string;
+  refreshToken: string;
 }

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {environment} from './../../../environments/environment';
+import {environment} from '../../../environments/environment';
 import 'rxjs/add/operator/map';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Rate} from '../../models/rate/rate';
@@ -11,7 +11,7 @@ export class RateService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = environment.apiUrl + 'rate';
+    this.url = environment.apiUrl + 'rates';
   }
 
   public save(rate: Rate): Observable<Rate> {
@@ -23,8 +23,8 @@ export class RateService {
     return this.http.get<any>(this.url + '/average', {params});
   }
 
-  public getRatesByHostId(host: string): Observable<Rate[]> {
-    const params: HttpParams = new HttpParams().set('hostId', host);
+  public getRatesByHostId(hostId: string): Observable<Rate[]> {
+    const params: HttpParams = new HttpParams().set('hostId', hostId);
     return this.http.get<Rate[]>(this.url, {params});
   }
 

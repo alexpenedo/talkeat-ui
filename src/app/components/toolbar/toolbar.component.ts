@@ -7,7 +7,7 @@ import {ChatService} from '../../services/chat/chat.service';
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css'],
-  providers: [ChatService]
+  providers: []
 })
 export class ToolbarComponent implements OnInit {
   user: User;

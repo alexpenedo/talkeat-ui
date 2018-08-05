@@ -7,16 +7,17 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 
-
 @Injectable()
 export class UserService {
 
   url: string;
+  authUrl: string;
   private _showUser: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   showUserEmitter: Observable<string> = this._showUser.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {
     this.url = environment.apiUrl + 'users';
+    this.authUrl = environment.apiUrl + 'auth';
   }
 
   public getUser(): User {
@@ -40,12 +41,14 @@ export class UserService {
     const user = {
       email, password
     };
-    return this.http.post<UserToken>(this.url + '/login', user);
+    return this.http.post<UserToken>(this.authUrl + '/login', user);
   }
 
   public storageUserAndToken(userToken: UserToken): User {
     localStorage.setItem('user', JSON.stringify(userToken.user));
-    localStorage.setItem('token', userToken.token);
+    localStorage.setItem('token', userToken.tokens.accessToken);
+    localStorage.setItem('refreshToken', userToken.tokens.refreshToken);
+
     this.showUser(userToken.user._id);
     return userToken.user;
   }
@@ -74,15 +77,14 @@ export class UserService {
   public uploadPhoto(file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
-    const user: User = this.getUser();
-    return this.http.post<any>(this.url + '/' + user._id + '/picture', formData);
+    return this.http.post<any>(`${this.url}/picture`, formData);
   }
 
   public getPhotoUrl(picture: string) {
     if (picture === undefined || picture == null) {
       return '#';
     }
-    return this.url + '/image?id=' + picture;
+    return `${this.url}/picture?id=${picture}`;
   }
 
   public findById(id: string): Observable<User> {
@@ -91,5 +93,11 @@ export class UserService {
 
   public getToken(): string {
     return localStorage.getItem('token');
+  }
+
+  public refreshToken(): Observable<UserToken> {
+    const refreshToken = localStorage.getItem('refreshToken');
+    console.log(refreshToken);
+    return this.http.post<any>(`${this.authUrl}/refresh-token`, {refreshToken});
   }
 }

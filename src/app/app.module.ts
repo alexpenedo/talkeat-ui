@@ -89,7 +89,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule,
     BrowserModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDTq3GP-AKwTNHxe-Yq8Wg_l5BrorbnxC4',
+      apiKey: 'AIzaSyCZdKZkDWl-ek6SDeqwfJtbZT3QiNrfVn4',
       libraries: ['places'],
       language: 'es',
       region: 'ES'

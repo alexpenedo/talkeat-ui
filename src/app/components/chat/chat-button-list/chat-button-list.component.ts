@@ -3,6 +3,7 @@ import {ChatService} from '../../../services/chat/chat.service';
 import {User} from '../../../models/user/user';
 import {Chat} from '../../../models/chat/chat';
 import {Message} from '../../../models/message/message';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-chat-button-list',
@@ -33,11 +34,12 @@ export class ChatButtonListComponent implements OnInit {
         this.chats.push(chat);
       });
     this.chatService.onMessage()
-      .subscribe((message: Message) => {
+      .subscribe((updatedChat: Chat) => {
         const chat: Chat = this.chats.find((chatElem) => {
-          return chatElem._id === message.chat._id;
+          return chatElem._id === updatedChat._id;
         });
-        chat.messages = message.chat.messages;
+        console.log(chat);
+        chat.messages.push(_.last(updatedChat.messages));
         if (!this.openedChats.find(element => element === chat)) {
           chat.notRead++;
         }

@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {MenuService} from '../../services/menu/menu.service';
 import {GeolocationService} from '../../services/geolocation/geolocation.service';
 import {Coordinates} from './../../models/coordinates/coordinates';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-home',
@@ -17,16 +18,18 @@ export class HomeComponent implements OnInit {
   date: Date;
   type: string;
   menus: Menu[];
+  menusMap: Menu[];
   userSettings: any;
 
 
   constructor(private menuService: MenuService, private geolocationService: GeolocationService) {
 
   }
+
   ngOnInit() {
     this.persons = '2';
     this.date = new Date();
-    this.type = this.date.getHours() > 17 ? "dinner" : "lunch";
+    this.type = this.date.getHours() > 17 ? 'dinner' : 'lunch';
     const lastCoordinates: Coordinates = this.geolocationService.getLastCoordinatesSearch();
     if (lastCoordinates !== undefined) {
       this.longitude = lastCoordinates.longitude;
@@ -36,7 +39,7 @@ export class HomeComponent implements OnInit {
     this.userSettings = {
       inputPlaceholderText: 'Enter your postal code or town',
       showSearchButton: false,
-      geoCountryRestriction: ["es"],
+      geoCountryRestriction: ['es'],
       inputString: this.geolocationService.getLastLocationSearch()
     };
 
@@ -53,15 +56,15 @@ export class HomeComponent implements OnInit {
   find() {
     this.menuService.find(this.longitude, this.latitude, this.persons, this.date, this.type)
       .subscribe(menus => {
+        this.menus = menus;
         menus.map((menu) => {
           menu.label = {
             fontSize: '15px',
             text: menu.price.toFixed(2) + ' $',
             fontWeight: 'bold',
           };
-        })
-        this.menus = menus;
+        });
+        this.menusMap = _.uniqBy(menus, 'location.toString()');
       });
   }
-
 }

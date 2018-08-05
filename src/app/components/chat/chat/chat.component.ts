@@ -73,19 +73,19 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  public sendMessage(message: string): void {
-    if (!message) {
+  public sendMessage(content: string): void {
+    if (!content) {
       return;
     }
-    this.chatService.sendMessage({
+    const message = {
       chat: this.chat,
       from: this.user._id,
-      message,
+      message: content,
       date: new Date()
-    });
+    };
+    this.chatService.sendMessage(message);
     this.messageContent = null;
   }
-
 
   scrollToBottom(): void {
     if (this.chatContent !== undefined) {
@@ -95,7 +95,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
 
   getClass(message: Message) {
-    if (message.from === this.user._id) {
+    if (!message.from) {
+      return 'notification-message message';
+    } else if (message.from === this.user._id) {
       return 'user-message message';
     } else {
       return 'chat-message message';
@@ -135,7 +137,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     instance.address = this.chat.booking.menu.address;
     instance.available = this.chat.booking.menu.available;
     instance.description = this.chat.booking.menu.description;
-    instance.host = this.chat.booking.host.toString();
+    instance.host = this.chat.booking.host;
     instance.state = 'booking';
     instance.name = this.chat.booking.menu.name;
     instance.price = this.chat.booking.menu.price;

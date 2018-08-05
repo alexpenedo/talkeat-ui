@@ -3,6 +3,7 @@ import {UserService} from '../../../services/user/user.service';
 import {trigger, state, style, animate, transition} from '@angular/animations';
 import {RateService} from '../../../services/rate/rate.service';
 import {UtilService} from '../../../services/util/util.service';
+import {User} from '../../../models/user/user';
 
 @Component({
   selector: 'app-menu-info',
@@ -36,7 +37,7 @@ export class MenuInfoComponent implements OnInit {
   @Input() starters: Array<any>;
   @Input() mains: Array<any>;
   @Input() desserts: Array<any>;
-  @Input() host: string;
+  @Input() host: User;
   @Input() address: string;
   classes: string;
   visibility: string;
@@ -53,7 +54,7 @@ export class MenuInfoComponent implements OnInit {
       this.classes = 'menu-info animation';
     }
     if (this.state === 'show' || this.state === 'booking') {
-      this.rateService.getRateAverage(this.host).subscribe((average: any) => {
+      this.rateService.getRateAverage(this.host._id).subscribe((average: any) => {
         if (average != null) {
           this.average = average.average;
         }
@@ -62,10 +63,12 @@ export class MenuInfoComponent implements OnInit {
     this.utilService.activeMenuEmitter.subscribe((menuId) => {
       if (menuId === this.id) {
         this.visibility = 'show';
+        this.classes = 'menu-info animation marked';
       }
     });
     this.utilService.disableMenusEmitter.subscribe(() => {
       this.visibility = 'hide';
+      this.classes = 'menu-info animation';
     });
   }
 

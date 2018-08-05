@@ -4,7 +4,7 @@
       <form [formGroup]="menuDescription">
         <ng-template matStepLabel>Describe your menu</ng-template>
         <mat-form-field>
-          <input matInput placeholder="Name" required formControlName="name" required maxlength="20">
+          <input matInput placeholder="Name" required formControlName="name" required maxlength="18">
         </mat-form-field>
         <mat-form-field>
           <textarea matInput placeholder="Description" formControlName="description" required matTextareaAutosize
@@ -130,11 +130,19 @@
                          [desserts]="addDishes.get('desserts').value"
                          [address]="completeData.get('address').value + ', ' +completeData.get('postalCode').value"></app-menu-info>
         </div>
-        <div class="col-7 publish-container">
+        <div class="col-7 publish-container" *ngIf="!menu">
           <h3>Your menu is finished. Please check your menu information.</h3>
           <div class="col-8 offset-2">
             <button mat-raised-button color="primary" class="publish" (click)="saveMenu()">
               PUBLISH YOUR MENU
+            </button>
+          </div>
+        </div>
+        <div class="col-7 publish-container" *ngIf="(menu && menu._id)">
+          <h3>Your menu is going to be updated. Please check your menu information. We will notify your change to the guests</h3>
+          <div class="col-8 offset-2">
+            <button mat-raised-button color="warn" class="publish" (click)="updateMenu()">
+              EDIT YOUR MENU
             </button>
           </div>
         </div>

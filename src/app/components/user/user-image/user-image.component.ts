@@ -30,7 +30,6 @@ export class UserImageComponent implements OnInit {
   setImageUrl(userId: string) {
     if (userId !== undefined && userId != null) {
       this.userService.findById(userId).subscribe((user: User) => {
-        console.log(user);
         this.image = this.userService.getPhotoUrl(user.picture);
       });
     }

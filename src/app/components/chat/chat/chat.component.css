@@ -62,6 +62,11 @@ mat-card-actions {
   background: #6b50b7;
   color: white;
 }
+.notification-message {
+  background: #91b77a;
+  color: white;
+  margin: 20px auto;
+}
 
 .chat-message {
   float: right;

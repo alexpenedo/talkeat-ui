@@ -1,4 +1,4 @@
-import {User} from './../../../models/user/user';
+import {User} from '../../../models/user/user';
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../../services/user/user.service';
 import {Router} from '@angular/router';
@@ -21,9 +21,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.userService.register(this.user).subscribe((userToken: UserToken) => {
-      this.userService.storageUserAndToken(userToken);
-      this.router.navigate(['/home']);
+    this.userService.register(this.user).subscribe((user: User) => {
+      this.userService.login(user.email, this.user.password).subscribe((userToken: UserToken) => {
+        this.userService.storageUserAndToken(userToken);
+        this.router.navigate(['/home']);
+      });
     });
   }
 

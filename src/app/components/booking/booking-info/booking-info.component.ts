@@ -55,7 +55,7 @@ export class BookingInfoComponent implements OnInit {
   saveRate() {
     this.rateService.save(new Rate(this.booking.guest, this.booking.host,
       this.comment, this.rate, this.booking)).subscribe((rate: Rate) => {
-      this.router.navigate(['/my-bookings']);
+      this.router.navigate(['/my-bookings']).catch();
     });
   }
 

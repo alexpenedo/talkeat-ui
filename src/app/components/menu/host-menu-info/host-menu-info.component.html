@@ -56,6 +56,8 @@
       <div class="col-10 offset-1 guests">
         <h4 class="guests-text">Guests</h4>
         <span *ngFor="let booking of bookings" class="guest">
+          <span *ngIf="booking.confirmed"><mat-icon class="booking-status confirmed">check_circle</mat-icon></span>
+          <span *ngIf="booking.canceled"><mat-icon class="booking-status canceled">cancel</mat-icon></span>
          <app-user-image [userId]="booking.guest._id" diameter="70px" [username]="booking.guest.name"></app-user-image>
         </span>
       </div>

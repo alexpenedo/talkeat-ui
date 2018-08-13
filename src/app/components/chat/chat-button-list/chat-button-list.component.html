@@ -33,5 +33,5 @@
   <mat-divider></mat-divider>
 </mat-menu>
 <div *ngFor="let activeChat of openedChats; let i = index">
-  <app-chat [chat]="activeChat" [user]="user" [index]="i" (onDelete)="onDelete($event)"></app-chat>
+  <app-chat [chat]="activeChat" [user]="user" [index]="i" (deleteEmitter)="onDelete($event)"></app-chat>
 </div>

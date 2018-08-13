@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
 import {MenuService} from '../../../services/menu/menu.service';
 import {BookingService} from '../../../services/booking/booking.service';
 import {Menu} from '../../../models/menu/menu';
@@ -8,6 +8,8 @@ import {UserService} from '../../../services/user/user.service';
 import {ChatService} from '../../../services/chat/chat.service';
 import {RateService} from '../../../services/rate/rate.service';
 import {Rate} from '../../../models/rate/rate';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {query} from '@angular/animations';
 
 @Component({
   selector: 'app-create-booking',
@@ -16,9 +18,11 @@ import {Rate} from '../../../models/rate/rate';
   providers: [MenuService, BookingService, RateService]
 })
 export class CreateBookingComponent implements OnInit {
-
   menu: Menu;
   rates: Rate[];
+  available: number[] = [1, 2, 3];
+  persons: FormGroup;
+  comments: FormGroup;
 
   constructor(private menuService: MenuService,
               private userService: UserService,
@@ -26,6 +30,7 @@ export class CreateBookingComponent implements OnInit {
               private rateService: RateService,
               private chatService: ChatService,
               private route: ActivatedRoute,
+              private formBuilder: FormBuilder,
               private router: Router) {
 
   }
@@ -33,24 +38,33 @@ export class CreateBookingComponent implements OnInit {
   ngOnInit() {
     this.chatService.initSocket();
     const self = this;
-    this.route.params.subscribe(params => this.menuService.findById(params.id)
-      .subscribe((menu) => {
-        this.menu = menu;
-        self.rateService.getRatesByHostId(this.menu.host._id).subscribe((rates: Rate[]) => {
-          self.rates = rates;
+    this.persons = this.formBuilder.group({
+      persons: [1, Validators.required],
+    });
+    this.comments = this.formBuilder.group({
+      comments: [''],
+    });
+    this.route.params.subscribe(params => {
+      this.menuService.findById(params.id)
+        .subscribe((menu) => {
+          this.available = Array(menu.available).fill(1).map((x, i) => i + 1);
+          this.menu = menu;
+          this.route.queryParams.subscribe(queryParams => {
+            this.persons.get('persons').setValue( +queryParams.persons);
+          });
+          self.rateService.getRatesByHostId(this.menu.host._id).subscribe((rates: Rate[]) => {
+            self.rates = rates;
+          });
         });
-      }));
+    });
   }
 
   bookMenu() {
-    const booking = new Booking();
-    booking.guest = this.userService.getUser();
-    booking.menu = this.menu;
-    booking.host = this.menu.host;
-    booking.menuDate = this.menu.date;
-    this.bookingService.save(booking).subscribe(booking => {
+    const bookingToSave = new Booking(this.userService.getUser(), this.menu, this.menu.date, this.menu.host,
+      +this.persons.get('persons').value, this.comments.get('comments').value);
+    this.bookingService.save(bookingToSave).subscribe((booking: Booking) => {
       this.chatService.createFirstMessage(booking);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home']).catch();
     });
   }
 

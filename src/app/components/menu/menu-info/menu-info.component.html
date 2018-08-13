@@ -1,60 +1,59 @@
-<mat-card [id]="id" [ngClass]="classes" (mouseenter)="mouseEnter() " (mouseleave)="mouseLeave()"
-          [routerLink]="(state=='show') ? ['/booking',id] : []">
-  <img mat-card-image src="/assets/img/dish.jpeg">
-  <div class="datetime">
-    <mat-icon class="time-icon">access_time</mat-icon>
-    <span *ngIf="state=='publish' || state=='booking'">{{date | date: 'dd/MM'}}</span>
-    <span *ngIf="state!='publish'">{{date | date: 'HH:mm'}}</span>
-    <span *ngIf="time">{{time}}</span>
-  </div>
-  <div class="rate" *ngIf="average">
-    <rating fullIcon="◉" emptyIcon="○" [(ngModel)]="average" [readonly]="true"></rating>
-  </div>
-  <div class="price">{{+price | number : '1.2-2'}}
-    <mat-icon style="font-size: 20px;">attach_money</mat-icon>
-  </div>
-  <div class="persons">
+<mat-card [id]="id" [ngClass]="classes" (mouseenter)="mouseEnter() " (mouseleave)="mouseLeave()" (click)="bookMenu()">
+<img mat-card-image src="/assets/img/dish.jpeg">
+<div class="datetime">
+  <mat-icon class="time-icon">access_time</mat-icon>
+  <span *ngIf="state=='publish' || state=='booking'">{{date | date: 'dd/MM'}}</span>
+  <span *ngIf="state!='publish'">{{date | date: 'HH:mm'}}</span>
+  <span *ngIf="time">{{time}}</span>
+</div>
+<div class="rate" *ngIf="average">
+  <rating fullIcon="◉" emptyIcon="○" [(ngModel)]="average" [readonly]="true"></rating>
+</div>
+<div class="price">{{+price | number : '1.2-2'}}
+  <mat-icon style="font-size: 20px;">attach_money</mat-icon>
+</div>
+<div class="persons">
     <span style="font-size: 30px;">
       <span class="available" [style.color]="available > 1 ? '#80d280' : '#ff6060'">
         {{available}}
       </span>
       /{{guests}}</span>
-    <mat-icon>perm_identity</mat-icon>
-  </div>
-  <mat-card-title class="title">
-    {{name}}
-    <span>
+  <mat-icon>perm_identity</mat-icon>
+</div>
+<mat-card-title class="title">
+  {{name}}
+  <span>
       <app-user-image [userId]="host._id" [username]="host.name" diameter="70px" float="right"></app-user-image>
     </span>
-  </mat-card-title>
+</mat-card-title>
+<mat-card-header>
+  <mat-card-subtitle class="description">{{description}}</mat-card-subtitle>
+</mat-card-header>
+<mat-card-content>
   <mat-card-header>
-    <mat-card-subtitle class="description">{{description}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-card-header>
-      <mat-card-subtitle class="address">
+    <mat-card-subtitle class="address">
         <span>
           <mat-icon class="text-danger">person_pin_circle</mat-icon>
         </span>
-        <span>
+      <span>
           {{address}}</span>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-list>
-      <h3 mat-subheader>Starters
-        <span *ngFor="let dish of starters" class="dish">{{dish.name}}</span>
-      </h3>
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>Mains
-        <span *ngFor="let dish of mains" class="dish">{{dish.name}}</span>
-      </h3>
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>Desserts
-        <span *ngFor="let dish of desserts" class="dish">{{dish.name}}</span>
-      </h3>
-    </mat-list>
-  </mat-card-content>
-  <button [@visibility]="visibility" class="book-button" mat-raised-button color="warn">
-    BOOK
-  </button>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-list>
+    <h3 mat-subheader>Starters
+      <span *ngFor="let dish of starters" class="dish">{{dish.name}}</span>
+    </h3>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader>Mains
+      <span *ngFor="let dish of mains" class="dish">{{dish.name}}</span>
+    </h3>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader>Desserts
+      <span *ngFor="let dish of desserts" class="dish">{{dish.name}}</span>
+    </h3>
+  </mat-list>
+</mat-card-content>
+<button [@visibility]="visibility" class="book-button" mat-raised-button color="warn">
+  BOOK
+</button>
 </mat-card>

@@ -19,13 +19,14 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   @Input() user: User;
   chatUser: User;
+  isHost: boolean;
   messageContent: string;
   maximized: boolean;
   windowIcon: string;
   @Input() index: number;
   @Input() chat: Chat;
   @ViewChild('scrollMe') private chatContent: ElementRef;
-  @Output() onDelete = new EventEmitter<number>();
+  @Output() deleteEmitter = new EventEmitter<number>();
   messageSize: number;
   focused: boolean;
 
@@ -39,15 +40,32 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     if (this.chat.host._id === this.user._id) {
+      this.isHost = true;
       this.chatUser = this.chat.guest;
     } else {
       this.chatUser = this.chat.host;
+      this.isHost = false;
     }
     this.messageSize = this.chat.messages.length;
     this.chatService.closeOpenedChatsEmitter.subscribe(() => {
       if (this.maximized) {
         this.chatService.closeChat(this.chat);
       }
+    });
+  }
+
+  confirmBooking() {
+    this.bookingService.confirmBooking(this.chat.booking._id).subscribe((booking) => {
+      this.chat.booking = booking;
+      this.chatService.sendChangeBookingState(booking);
+    });
+  }
+
+
+  cancelBooking() {
+    this.bookingService.canceledBooking(this.chat.booking._id).subscribe((booking) => {
+      this.chat.booking = booking;
+      this.chatService.sendChangeBookingState(booking);
     });
   }
 
@@ -114,7 +132,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   close() {
     this.chatService.closeChat(this.chat);
-    this.onDelete.emit(this.index);
+    this.deleteEmitter.emit(this.index);
   }
 
   toggleWindow() {

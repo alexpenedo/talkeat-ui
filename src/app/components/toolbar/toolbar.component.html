@@ -6,13 +6,13 @@
   </span>
   <span class="fill-space"></span>
   <span>
-    <button mat-raised-button color="accent" [routerLink]="['/create-menu']">PUBLISH MENU</button>
+    <button mat-raised-button color="accent" [routerLink]="['/create-menu']" i18n="@@publish-menu">PUBLISH MENU</button>
   </span>
   <span *ngIf="!user">
-    <button mat-button color="basic" [routerLink]="['/login']">LOGIN</button>
+    <button mat-button color="basic" [routerLink]="['/login']" i18n="@@login">LOGIN</button>
   </span>
   <span *ngIf="!user">
-    <button mat-button color="basic" [routerLink]="['/register']">SIGN UP</button>
+    <button mat-button color="basic" [routerLink]="['/register']" i18n="@@signup">SIGN UP</button>
   </span>
   <span *ngIf="user">
     <button mat-button color="basic" [matMenuTriggerFor]="menu">
@@ -28,15 +28,15 @@
       </button>
       <button mat-menu-item [routerLink]="['/my-bookings']">
         <mat-icon>collections_bookmark</mat-icon>
-        <span>My bookings</span>
+        <span i18n="@@my-bookings">My bookings</span>
       </button>
         <button mat-menu-item [routerLink]="['/my-menus']">
-        <mat-icon>collections_bookmark</mat-icon>
-        <span>My menus</span>
+        <mat-icon>restaurant_menu</mat-icon>
+        <span i18n="@@my-menus">My menus</span>
       </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon>close</mat-icon>
-        <span>Logout</span>
+        <span i18n="@@logout">Logout</span>
       </button>
     </mat-menu>
     <app-chat-button-list [user]="user" *ngIf="user"></app-chat-button-list>

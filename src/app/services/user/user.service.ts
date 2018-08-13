@@ -3,9 +3,8 @@ import {Injectable} from '@angular/core';
 import {User} from '../../models/user/user';
 import {UserToken} from '../../models/user/userToken';
 import {Router} from '@angular/router';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -59,8 +58,8 @@ export class UserService {
     return user;
   }
 
-  public register(user: User): Observable<UserToken> {
-    return this.http.post<UserToken>(this.url, user);
+  public register(user: User): Observable<User> {
+    return this.http.post<User>(this.url, user);
   }
 
   public update(user: User): Observable<User> {

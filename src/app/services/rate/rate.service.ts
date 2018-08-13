@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import {environment} from '../../../environments/environment';
 import 'rxjs/add/operator/map';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Rate} from '../../models/rate/rate';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class RateService {

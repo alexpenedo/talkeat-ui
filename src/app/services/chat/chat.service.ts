@@ -1,14 +1,13 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
-import {Observable} from 'rxjs/Observable';
 import * as io from 'socket.io-client';
-import {Message} from '../../models/message/message';
 import {UserService} from '../user/user.service';
 import {Chat} from '../../models/chat/chat';
 import {Booking} from '../../models/booking/booking';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Menu} from '../../models/menu/menu';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {UserToken} from '../../models/user/userToken';
 
 
 @Injectable()
@@ -30,7 +29,13 @@ export class ChatService {
     this.socket = io(this.serverUrl, {
       query: {token: this.userService.getToken()}
     });
-    const user = this.userService.getUser();
+    this.socket.on('connect_error', (error) => {
+      this.userService.refreshToken().subscribe((userToken: UserToken) => {
+        this.socket = io(this.serverUrl, {
+          query: {token: userToken.tokens.accessToken}
+        });
+      });
+    });
   }
 
   public closeOpenedChats() {
@@ -45,6 +50,10 @@ export class ChatService {
     this.socket.emit('message', message);
   }
 
+  public sendChangeBookingState(booking: Booking) {
+    this.socket.emit('changeBookingState', booking);
+  }
+
   public createFirstMessage(booking: Booking) {
     this.socket.emit('firstMessage', booking);
   }
@@ -57,15 +66,21 @@ export class ChatService {
     this.socket.emit('minimizeChat', chat);
   }
 
-  public onMessage(): Observable<Chat> {
+  public onChangeBookingState(): Observable<Chat> {
     return new Observable<Chat>(observer => {
-      this.socket.on('message', (data: Chat) => observer.next(data));
+      this.socket.on('changeBookingState', (data: Chat) => observer.next(data));
     });
   }
 
   public onNewChat(): Observable<Chat> {
     return new Observable<Chat>(observer => {
       this.socket.on('newChat', (data: Chat) => observer.next(data));
+    });
+  }
+
+  public onMessage(): Observable<Chat> {
+    return new Observable<Chat>(observer => {
+      this.socket.on('message', (data: Chat) => observer.next(data));
     });
   }
 

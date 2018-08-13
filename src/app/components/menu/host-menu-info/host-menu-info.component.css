@@ -165,3 +165,17 @@ mat-card-title {
   font-size: 18px;
   height: 40px;
 }
+
+
+.booking-status{
+  position: absolute;
+  z-index: 1;
+  margin-left: 55px;
+}
+
+.booking-status.confirmed{
+  color: green;
+}
+.booking-status.canceled{
+  color: darkred;
+}

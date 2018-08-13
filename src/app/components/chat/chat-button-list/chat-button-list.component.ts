@@ -23,36 +23,45 @@ export class ChatButtonListComponent implements OnInit {
   ngOnInit() {
     if (this.user) {
       this.getChats();
-    }
-    this.chatService.initSocket();
-    this.chatService.onNewChat()
-      .subscribe((chat: Chat) => {
-        chat.notRead = 1;
-        if (this.chats === undefined) {
-          this.chats = [];
-        }
-        this.chats.push(chat);
-      });
-    this.chatService.onMessage()
-      .subscribe((updatedChat: Chat) => {
-        const chat: Chat = this.chats.find((chatElem) => {
-          return chatElem._id === updatedChat._id;
+      this.chatService.initSocket();
+      this.chatService.onNewChat()
+        .subscribe((chat: Chat) => {
+          chat.notRead = 1;
+          if (this.chats === undefined) {
+            this.chats = [];
+          }
+          this.chats.push(chat);
         });
-        console.log(chat);
-        chat.messages.push(_.last(updatedChat.messages));
-        if (!this.openedChats.find(element => element === chat)) {
-          chat.notRead++;
-        }
-      });
+      this.chatService.onMessage()
+        .subscribe((updatedChat: Chat) => {
+          const chat: Chat = this.chats.find((chatElem) => {
+            return chatElem._id === updatedChat._id;
+          });
+          chat.messages.push(_.last(updatedChat.messages));
+          if (!this.openedChats.find(element => element === chat)) {
+            chat.notRead++;
+          }
+        });
+
+      this.chatService.onChangeBookingState()
+        .subscribe((updatedChat: Chat) => {
+          const chat: Chat = this.chats.find((chatElem) => {
+            return chatElem._id === updatedChat._id;
+          });
+          chat.booking.canceled = updatedChat.booking.canceled;
+          chat.booking.confirmed = updatedChat.booking.confirmed;
+          if (!this.openedChats.find(element => element === chat)) {
+            chat.notRead++;
+          }
+        });
+    }
   }
 
   openChat(activeChat: Chat) {
     if (!this.openedChats.find(element => element === activeChat)) {
       this.openedChats.push(activeChat);
-      // this.chatService.chatsOpened(this.openedChats);
       activeChat.notRead = 0;
     }
-
   }
 
   onDelete(index: number) {

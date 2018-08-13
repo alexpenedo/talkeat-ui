@@ -4,6 +4,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
 import {RateService} from '../../../services/rate/rate.service';
 import {UtilService} from '../../../services/util/util.service';
 import {User} from '../../../models/user/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu-info',
@@ -39,11 +40,12 @@ export class MenuInfoComponent implements OnInit {
   @Input() desserts: Array<any>;
   @Input() host: User;
   @Input() address: string;
+  @Input() personsSelected?: string;
   classes: string;
   visibility: string;
   average: number;
 
-  constructor(private userService: UserService, private rateService: RateService, private utilService: UtilService) {
+  constructor(private userService: UserService, private rateService: RateService, private utilService: UtilService, private router: Router) {
     this.visibility = 'hide';
   }
 
@@ -84,4 +86,9 @@ export class MenuInfoComponent implements OnInit {
     }
   }
 
+  bookMenu() {
+    if (this.state === 'show') {
+      this.router.navigate(['/booking', this.id], {queryParams: {persons: this.personsSelected}}).catch();
+    }
+  }
 }

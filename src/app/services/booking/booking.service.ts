@@ -1,12 +1,11 @@
-import {Observable} from 'rxjs/Observable';
 import {environment} from '../../../environments/environment';
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/map';
 import {Booking} from '../../models/booking/booking';
 import {UserService} from '../user/user.service';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {User} from '../../models/user/user';
 import {Status} from '../util/status.enum';
+import {Observable} from 'rxjs';
 
 
 @Injectable()
@@ -38,5 +37,14 @@ export class BookingService {
   public findById(id: string): Observable<Booking> {
     return this.http.get<Booking>(`${this.url}/${id}`);
   }
+
+  public confirmBooking(id: string): Observable<Booking> {
+    return this.http.post<Booking>(`${this.url}/${id}/confirm`, {});
+  }
+
+  public canceledBooking(id: string): Observable<Booking> {
+    return this.http.post<Booking>(`${this.url}/${id}/cancel`, {});
+  }
+
 
 }

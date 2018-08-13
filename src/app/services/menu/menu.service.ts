@@ -1,4 +1,3 @@
-import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
@@ -8,6 +7,7 @@ import {UserService} from '../user/user.service';
 import {User} from '../../models/user/user';
 import {Booking} from '../../models/booking/booking';
 import {Status} from '../util/status.enum';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class MenuService {
@@ -28,22 +28,23 @@ export class MenuService {
 
   public find(longitude: number, latitude: number, persons: string, date: Date, type: string): Observable<Menu[]> {
     const user: User = this.userService.getUser();
+    const userId: string = user ? user._id : '';
     const params: HttpParams = new HttpParams().set('longitude', longitude.toString())
       .set('latitude', latitude.toString()).set('persons', persons)
-      .set('date', date.toUTCString()).set('type', type).set('userId', user._id);
-
-    return this.http.get<Menu[]>(this.url, {params});
+      .set('date', date.toISOString()).set('type', type)
+      .set('userId', userId);
+    return this.http.get<Menu[]>(`${this.url}/located`, {params});
   }
 
   public findUserMenusFinished(): Observable<Menu[]> {
     const user: User = this.userService.getUser();
-    const params: HttpParams = new HttpParams().set('host', user._id).set('status', Status.FINISHED.toString());
+    const params: HttpParams = new HttpParams().set('host', user._id).set('status', Status[Status.FINISHED]);
     return this.http.get<Menu[]>(this.url, {params});
   }
 
   public findUserMenusPending(): Observable<Menu[]> {
     const user: User = this.userService.getUser();
-    const params: HttpParams = new HttpParams().set('host', user._id).set('status', Status.PENDING.toString());
+    const params: HttpParams = new HttpParams().set('host', user._id).set('status', Status[Status.PENDING]);
     return this.http.get<Menu[]>(this.url, {params});
   }
 

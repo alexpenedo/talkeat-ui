@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import {MapsAPILoader} from '@agm/core';
-import {Coordinates} from './../../models/coordinates/coordinates';
-import {} from '@types/googlemaps';
+import {Coordinates} from '../../models/coordinates/coordinates';
+import {Observable} from 'rxjs';
+declare var google: any;
 
 
 const GEOLOCATION_ERRORS = {

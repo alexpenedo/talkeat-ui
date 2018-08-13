@@ -1,11 +1,17 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse} from '@angular/common/http';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
-import {Observable} from 'rxjs/Observable';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpHeaderResponse,
+  HttpInterceptor, HttpProgressEvent,
+  HttpRequest, HttpResponse,
+  HttpSentEvent, HttpUserEvent
+} from '@angular/common/http';
 import {UserService} from '../services/user/user.service';
-
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import {Observable, of, throwError} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
 @Injectable()
 export class HttpClientInterceptor implements HttpInterceptor {
@@ -17,21 +23,24 @@ export class HttpClientInterceptor implements HttpInterceptor {
     this.config.duration = 2000;
   }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(this.addTokenToRequest(request, this.userService.getToken()))
-      .catch((err) => {
-        if (err instanceof HttpErrorResponse) {
-          switch ((<HttpErrorResponse>err).status) {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent |
+    HttpResponse<any> | HttpUserEvent<any>> {
+    return next.handle(this.addTokenToRequest(request, this.userService.getToken())).pipe(
+      catchError((error, caught) => {
+        if (error instanceof HttpErrorResponse) {
+          switch ((<HttpErrorResponse>error).status) {
             case 401:
-              return <any>this.refreshToken(request, next);
+              this.refreshToken(request, next);
+              break;
+            case 400:
+              this.snackBar.open(error.error.error, undefined, this.config);
+              break;
           }
-          this.snackBar.open(err.error.message, undefined, this.config);
-          return Observable.throw(err);
         } else {
-          this.snackBar.open(err.error.message, undefined, this.config);
-          return Observable.throw(err);
+          this.snackBar.open(error.error.message, undefined, this.config);
         }
-      }) as any;
+        return of(error);
+      }) as any);
   }
 
   private refreshToken(request: HttpRequest<any>, next: HttpHandler) {

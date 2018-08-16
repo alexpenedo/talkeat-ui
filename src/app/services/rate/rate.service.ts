@@ -28,4 +28,9 @@ export class RateService {
     return this.http.get<Rate[]>(this.url, {params});
   }
 
+  public getRatesByGuestId(guestId: string): Observable<Rate[]> {
+    const params: HttpParams = new HttpParams().set('guestId', guestId);
+    return this.http.get<Rate[]>(this.url, {params});
+  }
+
 }

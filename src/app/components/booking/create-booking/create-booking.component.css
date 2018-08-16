@@ -7,9 +7,3 @@
   line-height: 45px;
   width: 50%;
 }
-
-.ratings {
-  margin-top: 20px;
-  max-height: 400px;
-  overflow: scroll;
-}

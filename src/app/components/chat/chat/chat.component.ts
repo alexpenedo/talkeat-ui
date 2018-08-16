@@ -7,6 +7,8 @@ import {Chat} from '../../../models/chat/chat';
 import {BookingService} from '../../../services/booking/booking.service';
 import {MatDialog} from '@angular/material';
 import {MenuInfoComponent} from '../../menu/menu-info/menu-info.component';
+import {HostMenuInfoComponent} from '../../menu/host-menu-info/host-menu-info.component';
+import {ChatInfoComponent} from '../chat-info/chat-info.component';
 
 @Component({
   selector: 'app-chat',
@@ -147,21 +149,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(MenuInfoComponent, {
-      width: '400px'
-    });
+    const dialogRef = this.dialog.open(ChatInfoComponent);
     const instance = dialogRef.componentInstance;
-    instance.date = this.chat.booking.menuDate;
-    instance.address = this.chat.booking.menu.address;
-    instance.available = this.chat.booking.menu.available;
-    instance.description = this.chat.booking.menu.description;
-    instance.host = this.chat.booking.host;
-    instance.state = 'booking';
-    instance.name = this.chat.booking.menu.name;
-    instance.price = this.chat.booking.menu.price;
-    instance.guests = this.chat.booking.menu.guests;
-    instance.starters = this.chat.booking.menu.starters;
-    instance.mains = this.chat.booking.menu.mains;
-    instance.desserts = this.chat.booking.menu.desserts;
+    instance.booking = this.chat.booking;
   }
 }

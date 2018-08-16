@@ -1,0 +1,59 @@
+mat-card-header {
+  display: block;
+}
+
+.datetime {
+  position: absolute;
+  top: 37px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 7px;
+  left: 13px;
+  color: #8a8a9c;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.time-icon {
+  font-size: 27px;
+  margin-right: 10px;
+  float: left;
+  color: #893737;
+}
+
+.price {
+  position: absolute;
+  top: 9px;
+  right: 15%;
+  font-size: 25px;
+  background: #edc73c;
+  padding: 7px;
+  border-radius: 10px;
+}
+
+.persons {
+  position: absolute;
+  top: 50px;
+  right: 15%;
+  font-size: 25px;
+  color: white;
+  padding: 7px;
+  border-radius: 10px;
+}
+
+.available {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.mat-card-image {
+  margin-top: -150px !important;
+  filter: brightness(0.4);
+}
+
+mat-card-title {
+  margin-top: -60px !important;
+  color: white;
+  position: relative;
+  font-size: 24px !important;
+}

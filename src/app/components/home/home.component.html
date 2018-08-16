@@ -6,7 +6,8 @@
           <div class="input-group">
             <div class="col-3">
               <mat-form-field>
-                <mat-select placeholder="Persons" [(ngModel)]="persons" name="food">
+                <mat-icon class="icon-form" matPrefix>person</mat-icon>
+                <mat-select placeholder="Persons" [(ngModel)]="persons" name="persons">
                   <mat-option value="1">1</mat-option>
                   <mat-option value="2">2</mat-option>
                   <mat-option value="3">3</mat-option>
@@ -17,7 +18,8 @@
             </div>
             <div class="col-4">
               <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Date" [(ngModel)]="date" name="date" id="date">
+                <mat-icon matPrefix>calendar_today</mat-icon>
+                <input [min]="minDate" matInput [matDatepicker]="picker" placeholder="Date" [(ngModel)]="date" name="date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -28,6 +30,17 @@
                   <mat-option value="lunch">Lunch</mat-option>
                   <mat-option value="dinner">Dinner</mat-option>
                 </mat-select>
+                <mat-icon matPrefix>access_time</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="col-2">
+              <mat-form-field>
+                <mat-select placeholder="Sort" [(ngModel)]="sort" name="sort">
+                  <mat-option value="0">Distance</mat-option>
+                  <mat-option value="1">Rating</mat-option>
+                  <mat-option value="2">Price</mat-option>
+                </mat-select>
+                <mat-icon matPrefix>sort</mat-icon>
               </mat-form-field>
             </div>
           </div>
@@ -45,22 +58,23 @@
   <div class="row">
     <div class="col-12">
       <div class="row menus">
-        <div class="col-7 menu-cards">
+        <div class="col-7 menu-cards" infiniteScroll [infiniteScrollDistance]="2"
+             [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()" [scrollWindow]="false">
           <!-- <perfect-scrollbar  style="max-height: 460px;"> -->
           <div class="row">
-            <div *ngFor="let menu of menus" class="col-6">
+            <div *ngFor="let menu of menus" class="col-6 col-xl-6 col-lg-12 col-md-12 col-sm-12">
               <app-menu-info state="show" [id]="menu._id" [date]="menu.date" [date]="menu.date" [guests]="menu.guests"
                              [available]="menu.available"
                              [price]="menu.price" [name]="menu.name" [description]="menu.description"
                              [starters]="menu.starters" [mains]="menu.mains"
                              [desserts]="menu.desserts" [host]="menu.host" [address]="menu.address"
-                             [personsSelected]="persons"></app-menu-info>
+                             [personsSelected]="persons" [average]="menu.average" [distance]="menu.distance"></app-menu-info>
             </div>
           </div>
           <!-- </perfect-scrollbar> -->
         </div>
         <div class="col-5">
-          <app-map [menus]="menusMap" [latitude]="latitude" [longitude]="longitude"></app-map>
+          <app-map [menus]="menus" [latitude]="latitude" [longitude]="longitude"></app-map>
         </div>
       </div>
     </div>

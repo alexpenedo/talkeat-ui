@@ -1,60 +1,57 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Router} from '@angular/router';
 import {Menu} from '../../../models/menu/menu';
 import {MenuService} from '../../../services/menu/menu.service';
 import {Booking} from '../../../models/booking/booking';
+import {BookingService} from '../../../services/booking/booking.service';
+import * as _ from 'lodash';
+import {RateType} from '../../../services/util/rate-type.enum';
 
 
 @Component({
   selector: 'app-host-menu-info',
   templateUrl: './host-menu-info.component.html',
   styleUrls: ['./host-menu-info.component.css'],
-  providers: [MenuService],
-  animations: [
-    trigger('visibility', [
-      state('show', style({
-        opacity: 1,
-      })),
-      state('hide', style({
-        opacity: 0,
-      })),
-      transition('show => hide', animate('500ms ease-out')),
-      transition('hide => show', animate('500ms ease-in'))
-    ])
-  ]
+  providers: [MenuService, BookingService],
 })
 export class HostMenuInfoComponent implements OnInit {
 
   @Input() menu: Menu;
-  @Input() state: string;
-  visibility: string;
-  comment: string;
   rate: number;
-  classes: string;
   bookings: Booking[];
 
 
-  constructor(private menuService: MenuService, private router: Router) {
-    this.visibility = 'hide';
+  constructor(private menuService: MenuService, private bookingService: BookingService) {
   }
 
   ngOnInit() {
     this.menuService.findBookingsByMenuId(this.menu._id).subscribe(bookings => {
       this.bookings = bookings;
+      this.bookings.forEach((booking) => {
+        this.bookingService.getBookingRates(booking._id).subscribe((rates) => {
+          booking.hostRate = _.find(rates, {type: RateType.HOST});
+          booking.guestRate = _.find(rates, {type: RateType.GUEST});
+        });
+      });
     });
+  }
 
-    if (this.state === 'show') {
-      this.classes = 'animation';
+  isCanceled(booking: Booking) {
+    if (booking.canceled) {
+      return true;
     }
+    if (!booking.confirmed && this.isPast(booking.menuDate)) {
+      return true;
+    }
+    return false;
   }
 
-  mouseEnter() {
-    this.visibility = 'show';
+  isPast(date: Date) {
+    const time = new Date(date).getTime();
+    if (time < new Date().getTime()) {
+      return true;
+    }
+    return false;
   }
-
-  mouseLeave() {
-    this.visibility = 'hide';
-  }
-
 }
+

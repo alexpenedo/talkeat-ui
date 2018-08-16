@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuService} from '../../../services/menu/menu.service';
 import {Menu} from '../../../models/menu/menu';
+import {MatTabChangeEvent} from '@angular/material';
 
 @Component({
   selector: 'app-my-menus',
@@ -10,17 +11,52 @@ import {Menu} from '../../../models/menu/menu';
 })
 export class MyMenusComponent implements OnInit {
   menusFinished: Menu[];
+  currentPageFinished: number;
   menusPending: Menu[];
+  currentPagePending: number;
 
   constructor(private menuService: MenuService) {
+    this.currentPagePending = 0;
+    this.currentPageFinished = 0;
   }
 
   ngOnInit() {
-    this.menuService.findUserMenusFinished().subscribe(menus => {
-      this.menusFinished = menus;
+    this.findMenusPending();
+  }
+
+  findMenus(event: MatTabChangeEvent) {
+    if (event.index == 0) {
+      this.findMenusPending();
+    } else {
+      this.findMenusFinished();
+    }
+  }
+
+  onScrollPendingDown() {
+    this.currentPagePending++;
+    this.menuService.findUserMenusPending(this.currentPagePending).subscribe(menus => {
+      this.menusPending.push(...menus);
     });
-    this.menuService.findUserMenusPending().subscribe(menus => {
+  }
+
+  findMenusPending() {
+    this.currentPagePending = 0;
+    this.menuService.findUserMenusPending(this.currentPagePending).subscribe(menus => {
       this.menusPending = menus;
+    });
+  }
+
+  onScrollFinishedDown() {
+    this.currentPageFinished++;
+    this.menuService.findUserMenusFinished(this.currentPageFinished).subscribe(menus => {
+      this.menusFinished.push(...menus);
+    });
+  }
+
+  findMenusFinished() {
+    this.currentPageFinished = 0;
+    this.menuService.findUserMenusFinished(this.currentPageFinished).subscribe(menus => {
+      this.menusFinished = menus;
     });
   }
 }

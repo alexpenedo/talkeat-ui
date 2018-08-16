@@ -4,7 +4,6 @@
     <span class="notification-number">{{getTotalNotRead()}}</span>
   </button>
 </button>
-
 <mat-menu #chat="matMenu">
   <button class="no-chats-btn" *ngIf="!chats || chats.length==0" mat-menu-item disabled="true">
     <mat-icon class="no-chats-icon">not_interested</mat-icon>

@@ -8,12 +8,12 @@ export class Booking {
   public menu: Menu;
   public menuDate: Date;
   public host: User;
-  public rate: Rate;
   public persons: number;
   public comment: string;
   public confirmed: boolean;
   public canceled: boolean;
-
+  public hostRate: Rate;
+  public guestRate: Rate;
 
   constructor(guest: User, menu: Menu, menuDate: Date, host: User, persons: number, comment: string) {
     this.guest = guest;

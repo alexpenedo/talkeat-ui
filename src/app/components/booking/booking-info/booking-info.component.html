@@ -1,61 +1,33 @@
-<mat-card [id]="booking._id" [ngClass]="classes" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()"
-          [routerLink]="(state==='show' && !booking.rate) ? ['/rating',booking._id] : []">
-    <img mat-card-image src="/assets/img/booking.jpg">
-    <div class="datetime">
-        <mat-icon class="time-icon">access_time</mat-icon>
-        <span>{{booking.menu.date | date: 'dd/MM HH:mm'}}</span>
-    </div>
-    <div class="price">{{+booking.menu.price | number : '1.2-2'}}
-        <mat-icon style="font-size: 20px;">attach_money</mat-icon>
-    </div>
-    <mat-card-title class="title">
-        {{booking.menu.name}}
-        <span>
-            <app-user-image [userId]="booking.host._id" diameter="70px" float="right"></app-user-image>
-        </span>
-    </mat-card-title>
-    <mat-card-header>
-        <mat-card-subtitle class="description">{{booking.menu.description}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <mat-card-header>
-            <mat-card-subtitle>
-                <span>
-                    <mat-icon class="text-danger">person_pin_circle</mat-icon>
-                </span>
-                <span>
-                    {{booking.menu.address}}</span>
-            </mat-card-subtitle>
-        </mat-card-header>
-        <div class="row mb-5">
-            <div class="col-4">Starters
-                <span *ngFor="let dish of booking.menu.starters" class="dish">{{dish.name}}</span>
-            </div>
-            <div class="col-4">Mains
-                <span *ngFor="let dish of booking.menu.mains" class="dish">{{dish.name}}</span>
-            </div>
-            <div class="col-4">Desserts
-                <span *ngFor="let dish of booking.menu.desserts" class="dish">{{dish.name}}</span>
-            </div>
+<mat-card [id]="booking._id">
+  <app-header-menu-info [name]="booking.menu.name" [date]="booking.menu.date" [price]="booking.menu.price"
+                        [host]="booking.host"></app-header-menu-info>
+  <mat-card-content>
+    <mat-tab-group mat-stretch-tabs position="0">
+      <mat-tab label="INFO">
+        <div class="container-fluid mt-3">
+          <app-address-dishs-info [description]="booking.menu.description" [address]="booking.menu.address"
+                                  [starters]="booking.menu.starters" [mains]="booking.menu.mains"
+                                  [desserts]="booking.menu.desserts">
+          </app-address-dishs-info>
         </div>
-    </mat-card-content>
-    <div *ngIf="booking.rate">
-        <rating class="booking-rate" fullIcon="◉" emptyIcon="○" [(ngModel)]="booking.rate.rate" [readonly]="true"></rating>
-        {{booking.rate.comment}}
-    </div>
-    <form *ngIf="state=='rating'" role="form" (submit)="saveRate()">
-        <div class="valoration">
-            <rating [float]="true" fullIcon="◉" emptyIcon="○" [(ngModel)]="rate" name="rate"></rating>
+      </mat-tab>
+      <mat-tab label="RATINGS">
+        <div class="container-fluid mt-3">
+          <div class="row">
+            <app-rate *ngIf="hostRate" class="col-6" [rate]="hostRate"></app-rate>
+            <div *ngIf="!hostRate" class="col-6 mx-auto">
+              <h6>Here you can rate the host</h6>
+              <button mat-raised-button color="accent" [routerLink]="['/rating',booking._id]">
+                VALORATE
+              </button>
+            </div>
+            <app-rate *ngIf="guestRate" class="col-6" [rate]="guestRate"></app-rate>
+            <div *ngIf="!guestRate" class="col-6 mx-auto">
+              <h6>The host has not rated you yet</h6>
+            </div>
+          </div>
         </div>
-        <mat-form-field class="comment">
-            <textarea matInput placeholder="Comment" name="commnet" [(ngModel)]="comment" id="comment" required matTextareaAutosize matAutosizeMinRows="4"
-                matAutosizeMaxRows="4"></textarea>
-        </mat-form-field>
-        <button class="valorate-button" mat-raised-button color="accent" type="submit" name="action">
-            VALORATE
-        </button>
-    </form>
-    <button *ngIf="(state=='show') && (!booking.rate)" class="valorate-button" mat-raised-button color="accent" [@visibility]="visibility">
-        VALORATE
-    </button>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
 </mat-card>

@@ -1,6 +1,6 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../../../services/user/user.service';
-import {trigger, state, style, animate, transition} from '@angular/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import {RateService} from '../../../services/rate/rate.service';
 import {UtilService} from '../../../services/util/util.service';
 import {User} from '../../../models/user/user';
@@ -41,11 +41,13 @@ export class MenuInfoComponent implements OnInit {
   @Input() host: User;
   @Input() address: string;
   @Input() personsSelected?: string;
+  @Input() average: number;
+  @Input() distance: number;
   classes: string;
   visibility: string;
-  average: number;
 
-  constructor(private userService: UserService, private rateService: RateService, private utilService: UtilService, private router: Router) {
+  constructor(private userService: UserService, private rateService: RateService,
+              private utilService: UtilService, private router: Router) {
     this.visibility = 'hide';
   }
 
@@ -56,11 +58,13 @@ export class MenuInfoComponent implements OnInit {
       this.classes = 'menu-info animation';
     }
     if (this.state === 'show' || this.state === 'booking') {
-      this.rateService.getRateAverage(this.host._id).subscribe((average: any) => {
-        if (average != null) {
-          this.average = average.average;
-        }
-      });
+      if (this.average === undefined) {
+        this.rateService.getRateAverage(this.host._id).subscribe((average: any) => {
+          if (average != null) {
+            this.average = average.average;
+          }
+        });
+      }
     }
     this.utilService.activeMenuEmitter.subscribe((menuId) => {
       if (menuId === this.id) {
@@ -72,6 +76,16 @@ export class MenuInfoComponent implements OnInit {
       this.visibility = 'hide';
       this.classes = 'menu-info animation';
     });
+  }
+
+  getDistance() {
+    if (this.distance < 1000) {
+      return `${Math.round(this.distance)}m`;
+    } else if (this.distance >= 1000 && this.distance < 20000) {
+      return `${Math.round(this.distance / 1000)}km`;
+    } else {
+      return '+20km';
+    }
   }
 
   mouseEnter() {

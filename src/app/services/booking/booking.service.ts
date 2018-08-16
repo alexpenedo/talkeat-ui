@@ -6,6 +6,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {User} from '../../models/user/user';
 import {Status} from '../util/status.enum';
 import {Observable} from 'rxjs';
+import {Rate} from '../../models/rate/rate';
 
 
 @Injectable()
@@ -36,6 +37,10 @@ export class BookingService {
 
   public findById(id: string): Observable<Booking> {
     return this.http.get<Booking>(`${this.url}/${id}`);
+  }
+
+  public getBookingRates(id: string): Observable<Rate[]> {
+    return this.http.get<Rate[]>(`${this.url}/${id}/rates`);
   }
 
   public confirmBooking(id: string): Observable<Booking> {

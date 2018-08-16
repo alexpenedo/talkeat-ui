@@ -25,6 +25,10 @@
     margin: 0px 8px;
 }
 
+.dishs{
+  padding: 0;
+}
+
 mat-card-title {
     margin-top: -60px !important;
     color: white;
@@ -134,4 +138,11 @@ mat-card-title {
     font-size:12px;
     top:60px;
     position: absolute;
+}
+.distance{
+  font-weight: bold;
+  color: #dc3545;
+  position: absolute;
+  right: 24px;
+  margin-top: 8px;
 }

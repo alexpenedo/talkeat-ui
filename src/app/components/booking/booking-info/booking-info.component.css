@@ -1,138 +1,143 @@
 .time {
-    background: #673ab7;
-    color: white;
-    font-size: 30px;
-    padding: 10px;
+  background: #673ab7;
+  color: white;
+  font-size: 30px;
+  padding: 10px;
 }
 
 .dish {
-    color: black;
-    font-weight: normal;
-    padding: 10px;
-    background: #d2f3ff;
-    border-radius: 20px;
-    margin: 0px 5px;
-    font-size: 12px;
+  color: black;
+  font-weight: normal;
+  padding: 10px;
+  background: #d2f3ff;
+  border-radius: 20px;
+  margin: 0px 5px;
+  font-size: 12px;
 }
-.valoration{
-    margin-bottom: -10px;
-    font-size: 25px;
-    text-align: center;
-    margin-top: -30px;
+
+.valoration {
+  margin-bottom: -10px;
+  font-size: 25px;
+  text-align: center;
+  margin-top: -30px;
 }
 
 .vertical-divider {
-    border-top-width: 0;
-    border-right-width: 1px;
-    border-right-style: solid;
-    margin: 0px 8px;
+  border-top-width: 0;
+  border-right-width: 1px;
+  border-right-style: solid;
+  margin: 0px 8px;
 }
 
 mat-card-title {
-    margin-top: -60px !important;
-    color: white;
-    position: relative;
+  margin-top: -60px !important;
+  color: white;
+  position: relative;
 }
-.highlight{
-    border: 5px red solid;
+
+.highlight {
+  border: 5px red solid;
 }
 
 .mat-card-image {
-    margin-top: -150px !important;
-    filter: brightness(0.4);
+  margin-top: -150px !important;
+  filter: brightness(0.4);
 }
 
 .user-picture {
-    height: 70px !important;
-    width: 70px !important;
-    float: right;
+  height: 70px !important;
+  width: 70px !important;
+  float: right;
 }
 
 .chip {
-    position: absolute;
-    z-index: 1;
-    top: 2px;
-    left: 2px;
+  position: absolute;
+  z-index: 1;
+  top: 2px;
+  left: 2px;
 }
 
 .menu-info {
-    overflow: hidden;
-    margin-bottom:20px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .animation {
-    transition: all 0ms ease-in;
-    transform: scale(0.97);
+  transition: all 0ms ease-in;
+  transform: scale(0.97);
 }
+
 .animation:hover {
-    transition: all 200ms ease-in;
-    transform: scale(1.00);
+  transition: all 200ms ease-in;
+  transform: scale(1.00);
 }
 
 .price {
-    position: absolute;
-    top: 9px;
-    right: 0px;
-    font-size: 25px;
-    background: #edc73c;
-    padding: 7px;
-    border-radius: 10px;
+  position: absolute;
+  top: 9px;
+  right: 0px;
+  font-size: 25px;
+  background: #edc73c;
+  padding: 7px;
+  border-radius: 10px;
 }
+
 .persons {
-    position: absolute;
-    top: 35px;
-    right: -3px;
-    font-size: 25px;
-    color: white;
-    padding: 7px;
-    border-radius: 10px;
-}
-.available{
-    font-weight: bold; 
-    font-size:40px;
+  position: absolute;
+  top: 35px;
+  right: -3px;
+  font-size: 25px;
+  color: white;
+  padding: 7px;
+  border-radius: 10px;
 }
 
-.booking-rate{
-    margin-right: 20px;
+.available {
+  font-weight: bold;
+  font-size: 40px;
 }
 
-.comment{
-    margin-bottom:20px;
+.booking-rate {
+  margin-right: 20px;
+}
+
+.comment {
+  margin-bottom: 20px;
 }
 
 .description {
-    font-size: 11px;
-    text-align: justify;
-    padding: 5px;
-    margin: 0;
+  font-size: 11px;
+  text-align: justify;
+  padding: 5px;
+  margin: 0;
 }
 
 .datetime {
-    position: absolute;
-    top: 37px;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 7px;
-    left: 13px;
-    color: #8a8a9c;
-    font-weight: bold;
-    font-size: 20px;
+  position: absolute;
+  top: 37px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 7px;
+  left: 13px;
+  color: #8a8a9c;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .time-icon {
-    font-size: 27px;
-    margin-right: 10px;
-    float: left;
-    color: #893737;
+  font-size: 27px;
+  margin-right: 10px;
+  float: left;
+  color: #893737;
 }
 
-.valorate-button{
-    width: 100%;
-    position: absolute;
-    padding: 0;
-    margin-left: -24px;
-    margin-top: -15px;
-    margin-bottom: 20px;
-    font-size: 18px;
-    height: 40px;
+.valorate-button {
+  width: 100%;
+  position: absolute;
+  padding: 0;
+  margin-left: -24px;
+  margin-top: -15px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  height: 40px;
 }

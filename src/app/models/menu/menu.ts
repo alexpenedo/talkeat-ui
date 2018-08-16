@@ -17,4 +17,6 @@ export class Menu {
   public address: string;
   public location: number[];
   public label: any;
+  public average: number;
+  public distance: number;
 }

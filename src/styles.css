@@ -29,3 +29,7 @@ snack-bar-container.error {
     /* padding: 3px; */
     /* border-radius: 5px; */
 }
+.mat-form-field-prefix{
+  padding-right: 12px;
+}
+

@@ -8,8 +8,8 @@ import {RegisterComponent} from './components/user/register/register.component';
 import {CreateEditMenuComponent} from './components/menu/create-menu/create-edit-menu.component';
 import {CreateBookingComponent} from './components/booking/create-booking/create-booking.component';
 import {MyBookingsComponent} from './components/booking/my-bookings/my-bookings.component';
-import {BookingRateComponent} from './components/rate/booking-rate/booking-rate.component';
 import {MyMenusComponent} from './components/menu/my-menus/my-menus.component';
+import {CreateRateComponent} from './components/rate/create-rate/create-rate.component';
 
 
 const routes: Routes = [
@@ -21,7 +21,8 @@ const routes: Routes = [
   {path: 'my-bookings', component: MyBookingsComponent, canActivate: [AuthGuardService]},
   {path: 'my-menus', component: MyMenusComponent, canActivate: [AuthGuardService]},
   {path: 'booking/:id', component: CreateBookingComponent, canActivate: [AuthGuardService]},
-  {path: 'rating/:id', component: BookingRateComponent, canActivate: [AuthGuardService]},
+  {path: 'rating/:id', component: CreateRateComponent, canActivate: [AuthGuardService]},
+  {path: 'rating/:id/guest/:guest', component: CreateRateComponent, canActivate: [AuthGuardService]},
   // {path: '',
   //   redirectTo: '/home',
   //   pathMatch: 'full'

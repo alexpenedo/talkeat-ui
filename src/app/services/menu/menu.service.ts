@@ -8,6 +8,7 @@ import {User} from '../../models/user/user';
 import {Booking} from '../../models/booking/booking';
 import {Status} from '../util/status.enum';
 import {Observable} from 'rxjs';
+import {Sort} from '../util/sort.enum';
 
 @Injectable()
 export class MenuService {
@@ -26,25 +27,28 @@ export class MenuService {
     return this.http.put<Menu>(`${this.url}/${menu._id}/`, menu);
   }
 
-  public find(longitude: number, latitude: number, persons: string, date: Date, type: string): Observable<Menu[]> {
+  public find(longitude: number, latitude: number, persons: string, date: Date,
+              type: string, currentPage: number, sort: Sort): Observable<Menu[]> {
     const user: User = this.userService.getUser();
     const userId: string = user ? user._id : '';
     const params: HttpParams = new HttpParams().set('longitude', longitude.toString())
       .set('latitude', latitude.toString()).set('persons', persons)
       .set('date', date.toISOString()).set('type', type)
-      .set('userId', userId);
+      .set('userId', userId).set('sort', sort.toString()).set('page', currentPage.toString()).set('size', '4');
     return this.http.get<Menu[]>(`${this.url}/located`, {params});
   }
 
-  public findUserMenusFinished(): Observable<Menu[]> {
+  public findUserMenusFinished(currentPage: number): Observable<Menu[]> {
     const user: User = this.userService.getUser();
-    const params: HttpParams = new HttpParams().set('host', user._id).set('status', Status[Status.FINISHED]);
+    const params: HttpParams = new HttpParams().set('host', user._id).set('status', Status.FINISHED.toString())
+      .set('page', currentPage.toString()).set('size', '4');
     return this.http.get<Menu[]>(this.url, {params});
   }
 
-  public findUserMenusPending(): Observable<Menu[]> {
+  public findUserMenusPending(currentPage: number): Observable<Menu[]> {
     const user: User = this.userService.getUser();
-    const params: HttpParams = new HttpParams().set('host', user._id).set('status', Status[Status.PENDING]);
+    const params: HttpParams = new HttpParams().set('host', user._id).set('status', Status.PENDING.toString())
+      .set('page', currentPage.toString()).set('size', '4');
     return this.http.get<Menu[]>(this.url, {params});
   }
 

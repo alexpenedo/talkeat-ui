@@ -62,7 +62,7 @@ export class CreateEditMenuComponent implements OnInit {
             this.menu.desserts.forEach(dishComponent => {
               this.desserts.addItem(dishComponent.name);
             });
-            this.completeData.get('guests').setValue(menu.guests);
+            this.completeData.get('guests').setValue(menu.guests.toString());
             this.completeData.get('price').setValue(menu.price.toFixed(2));
             this.completeData.get('date').setValue(menu.date);
             this.completeData.get('time').setValue(this.datePipe.transform(menu.date, 'HH:mm').toString());
@@ -72,6 +72,7 @@ export class CreateEditMenuComponent implements OnInit {
             this.completeData.get('country').disable();
             this.completeData.get('address').disable();
             this.completeData.get('postalCode').disable();
+            this.date = menu.date;
           });
       }
     });
@@ -135,6 +136,7 @@ export class CreateEditMenuComponent implements OnInit {
   updateMenu() {
     this.menu = Object.assign(this.menu, this.menuDescription.value, this.addDishes.value, this.completeData.value);
     this.menu.date = this.date;
+    this.menu.guests = parseInt(this.completeData.get('guests').value, 10);
     this.menuService.update(this.menu).subscribe((menu) => {
       this.chatService.sendNotification(menu);
       this.router.navigate(['/home']).catch();

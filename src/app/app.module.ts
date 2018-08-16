@@ -17,6 +17,7 @@ import {
   MatChipsModule,
   MatDatepickerModule,
   MatDialogModule,
+  MatExpansionModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
@@ -27,8 +28,8 @@ import {
   MatSlideToggleModule,
   MatSnackBarModule,
   MatStepperModule,
-  MatToolbarModule,
-  MatTabsModule, MatExpansionModule
+  MatTabsModule,
+  MatToolbarModule
 } from '@angular/material';
 import {AppRoutingModule} from './app-routing.module';
 import {LoginComponent} from './components/user/login/login.component';
@@ -38,6 +39,7 @@ import {ProfileComponent} from './components/user/profile/profile.component';
 import {UserImageComponent} from './components/user/user-image/user-image.component';
 import {MenuInfoComponent} from './components/menu/menu-info/menu-info.component';
 import {AgmCoreModule} from '@agm/core';
+import {AgmJsMarkerClustererModule} from '@agm/js-marker-clusterer';
 import {MapComponent} from './components/map/map.component';
 import {CreateBookingComponent} from './components/booking/create-booking/create-booking.component';
 import {CreateEditMenuComponent} from './components/menu/create-menu/create-edit-menu.component';
@@ -51,11 +53,16 @@ import {MyBookingsComponent} from './components/booking/my-bookings/my-bookings.
 import {BookingInfoComponent} from './components/booking/booking-info/booking-info.component';
 import {RatingModule} from 'ngx-rating';
 import {RateComponent} from './components/rate/rate/rate.component';
-import {BookingRateComponent} from './components/rate/booking-rate/booking-rate.component';
 import {PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {HttpClientInterceptor} from './interceptors/httpInterceptor';
 import {MyMenusComponent} from './components/menu/my-menus/my-menus.component';
-import { HostMenuInfoComponent } from './components/menu/host-menu-info/host-menu-info.component';
+import {HostMenuInfoComponent} from './components/menu/host-menu-info/host-menu-info.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {ChatInfoComponent} from './components/chat/chat-info/chat-info.component';
+import {RateListComponent} from './components/rate/rate-list/rate-list.component';
+import {CreateRateComponent} from './components/rate/create-rate/create-rate.component';
+import { AddressDishsInfoComponent } from './components/menu/address-dishs-info/address-dishs-info.component';
+import { HeaderMenuInfoComponent } from './components/menu/header-menu-info/header-menu-info.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -81,9 +88,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MyBookingsComponent,
     BookingInfoComponent,
     RateComponent,
-    BookingRateComponent,
     MyMenusComponent,
     HostMenuInfoComponent,
+    ChatInfoComponent,
+    RateListComponent,
+    CreateRateComponent,
+    AddressDishsInfoComponent,
+    HeaderMenuInfoComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -121,7 +132,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatTabsModule,
     Ng4GeoautocompleteModule.forRoot(),
     RatingModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    InfiniteScrollModule,
+    AgmJsMarkerClustererModule,
   ],
   providers: [UserService, GeolocationService, ChatService, UtilService,
     {
@@ -134,7 +147,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       multi: true
     }],
   bootstrap: [AppComponent],
-  entryComponents: [MenuInfoComponent]
+  entryComponents: [ChatInfoComponent]
 })
 export class AppModule {
 }

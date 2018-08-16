@@ -1,62 +1,30 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Booking} from '../../../models/booking/booking';
 import {Rate} from '../../../models/rate/rate';
-import {RateService} from '../../../services/rate/rate.service';
-import {Router} from '@angular/router';
+import {BookingService} from '../../../services/booking/booking.service';
+import * as _ from 'lodash';
+import {RateType} from '../../../services/util/rate-type.enum';
 
 
 @Component({
   selector: 'app-booking-info',
   templateUrl: './booking-info.component.html',
   styleUrls: ['./booking-info.component.css'],
-  providers: [RateService],
-  animations: [
-    trigger('visibility', [
-      state('show', style({
-        opacity: 1,
-      })),
-      state('hide', style({
-        opacity: 0,
-      })),
-      transition('show => hide', animate('500ms ease-out')),
-      transition('hide => show', animate('500ms ease-in'))
-    ])
-  ]
+  providers: [BookingService]
 })
 export class BookingInfoComponent implements OnInit {
 
   @Input() booking: Booking;
-  @Input() state: string;
-  visibility: string;
-  comment: string;
-  rate: number;
-  classes: string;
+  hostRate: Rate;
+  guestRate: Rate;
 
-
-  constructor(private rateService: RateService, private router: Router) {
-    this.visibility = 'hide';
+  constructor(private bookingService: BookingService) {
   }
 
   ngOnInit() {
-    if (!this.booking.rate && this.state === 'show') {
-      this.classes = 'animation';
-    }
-  }
-
-  mouseEnter() {
-    this.visibility = 'show';
-  }
-
-  mouseLeave() {
-    this.visibility = 'hide';
-  }
-
-  saveRate() {
-    this.rateService.save(new Rate(this.booking.guest, this.booking.host,
-      this.comment, this.rate, this.booking)).subscribe((rate: Rate) => {
-      this.router.navigate(['/my-bookings']).catch();
+    this.bookingService.getBookingRates(this.booking._id).subscribe((rates: Rate[]) => {
+      this.hostRate = _.find(rates, {type: RateType.HOST});
+      this.guestRate = _.find(rates, {type: RateType.GUEST});
     });
   }
-
 }

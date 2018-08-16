@@ -1,0 +1,25 @@
+<img mat-card-image src="/assets/img/menu.jpeg">
+<mat-card-header>
+  <div class="datetime">
+    <mat-icon class="time-icon">access_time</mat-icon>
+    <span>{{date | date: 'dd/MM HH:mm'}}</span>
+  </div>
+  <div class="price">{{+price | number : '1.2-2'}}
+    <mat-icon style="font-size: 20px;">attach_money</mat-icon>
+  </div>
+  <div class="persons" *ngIf="available">
+    <span style="font-size: 30px;">
+      <span class="available" [style.color]="available > 1 ? '#80d280' : '#ff6060'">
+        {{available}}
+      </span>
+      /{{guests}}</span>
+    <mat-icon>perm_identity</mat-icon>
+  </div>
+  <mat-card-title class="title">
+    {{name}}
+    <span>
+      <app-user-image [userId]="host._id" [username]="host.name" diameter="70px" float="right">
+      </app-user-image>
+    </span>
+  </mat-card-title>
+</mat-card-header>

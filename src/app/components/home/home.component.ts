@@ -1,9 +1,9 @@
-import {Menu} from './../../models/menu/menu';
+import {Menu} from '../../models/menu/menu';
 import {Component, OnInit} from '@angular/core';
 import {MenuService} from '../../services/menu/menu.service';
 import {GeolocationService} from '../../services/geolocation/geolocation.service';
-import {Coordinates} from './../../models/coordinates/coordinates';
-import * as _ from 'lodash';
+import {Coordinates} from '../../models/coordinates/coordinates';
+import {Sort} from '../../services/util/sort.enum';
 
 @Component({
   selector: 'app-home',
@@ -17,18 +17,24 @@ export class HomeComponent implements OnInit {
   latitude: number;
   date: Date;
   type: string;
+  sort: Sort;
   menus: Menu[];
-  menusMap: Menu[];
   userSettings: any;
+  currentPage: number;
+  minDate: Date;
 
 
-  constructor(private menuService: MenuService, private geolocationService: GeolocationService) {
+  constructor(private menuService: MenuService,
+              private geolocationService: GeolocationService) {
 
   }
 
   ngOnInit() {
     this.persons = '2';
+    this.currentPage = 0;
+    this.minDate = new Date();
     this.date = new Date();
+    this.sort = Sort.DISTANCE;
     this.type = this.date.getHours() > 17 ? 'dinner' : 'lunch';
     const lastCoordinates: Coordinates = this.geolocationService.getLastCoordinatesSearch();
     if (lastCoordinates !== undefined) {
@@ -42,7 +48,6 @@ export class HomeComponent implements OnInit {
       geoCountryRestriction: ['es'],
       inputString: this.geolocationService.getLastLocationSearch()
     };
-
   }
 
   autocompleteHandler(selectedData: any) {
@@ -53,18 +58,28 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  onScrollDown() {
+    this.currentPage++;
+    this.findMenus();
+  }
+
   find() {
-    this.menuService.find(this.longitude, this.latitude, this.persons, this.date, this.type)
-      .subscribe(menus => {
-        this.menus = menus;
-        menus.map((menu) => {
+    this.menus = [];
+    this.currentPage = 0;
+    this.findMenus();
+  }
+
+  private findMenus() {
+    this.menuService.find(this.longitude, this.latitude, this.persons, this.date, this.type, this.currentPage, this.sort)
+      .subscribe((menus: Menu[]) => {
+        this.menus.push(...menus);
+        this.menus.map((menu) => {
           menu.label = {
             fontSize: '15px',
             text: menu.price.toFixed(2) + ' $',
             fontWeight: 'bold',
           };
         });
-        this.menusMap = _.uniqBy(menus, 'location.toString()');
       });
   }
 }

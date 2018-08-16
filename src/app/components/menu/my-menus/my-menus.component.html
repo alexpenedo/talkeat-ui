@@ -1,18 +1,24 @@
 <div class="col-8 offset-2">
-  <mat-tab-group mat-stretch-tabs position="0" >
+  <mat-tab-group mat-stretch-tabs position="0" (selectedTabChange)="findMenus($event)">
     <mat-tab label="Pending">
-      <perfect-scrollbar style="max-height: 580px;">
+      <!--<perfect-scrollbar style="max-height: 580px;">-->
+      <div class="menus" infiniteScroll [infiniteScrollDistance]="2"
+           [infiniteScrollThrottle]="50" (scrolled)="onScrollPendingDown()" [scrollWindow]="false">
         <div *ngFor="let menu of menusPending" class="menu-row">
           <app-host-menu-info [menu]="menu" state="info"></app-host-menu-info>
         </div>
-      </perfect-scrollbar>
+      </div>
+      <!--</perfect-scrollbar>-->
     </mat-tab>
     <mat-tab label="Finished">
-      <perfect-scrollbar style="max-height: 580px;">
+      <div class="menus" infiniteScroll [infiniteScrollDistance]="2"
+           [infiniteScrollThrottle]="50" (scrolled)="onScrollFinishedDown()" [scrollWindow]="false">
+        <!--<perfect-scrollbar style="max-height: 580px;">-->
         <div *ngFor="let menu of menusFinished" class="menu-row">
           <app-host-menu-info [menu]="menu" state="show"></app-host-menu-info>
         </div>
-      </perfect-scrollbar>
+      </div>
+      <!--</perfect-scrollbar>-->
     </mat-tab>
   </mat-tab-group>
 </div>

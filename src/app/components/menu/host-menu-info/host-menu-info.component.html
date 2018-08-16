@@ -1,77 +1,80 @@
-<mat-card [id]="menu._id" [ngClass]="classes" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
-  <img mat-card-image src="/assets/img/menu.jpeg">
-  <div class="datetime">
-    <mat-icon class="time-icon">access_time</mat-icon>
-    <span>{{menu.date | date: 'dd/MM HH:mm'}}</span>
-  </div>
-  <div class="price">{{+menu.price | number : '1.2-2'}}
-    <mat-icon style="font-size: 20px;">attach_money</mat-icon>
-  </div>
-  <div class="persons">
-    <span style="font-size: 30px;">
-      <span class="available" [style.color]="menu.available > 1 ? '#80d280' : '#ff6060'">
-        {{menu.available}}
-      </span>
-      /{{menu.guests}}</span>
-    <mat-icon>perm_identity</mat-icon>
-  </div>
-  <mat-card-title class="title">
-    {{menu.name}}
-    <span>
-        <app-user-image [userId]="menu.host._id" diameter="70px" float="right"></app-user-image>
-    </span>
-  </mat-card-title>
-  <mat-card-header>
-    <mat-card-subtitle class="description">{{menu.description}}</mat-card-subtitle>
-  </mat-card-header>
+<mat-card [id]="menu._id">
+  <button mat-icon-button [matMenuTriggerFor]="options" class="options-btn">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #options="matMenu">
+    <button mat-menu-item [routerLink]="['/edit-menu',menu._id]">
+      <mat-icon>edit</mat-icon>
+      <span>Edit</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>delete</mat-icon>
+      <span>Delete</span>
+    </button>
+  </mat-menu>
+  <app-header-menu-info [name]="menu.name" [date]="menu.date" [price]="menu.price" [guests]="menu.guests"
+                        [available]="menu.available" [host]="menu.host"></app-header-menu-info>
   <mat-card-content>
-    <mat-card-header>
-      <mat-card-subtitle>
-                <span>
-                    <mat-icon class="text-danger">person_pin_circle</mat-icon>
-                </span>
-        <span>
-                    {{menu.address}}</span>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <div class="row mb-5">
-      <div class="col-4">Starters
-        <mat-chip-list>
-          <mat-chip *ngFor="let dish of menu.starters"> {{dish.name}}</mat-chip>
-        </mat-chip-list>
-      </div>
-      <div class="col-4">Mains
-        <mat-chip-list>
-          <mat-chip *ngFor="let dish of menu.mains"> {{dish.name}}</mat-chip>
-        </mat-chip-list>
-      </div>
-      <div class="col-4">Desserts
-        <mat-chip-list>
-          <mat-chip *ngFor="let dish of menu.desserts"> {{dish.name}}</mat-chip>
-        </mat-chip-list>
-      </div>
-    </div>
-    <div *ngIf="(bookings && bookings.length!=0)">
-      <mat-divider></mat-divider>
-      <div class="col-10 offset-1 guests">
-        <h4 class="guests-text">Guests</h4>
-        <span *ngFor="let booking of bookings" class="guest">
-          <span *ngIf="booking.confirmed"><mat-icon class="booking-status confirmed">check_circle</mat-icon></span>
-          <span *ngIf="booking.canceled"><mat-icon class="booking-status canceled">cancel</mat-icon></span>
-         <app-user-image [userId]="booking.guest._id" diameter="70px" [username]="booking.guest.name"></app-user-image>
-        </span>
-      </div>
-    </div>
+    <mat-tab-group>
+      <mat-tab label="Info">
+        <div class="container-fluid mt-3">
+          <app-address-dishs-info [description]="menu.description" [address]="menu.address" [starters]="menu.starters"
+                                  [mains]="menu.mains"
+                                  [desserts]="menu.desserts">
+          </app-address-dishs-info>
+        </div>
+      </mat-tab>
+      <mat-tab label="Guests">
+        <div class="guests mt-3 container-fluid">
+          <h5 *ngIf="(!bookings || bookings.length==0)"> There aren't guests in this menu</h5>
+          <div *ngIf="(bookings && bookings.length!=0)">
+            <div *ngFor="let booking of bookings" class="row guest">
+              <div class="col-2" *ngIf="booking.confirmed">
+                     <span><mat-icon
+                       class="booking-status confirmed">check_circle</mat-icon>
+                       <span class="text-secondary book-persons">{{booking.persons}}x</span>
+                     </span>
+                <app-user-image [userId]="booking.guest._id" diameter="70px"
+                                [username]="booking.guest.name"></app-user-image>
+                <mat-divider></mat-divider>
+              </div>
+              <div class="col-5" *ngIf="(booking.confirmed && isPast(menu.date))">
+                <app-rate *ngIf="booking.guestRate" [rate]="booking.guestRate"></app-rate>
+                <div *ngIf="!booking.guestRate">
+                  Here you can rate the guest
+                </div>
+                <button mat-raised-button color="accent"
+                        [routerLink]="['/rating',booking._id,'guest', booking.guest._id]">
+                  VALORATE
+                </button>
+              </div>
+              <div class="col-4" *ngIf="(booking.confirmed && isPast(menu.date))">
+                <app-rate *ngIf="booking.hostRate" [rate]="booking.hostRate"></app-rate>
+                <div *ngIf="!booking.hostRate">
+                  The guest has not rated you yet
+                </div>
+              </div>
+            </div>
+            <!--<span *ngIf="(isCanceled(booking) && !isPast(menu.date))">-->
+            <!--<mat-icon class="booking-status canceled">cancel</mat-icon>-->
+            <!--</span>-->
+            <!--</div>-->
+            <!--<div *ngIf="(booking.confirmed && isPast(menu.date))" style="display: flex">-->
+            <!--</div>-->
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </mat-card-content>
   <!--<button *ngIf="(state=='show')" class="valorate-button" mat-raised-button color="accent" [@visibility]="visibility">-->
   <!--VALORATE YOUR GUESTS-->
   <!--</button>-->
-  <div *ngIf="(state=='info')" [@visibility]="visibility">
-    <button class="edit-remove-button" mat-raised-button color="basic" [routerLink]="['/edit-menu',menu._id]">
-      EDIT
-    </button>
-    <button class="edit-remove-button" mat-raised-button color="warn">
-      REMOVE
-    </button>
-  </div>
+  <!--<div>-->
+  <!--<button class="edit-remove-button" mat-raised-button color="basic" [routerLink]="['/edit-menu',menu._id]">-->
+  <!--EDIT-->
+  <!--</button>-->
+  <!--<button class="edit-remove-button" mat-raised-button color="warn">-->
+  <!--REMOVE-->
+  <!--</button>-->
+  <!--</div>-->
 </mat-card>

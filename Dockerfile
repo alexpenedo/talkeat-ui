@@ -1,4 +1,4 @@
-FROM node:8.1.4-alpine as builder
+FROM node:10 as builder
 COPY package.json package-lock.json ./
 RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
 WORKDIR /ng-app

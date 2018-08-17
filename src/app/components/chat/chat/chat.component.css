@@ -30,35 +30,38 @@ mat-card-actions {
   margin-bottom: 2px !important;
 }
 
-mat-expansion-panel{
+mat-expansion-panel {
   background: #e18b9b;
   color: #310000;
   position: fixed;
   border-radius: 10px;
 }
 
-.chip-booking{
+.chip-booking {
   position: absolute;
   top: 44px;
   right: 90px;
 }
-.chip-canceled{
+
+.chip-canceled {
   background: #e18b9b;
   color: #310000;
 }
-.chip-confirmed{
+
+.chip-confirmed {
   background-color: #4e943c;
   color: #fff;
 }
 
-mat-expansion-panel-header button{
+mat-expansion-panel-header button {
   margin-left: 20px;
 }
-mat-expansion-panel-header{
+
+mat-expansion-panel-header {
   border-radius: 10px;
 }
 
-.btn-confirm{
+.btn-confirm {
   background: #28a745;
 }
 
@@ -94,8 +97,15 @@ mat-expansion-panel-header{
   background: #6b50b7;
   color: white;
 }
+
 .notification-message {
   background: #91b77a;
+  color: white;
+  margin: 20px auto;
+}
+
+.cancel-message {
+  background: #78393f;
   color: white;
   margin: 20px auto;
 }

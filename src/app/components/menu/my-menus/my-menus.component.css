@@ -3,7 +3,18 @@
   margin-top: 20px;
   width: 90%;
 }
+.canceled{
+  filter: brightness(0.3);
+}
 .menus{
-  max-height: 460px;
+  max-height: 80vh;
   overflow: auto;
+}
+.menu-canceled{
+  position: absolute;
+  z-index: 1;
+  left: 29%;
+  top: 37%;
+  color: #d27676;
+  font-size: 36pt;
 }

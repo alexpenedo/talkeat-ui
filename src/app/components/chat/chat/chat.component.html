@@ -6,7 +6,8 @@
     <span class="chat-user-name">
       {{chatUser.name}}
     </span>
-    <button mat-icon-button color="basic" class="btn-menu" (click)="openDialog()">
+    <button mat-icon-button color="basic" class="btn-menu" (click)="openDialog()"
+            [disabled]="chat.booking.canceled || chat.booking.menu.canceled">
       <mat-icon>info</mat-icon>
     </button>
     <button mat-mini-fab color="basic" class="btn-window btn-toggle" (click)="toggleWindow()">
@@ -36,8 +37,8 @@
       <button mat-raised-button color="primary" class="btn-confirm" (click)="confirmBooking()">Confirm</button>
       <button mat-raised-button color="warn" (click)="cancelBooking()">Cancel</button>
     </mat-expansion-panel>
-    <div *ngIf="!chat.booking.canceled && !chat.booking.confirmed"  style="margin-bottom: 60px"></div>
-    <div *ngIf="(chat.booking.canceled || chat.booking.confirmed)"  style="margin-bottom: 20px"></div>
+    <div *ngIf="!chat.booking.canceled && !chat.booking.confirmed" style="margin-bottom: 60px"></div>
+    <div *ngIf="(chat.booking.canceled || chat.booking.confirmed)" style="margin-bottom: 20px"></div>
     <div *ngFor="let message of chat.messages" class="message-fill">
       <div [class]="getClass(message)">
         {{message.message}}
@@ -46,11 +47,13 @@
   </mat-card-content>
   <mat-card-actions *ngIf="maximized">
     <div class="input-group">
-      <input [disabled]="chat.booking.canceled" autofocus class="form-control" maxlength="50" placeholder="Send a message" (blur)="onBlur()"
+      <input [disabled]="chat.booking.canceled" autofocus class="form-control" maxlength="50"
+             placeholder="Send a message" (blur)="onBlur()"
              (focus)="onFocus()" [(ngModel)]="messageContent"
              (keyup.enter)="sendMessage(messageContent) ">
       <div class="input-group-append">
-        <button [disabled]="chat.booking.canceled" class="btn btn-outline-secondary btn-send" type="button" (click)="sendMessage(messageContent)">
+        <button [disabled]="chat.booking.canceled || chat.booking.menu.canceled"
+                class="btn btn-outline-secondary btn-send" type="button" (click)="sendMessage(messageContent)">
           <mat-icon>send</mat-icon>
         </button>
       </div>

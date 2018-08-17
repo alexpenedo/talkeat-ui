@@ -1,5 +1,5 @@
 <mat-card [id]="menu._id">
-  <button mat-icon-button [matMenuTriggerFor]="options" class="options-btn">
+  <button mat-icon-button [matMenuTriggerFor]="options" class="options-btn" *ngIf="!isPast(menu.date)">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #options="matMenu">
@@ -7,9 +7,9 @@
       <mat-icon>edit</mat-icon>
       <span>Edit</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="openDialog()">
       <mat-icon>delete</mat-icon>
-      <span>Delete</span>
+      <span>Cancel Menu</span>
     </button>
   </mat-menu>
   <app-header-menu-info [name]="menu.name" [date]="menu.date" [price]="menu.price" [guests]="menu.guests"
@@ -19,8 +19,7 @@
       <mat-tab label="Info">
         <div class="container-fluid mt-3">
           <app-address-dishs-info [description]="menu.description" [address]="menu.address" [starters]="menu.starters"
-                                  [mains]="menu.mains"
-                                  [desserts]="menu.desserts">
+                                  [mains]="menu.mains" [desserts]="menu.desserts">
           </app-address-dishs-info>
         </div>
       </mat-tab>
@@ -28,39 +27,42 @@
         <div class="guests mt-3 container-fluid">
           <h5 *ngIf="(!bookings || bookings.length==0)"> There aren't guests in this menu</h5>
           <div *ngIf="(bookings && bookings.length!=0)">
-            <div *ngFor="let booking of bookings" class="row guest">
-              <div class="col-2" *ngIf="booking.confirmed">
+            <div *ngFor="let booking of bookings">
+              <div class="row" *ngIf="isPast(menu.date)">
+                <div class="col-2" *ngIf="(booking.confirmed && isPast(menu.date))">
                      <span><mat-icon
                        class="booking-status confirmed">check_circle</mat-icon>
                        <span class="text-secondary book-persons">{{booking.persons}}x</span>
                      </span>
+                  <app-user-image [userId]="booking.guest._id" diameter="70px"
+                                  [username]="booking.guest.name"></app-user-image>
+                  <mat-divider></mat-divider>
+                </div>
+                <div class="col-5" *ngIf="(booking.confirmed && isPast(menu.date))">
+                  <app-rate *ngIf="booking.guestRate" [rate]="booking.guestRate"></app-rate>
+                  <div *ngIf="!booking.guestRate">
+                    Here you can rate the guest
+                  </div>
+                  <button mat-raised-button color="accent"
+                          [routerLink]="['/rating',booking._id,'guest', booking.guest._id]">
+                    VALORATE
+                  </button>
+                </div>
+                <div class="col-4" *ngIf="(booking.confirmed && isPast(menu.date))">
+                  <app-rate *ngIf="booking.hostRate" [rate]="booking.hostRate"></app-rate>
+                  <div *ngIf="!booking.hostRate">
+                    The guest has not rated you yet
+                  </div>
+                </div>
+              </div>
+              <div class="col-2 guest" *ngIf="!isPast(menu.date)">
+                <mat-icon *ngIf="(booking.canceled)" class="booking-status canceled">cancel</mat-icon>
+                <mat-icon *ngIf="(booking.confirmed)" class="booking-status confirmed">check_circle</mat-icon>
+                <span class="text-secondary book-persons">{{booking.persons}}x</span>
                 <app-user-image [userId]="booking.guest._id" diameter="70px"
                                 [username]="booking.guest.name"></app-user-image>
-                <mat-divider></mat-divider>
-              </div>
-              <div class="col-5" *ngIf="(booking.confirmed && isPast(menu.date))">
-                <app-rate *ngIf="booking.guestRate" [rate]="booking.guestRate"></app-rate>
-                <div *ngIf="!booking.guestRate">
-                  Here you can rate the guest
-                </div>
-                <button mat-raised-button color="accent"
-                        [routerLink]="['/rating',booking._id,'guest', booking.guest._id]">
-                  VALORATE
-                </button>
-              </div>
-              <div class="col-4" *ngIf="(booking.confirmed && isPast(menu.date))">
-                <app-rate *ngIf="booking.hostRate" [rate]="booking.hostRate"></app-rate>
-                <div *ngIf="!booking.hostRate">
-                  The guest has not rated you yet
-                </div>
               </div>
             </div>
-            <!--<span *ngIf="(isCanceled(booking) && !isPast(menu.date))">-->
-            <!--<mat-icon class="booking-status canceled">cancel</mat-icon>-->
-            <!--</span>-->
-            <!--</div>-->
-            <!--<div *ngIf="(booking.confirmed && isPast(menu.date))" style="display: flex">-->
-            <!--</div>-->
           </div>
         </div>
       </mat-tab>

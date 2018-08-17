@@ -63,6 +63,7 @@ import {RateListComponent} from './components/rate/rate-list/rate-list.component
 import {CreateRateComponent} from './components/rate/create-rate/create-rate.component';
 import { AddressDishsInfoComponent } from './components/menu/address-dishs-info/address-dishs-info.component';
 import { HeaderMenuInfoComponent } from './components/menu/header-menu-info/header-menu-info.component';
+import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -95,6 +96,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CreateRateComponent,
     AddressDishsInfoComponent,
     HeaderMenuInfoComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -147,7 +149,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       multi: true
     }],
   bootstrap: [AppComponent],
-  entryComponents: [ChatInfoComponent]
+  entryComponents: [ChatInfoComponent, ConfirmDialogComponent]
 })
 export class AppModule {
 }

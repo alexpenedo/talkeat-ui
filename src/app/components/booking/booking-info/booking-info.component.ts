@@ -27,4 +27,12 @@ export class BookingInfoComponent implements OnInit {
       this.guestRate = _.find(rates, {type: RateType.GUEST});
     });
   }
+
+  isPast(date: Date) {
+    const time = new Date(date).getTime();
+    if (time < new Date().getTime()) {
+      return true;
+    }
+    return false;
+  }
 }

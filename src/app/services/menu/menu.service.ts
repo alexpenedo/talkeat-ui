@@ -57,6 +57,10 @@ export class MenuService {
   }
 
   public findById(id: string): Observable<Menu> {
-    return this.http.get<Menu>(`${this.url}/${id}/`);
+    return this.http.get<Menu>(`${this.url}/${id}`);
+  }
+
+  cancelMenu(id: string) {
+    return this.http.post<Menu>(`${this.url}/${id}/cancel`, {});
   }
 }

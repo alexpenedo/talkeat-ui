@@ -16,6 +16,7 @@ export class Menu {
   public country: string;
   public address: string;
   public location: number[];
+  public canceled: boolean;
   public label: any;
   public average: number;
   public distance: number;

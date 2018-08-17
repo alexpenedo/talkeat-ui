@@ -11,6 +11,7 @@ import {Coordinates} from '../../../models/coordinates/coordinates';
 import {AddDishesComponent} from '../add-dishes/add-dishes.component';
 import {DatePipe} from '@angular/common';
 import {ChatService} from '../../../services/chat/chat.service';
+import {Notification} from '../../../services/util/notification.enum';
 
 @Component({
   selector: 'app-create-menu',
@@ -138,7 +139,7 @@ export class CreateEditMenuComponent implements OnInit {
     this.menu.date = this.date;
     this.menu.guests = parseInt(this.completeData.get('guests').value, 10);
     this.menuService.update(this.menu).subscribe((menu) => {
-      this.chatService.sendNotification(menu);
+      this.chatService.sendNotification(menu, Notification.UPDATE);
       this.router.navigate(['/home']).catch();
     });
   }

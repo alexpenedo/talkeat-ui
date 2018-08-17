@@ -11,7 +11,7 @@
           </app-address-dishs-info>
         </div>
       </mat-tab>
-      <mat-tab label="RATINGS">
+      <mat-tab label="RATINGS" *ngIf="isPast(booking.menuDate)">
         <div class="container-fluid mt-3">
           <div class="row">
             <app-rate *ngIf="hostRate" class="col-6" [rate]="hostRate"></app-rate>

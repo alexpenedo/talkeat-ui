@@ -116,6 +116,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   getClass(message: Message) {
     if (!message.from) {
+      console.log(this.chat.booking.menu);
+      if (this.chat.booking.menu.canceled) {
+        return 'cancel-message message';
+      }
       return 'notification-message message';
     } else if (message.from === this.user._id) {
       return 'user-message message';

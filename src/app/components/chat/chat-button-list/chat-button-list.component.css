@@ -1,55 +1,65 @@
-.chat-user-name{
-    margin-left: 15px;
+.chat-user-name {
+  margin-left: 45px;
+  position: absolute;
+  margin-top: -50px;
+}
 
+.chat-btn {
+  margin-left: 25px;
+  margin-right: 40px;
 }
-.chat-btn{
-    margin-left: 25px;
-    margin-right:40px;
+
+.chat-user-btn {
+  width: 200px;
+  height: 60px;
 }
-.chat-user-btn{
-    width:200px;
-    height: 60px;
+
+.chat-message {
+  color: gray;
+  font-size: 11px;
+  margin-top: -30px;
+  padding-left: 45px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.chat-message{
-    color: gray;
-    font-size: 11px;
-    margin-top: -30px;
-    padding-left: 45px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+.no-chats-button {
+  font-size: 13px;
 }
-.no-chats-button{
-    font-size: 13px;
+
+.no-chats-icon {
+  font-size: 20px;
+  margin: 0;
 }
-.no-chats-icon{
-    font-size: 20px;
-    margin: 0;
+
+.notification-btn {
+  position: absolute;
+  font-size: 20px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  top: 0px;
 }
-.notification-btn{
-    position: absolute;
-    font-size: 20px;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    top: 0px;
+
+.notification-number {
+  position: absolute;
+  top: 3px;
+  left: 10px;
 }
-.notification-number{
-    position: absolute;
-    top: 3px;
-    left: 10px;
+
+.notification-btn-chat {
+  position: absolute;
+  font-size: 12px;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+  top: 13px;
+  right: 12px;
 }
-.notification-btn-chat{
-    position: absolute;
-    font-size: 12px;
-    padding: 0;
-    width: 25px;
-    height: 25px;
-    top: 13px;
-    right: 12px;
-}
-.notification-number-chat{
-    position: absolute;
-    top: 0px;
-    left: 9px;
+
+.notification-number-chat {
+  position: absolute;
+  top: 0px;
+  left: 9px;
 }

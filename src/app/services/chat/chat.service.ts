@@ -8,6 +8,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Menu} from '../../models/menu/menu';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {UserToken} from '../../models/user/userToken';
+import {Notification} from '../util/notification.enum';
 
 
 @Injectable()
@@ -42,8 +43,8 @@ export class ChatService {
     this._closeOpenedChats.next(null);
   }
 
-  public sendNotification(menu: Menu) {
-    this.socket.emit('notification', menu);
+  public sendNotification(menu: Menu, notification: Notification) {
+    this.socket.emit('notification', {menu, notification});
   }
 
   public sendMessage(message: any) {

@@ -1,24 +1,24 @@
 <div class="col-8 offset-2">
-  <mat-tab-group mat-stretch-tabs position="0">
+  <mat-tab-group mat-stretch-tabs position="0" (selectedTabChange)="findBookings($event)">
     <mat-tab label="Pending">
-      <perfect-scrollbar style="max-height: 580px;">
-        <!--<div infiniteScroll [infiniteScrollDistance]="2"-->
-        <!--[infiniteScrollThrottle]="50" (scrolled)="onScrollDown()" [scrollWindow]="false">-->
+      <!--<perfect-scrollbar style="max-height: 580px;">-->
+      <div class="bookings" infiniteScroll [infiniteScrollDistance]="2"
+           [infiniteScrollThrottle]="50" (scrolled)="onScrollPendingDown()" [scrollWindow]="false">
         <div *ngFor="let booking of bookingsPending" class="booking-row">
           <app-booking-info [booking]="booking" state="info"></app-booking-info>
         </div>
-        <!--</div>-->
-      </perfect-scrollbar>
+      </div>
+      <!--</perfect-scrollbar>-->
     </mat-tab>
     <mat-tab label="Finished">
-      <perfect-scrollbar style="max-height: 580px;">
-        <!--<div infiniteScroll [infiniteScrollDistance]="2"-->
-        <!--[infiniteScrollThrottle]="50" (scrolled)="onScrollDown()" [scrollWindow]="false">-->
+      <!--<perfect-scrollbar style="max-height: 580px;">-->
+      <div class="bookings" infiniteScroll [infiniteScrollDistance]="2"
+           [infiniteScrollThrottle]="50" (scrolled)="onScrollPendingDown()" [scrollWindow]="false">
         <div *ngFor="let booking of bookingsFinished" class="booking-row">
           <app-booking-info [booking]="booking" state="show"></app-booking-info>
         </div>
-        <!--</div>-->
-      </perfect-scrollbar>
+      </div>
+      <!--</perfect-scrollbar>-->
     </mat-tab>
   </mat-tab-group>
 </div>

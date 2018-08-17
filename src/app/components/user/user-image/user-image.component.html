@@ -1,6 +1,6 @@
 <div [style.float]="float">
   <div class="user-image" [style.height]="diameter" [style.width]="diameter">
-    <img [src]="image" class="center-cropped">
+    <img [src]="image" class="center-cropped" [style.height]="diameter">
   </div>
   <div class="user-name" *ngIf="username">{{username}}</div>
 </div>

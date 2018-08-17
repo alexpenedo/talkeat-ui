@@ -1,5 +1,5 @@
-import {UserService} from './../../services/user/user.service';
-import {User} from './../../models/user/user';
+import {UserService} from '../../services/user/user.service';
+import {User} from '../../models/user/user';
 import {Component, OnInit} from '@angular/core';
 import {ChatService} from '../../services/chat/chat.service';
 

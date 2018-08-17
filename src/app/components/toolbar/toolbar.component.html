@@ -15,13 +15,13 @@
     <button mat-button color="basic" [routerLink]="['/register']" i18n="@@signup">SIGN UP</button>
   </span>
   <span *ngIf="user">
-    <app-chat-button-list [user]="user" *ngIf="user"></app-chat-button-list>
-    <button style="float: none" mat-button color="basic" [matMenuTriggerFor]="menu">
+    <app-chat-button-list style="float: left" [user]="user" *ngIf="user"></app-chat-button-list>
+    <button style="line-height: 4;" mat-button color="basic" [matMenuTriggerFor]="menu">
       <!--<mat-icon *ngIf="!user.picture">account_circle</mat-icon>-->
       <!--<span>-->
       <app-user-image [userId]="user._id" diameter="50px" float="right">
       </app-user-image>
-       <span>{{user.name}} </span>
+       <span>{{user.name}} &nbsp;</span>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item [routerLink]="['/profile']">

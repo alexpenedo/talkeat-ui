@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MenuService} from '../../../services/menu/menu.service';
 import {Menu} from '../../../models/menu/menu';
 import {MatTabChangeEvent} from '@angular/material';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-my-menus',
@@ -25,11 +26,17 @@ export class MyMenusComponent implements OnInit {
   }
 
   findMenus(event: MatTabChangeEvent) {
-    if (event.index == 0) {
+    if (event.index === 0) {
       this.findMenusPending();
     } else {
       this.findMenusFinished();
     }
+  }
+
+  onCancel(id: string) {
+    _.remove(this.menusPending, (e) => {
+      return (e._id === id);
+    });
   }
 
   onScrollPendingDown() {

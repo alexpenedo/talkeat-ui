@@ -38,6 +38,8 @@ export class ChatButtonListComponent implements OnInit {
             return chatElem._id === updatedChat._id;
           });
           chat.messages.push(_.last(updatedChat.messages));
+          // For menu or booking cancel;
+          chat.booking = updatedChat.booking;
           if (!this.openedChats.find(element => element === chat)) {
             chat.notRead++;
           }

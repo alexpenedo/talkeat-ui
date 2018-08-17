@@ -21,16 +21,18 @@ export class BookingService {
     return this.http.post<Booking>(this.url, booking);
   }
 
-  public findBookingsByGuestFinished(): Observable<Booking[]> {
+  public findBookingsByGuestFinished(currentPage: number): Observable<Booking[]> {
     const guest: User = this.userService.getUser();
-    const params: HttpParams = new HttpParams().set('guestId', guest._id).set('status', Status.FINISHED.toString());
+    const params: HttpParams = new HttpParams().set('guest', guest._id).set('status', Status.FINISHED.toString())
+      .set('page', currentPage.toString()).set('size', '4');
 
     return this.http.get<Booking[]>(this.url, {params});
   }
 
-  public findBookingsByGuestPending(): Observable<Booking[]> {
+  public findBookingsByGuestPending(currentPage: number): Observable<Booking[]> {
     const guest: User = this.userService.getUser();
-    const params: HttpParams = new HttpParams().set('guestId', guest._id).set('status', Status.PENDING.toString());
+    const params: HttpParams = new HttpParams().set('guest', guest._id).set('status', Status.PENDING.toString())
+      .set('page', currentPage.toString()).set('size', '4');
 
     return this.http.get<Booking[]>(this.url, {params});
   }

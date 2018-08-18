@@ -47,7 +47,7 @@
   </mat-card-content>
   <mat-card-actions *ngIf="maximized">
     <div class="input-group">
-      <input [disabled]="chat.booking.canceled" autofocus class="form-control" maxlength="50"
+      <input [disabled]="chat.booking.canceled" autofocus class="form-control" maxlength="200"
              placeholder="Send a message" (blur)="onBlur()"
              (focus)="onFocus()" [(ngModel)]="messageContent"
              (keyup.enter)="sendMessage(messageContent) ">

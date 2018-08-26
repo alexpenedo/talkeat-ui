@@ -1,0 +1,33 @@
+<mat-card [id]="booking._id">
+  <app-header-menu-info [name]="booking.menu.name" [date]="booking.menu.date" [price]="booking.menu.price"
+                        [host]="booking.host"></app-header-menu-info>
+  <mat-card-content>
+    <mat-tab-group mat-stretch-tabs position="0">
+      <mat-tab label="INFO">
+        <div class="container-fluid mt-3">
+          <app-address-dishs-info [description]="booking.menu.description" [address]="booking.menu.address"
+                                  [starters]="booking.menu.starters" [mains]="booking.menu.mains"
+                                  [desserts]="booking.menu.desserts">
+          </app-address-dishs-info>
+        </div>
+      </mat-tab>
+      <mat-tab label="RATINGS" *ngIf="isPast(booking.menuDate)">
+        <div class="container-fluid mt-3">
+          <div class="row">
+            <app-rate *ngIf="hostRate" class="col-6" [rate]="hostRate"></app-rate>
+            <div *ngIf="!hostRate" class="col-6 mx-auto">
+              <h6>Here you can rate the host</h6>
+              <button mat-raised-button color="accent" [routerLink]="['/ratings',booking._id]">
+                VALORATE
+              </button>
+            </div>
+            <app-rate *ngIf="guestRate" class="col-6" [rate]="guestRate"></app-rate>
+            <div *ngIf="!guestRate" class="col-6 mx-auto">
+              <h6>The host has not rated you yet</h6>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

@@ -50,7 +50,7 @@ export class CreateBookingComponent implements OnInit {
           this.available = Array(menu.available).fill(1).map((x, i) => i + 1);
           this.menu = menu;
           this.route.queryParams.subscribe(queryParams => {
-            this.persons.get('persons').setValue( +queryParams.persons);
+            this.persons.get('persons').setValue(+queryParams.persons);
           });
           self.rateService.getRatesByHostId(this.menu.host._id).subscribe((rates: Rate[]) => {
             self.rates = rates;
@@ -60,7 +60,7 @@ export class CreateBookingComponent implements OnInit {
   }
 
   bookMenu() {
-    const bookingToSave = new Booking(this.userService.getUser(), this.menu, this.menu.date, this.menu.host,
+    const bookingToSave = new Booking(this.userService.getUser(), this.menu,
       +this.persons.get('persons').value, this.comments.get('comments').value);
     this.bookingService.save(bookingToSave).subscribe((booking: Booking) => {
       this.chatService.createFirstMessage(booking);

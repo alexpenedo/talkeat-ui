@@ -34,7 +34,7 @@ export class MenuService {
     const params: HttpParams = new HttpParams().set('longitude', longitude.toString())
       .set('latitude', latitude.toString()).set('persons', persons)
       .set('date', date.toISOString()).set('type', type)
-      .set('userId', userId).set('sort', sort.toString()).set('page', currentPage.toString()).set('size', '4');
+      .set('userId', userId).set('sort', sort).set('page', currentPage.toString()).set('size', '4');
     return this.http.get<Menu[]>(`${this.url}/located`, {params});
   }
 

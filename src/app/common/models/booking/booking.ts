@@ -6,8 +6,6 @@ export class Booking {
   public _id: string;
   public guest: User;
   public menu: Menu;
-  public menuDate: Date;
-  public host: User;
   public persons: number;
   public comment: string;
   public confirmed: boolean;
@@ -15,11 +13,9 @@ export class Booking {
   public hostRate: Rate;
   public guestRate: Rate;
 
-  constructor(guest: User, menu: Menu, menuDate: Date, host: User, persons: number, comment: string) {
+  constructor(guest: User, menu: Menu, persons: number, comment: string) {
     this.guest = guest;
     this.menu = menu;
-    this.menuDate = menuDate;
-    this.host = host;
     this.persons = persons;
     this.comment = comment;
   }

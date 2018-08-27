@@ -10,15 +10,15 @@
     <span>There isn't active chats</span>
   </button>
   <button class="chat-user-btn" *ngFor="let chat of chats" mat-menu-item (click)="openChat(chat)">
-    <span *ngIf="user._id==chat.guest._id">
-      <app-user-image [userId]="chat.host._id" diameter="40px">
+    <span *ngIf="user._id==chat.booking.guest._id">
+      <app-user-image [userId]="chat.booking.menu.host._id" diameter="40px">
       </app-user-image>
-      <span class="chat-user-name">{{chat.host.name}} </span>
+      <span class="chat-user-name">{{chat.booking.menu.host.name}} </span>
     </span>
-    <span *ngIf="user._id==chat.host._id">
-      <app-user-image [userId]="chat.guest._id" diameter="40px">
+    <span *ngIf="user._id==chat.booking.menu.host._id">
+      <app-user-image [userId]="chat.booking.guest._id" diameter="40px">
       </app-user-image>
-      <span class="chat-user-name">{{chat.guest.name}}</span>
+      <span class="chat-user-name">{{chat.booking.guest.name}}</span>
     </span>
     <span>
       <button mat-mini-fab color="basic" class="notification-btn-chat" *ngIf="chat.notRead>0">

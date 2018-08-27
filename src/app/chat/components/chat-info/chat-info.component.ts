@@ -18,7 +18,7 @@ export class ChatInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.rateService.getRatesByHostId(this.booking.host._id).subscribe((rates: Rate[]) => {
+    this.rateService.getRatesByHostId(this.booking.menu.host._id).subscribe((rates: Rate[]) => {
       this.rates = rates;
     });
   }

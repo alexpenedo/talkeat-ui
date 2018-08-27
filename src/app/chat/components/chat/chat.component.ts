@@ -41,11 +41,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    if (this.chat.host._id === this.user._id) {
+    if (this.chat.booking.menu.host._id === this.user._id) {
       this.isHost = true;
-      this.chatUser = this.chat.guest;
+      this.chatUser = this.chat.booking.guest;
     } else {
-      this.chatUser = this.chat.host;
+      this.chatUser = this.chat.booking.menu.host;
       this.isHost = false;
     }
     this.messageSize = this.chat.messages.length;

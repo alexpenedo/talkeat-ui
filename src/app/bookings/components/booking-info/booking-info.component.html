@@ -1,6 +1,6 @@
 <mat-card [id]="booking._id">
   <app-header-menu-info [name]="booking.menu.name" [date]="booking.menu.date" [price]="booking.menu.price"
-                        [host]="booking.host"></app-header-menu-info>
+                        [host]="booking.menu.host"></app-header-menu-info>
   <mat-card-content>
     <mat-tab-group mat-stretch-tabs position="0">
       <mat-tab label="INFO">
@@ -11,7 +11,7 @@
           </app-address-dishs-info>
         </div>
       </mat-tab>
-      <mat-tab label="RATINGS" *ngIf="isPast(booking.menuDate)">
+      <mat-tab label="RATINGS" *ngIf="isPast(booking.menu.date)">
         <div class="container-fluid mt-3">
           <div class="row">
             <app-rate *ngIf="hostRate" class="col-6" [rate]="hostRate"></app-rate>

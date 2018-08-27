@@ -10,10 +10,11 @@ import {HomeModule} from './home/home.module';
 import {ConfirmDialogComponent} from './common/dialogs/confirm-dialog/confirm-dialog.component';
 import {AppRoutingModule} from './app-routing.module';
 import {MatSnackBarModule} from '@angular/material';
+import {AutofocusDirective} from './common/directives/autofocus/autofocus.directive';
 
 @NgModule({
   declarations: [
-    AppComponent, ConfirmDialogComponent
+    AppComponent, ConfirmDialogComponent, AutofocusDirective
   ],
   imports: [
     NgProgressModule.forRoot(),

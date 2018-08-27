@@ -58,11 +58,11 @@ export class CreateRateComponent implements OnInit {
           this.booking = booking;
           this.menu = booking.menu;
           if (this.ratingHost) {
-            self.rateService.getRatesByHostId(this.booking.host._id).subscribe((rates: Rate[]) => {
+            self.rateService.getRatesByHostId(this.booking.menu.host._id).subscribe((rates: Rate[]) => {
               self.rates = rates;
             });
           } else {
-            self.rateService.getRatesByGuestId(this.booking.host._id).subscribe((rates: Rate[]) => {
+            self.rateService.getRatesByGuestId(this.booking.menu.host._id).subscribe((rates: Rate[]) => {
               self.rates = rates;
             });
           }
@@ -72,8 +72,8 @@ export class CreateRateComponent implements OnInit {
 
   rateMenu() {
     const rateType = this.ratingHost ? RateType.HOST : RateType.GUEST;
-    this.rateService.save(new Rate(this.booking.guest, this.booking.host,
-      this.comments.get('comments').value, this.rate.get('rate').value, this.booking, rateType))
+    this.rateService.save(new Rate(this.comments.get('comments').value,
+      this.rate.get('rate').value, this.booking, rateType))
       .subscribe((rate: Rate) => {
         if (this.ratingHost) {
           this.router.navigate(['/bookings']).catch();

@@ -1,6 +1,6 @@
 <div class="rate">
-  <app-user-image [userId]="hostRate ? rate.guest._id : rate.host._id" diameter="40px" float="left"></app-user-image>
-  <span class="guest-name">{{hostRate ? rate.guest.name : rate.host.name}}</span>
+  <app-user-image [userId]="hostRate ? rate.booking.guest._id : rate.booking.menu.host._id" diameter="40px" float="left"></app-user-image>
+  <span class="guest-name">{{hostRate ? rate.booking.guest.name : rate.booking.menu.host.name}}</span>
   <span class="rate-date">{{rate.date | date: 'dd/MM/yyyy HH:mm'}}</span>
   <div class="booking-rate">
     <rating fullIcon="◉" emptyIcon="○" [(ngModel)]="rate.rate" [readonly]="true"></rating>

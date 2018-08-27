@@ -82,7 +82,7 @@ export class ChatButtonListComponent implements OnInit {
     this.chats.forEach(chat => {
       let notRead = 0;
       const messages: Message[] = chat.messages;
-      const isHost = (chat.host._id === this.user._id);
+      const isHost = (chat.booking.menu.host._id === this.user._id);
       messages.forEach(message => {
         const messageDate = new Date(message.date).getTime();
         const hostLastConnection = new Date(chat.hostLastConnection).getTime();

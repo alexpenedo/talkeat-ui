@@ -35,6 +35,8 @@ export class HttpClientInterceptor implements HttpInterceptor {
             case 400:
               this.snackBar.open(error.error.error, undefined, this.config);
               break;
+            default:
+              this.snackBar.open(error.error.message, undefined, this.config);
           }
         } else {
           this.snackBar.open(error.error.message, undefined, this.config);

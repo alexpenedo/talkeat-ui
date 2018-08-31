@@ -65,7 +65,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
 
   cancelBooking() {
-    this.bookingService.canceledBooking(this.chat.booking._id).subscribe((booking) => {
+    this.bookingService.cancelBooking(this.chat.booking._id).subscribe((booking) => {
       this.chat.booking = booking;
       this.chatService.sendChangeBookingState(booking);
     });

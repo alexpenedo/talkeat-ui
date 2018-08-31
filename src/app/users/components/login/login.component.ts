@@ -19,8 +19,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.userService.login(this.email, this.password).subscribe((userToken: UserToken) => {
       this.userService.storageUserAndToken(userToken);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home']).then();
     });
   }
-
 }

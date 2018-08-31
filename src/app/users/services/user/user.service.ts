@@ -31,7 +31,7 @@ export class UserService {
     this._showUser.next(userId);
   }
 
-  public isAuthenticated() {
+  public isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     return token != null;
   }

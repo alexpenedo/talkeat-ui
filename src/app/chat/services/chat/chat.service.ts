@@ -33,7 +33,8 @@ export class ChatService {
     this.socket.on('connect_error', (error) => {
       this.userService.refreshToken().subscribe((userToken: UserToken) => {
         this.socket = io(this.serverUrl, {
-          query: {token: userToken.tokens.accessToken}
+          query: {token: userToken.tokens.accessToken},
+          transports: ['websocket']
         });
       });
     });

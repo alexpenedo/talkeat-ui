@@ -1,23 +1,61 @@
-# Talkeat-ui FRONTEND
+# Talkeat Frontend
 
-Angular project 
+## Overview
+This is a frontend application for **Talkeat** web application.
 
-## Development server
+##### Application
+* Angular is the framework used.
+* The application was written with Typescript as programming language.
+* The application can be launched with Docker through the configuration file Dockerfile.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Requirements
 
-## Code scaffolding
+Third party dependencies that should be installed prior to run this piece of software:
+* **NodeJS v10.x.x**
+* **NPM 6.4.x**
+* **Angular cli 6.1.x**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
+After installing all system requirements:
 
-## Build
+1º Checkout the source code:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```
+git clone git@bitbucket.org:alexpenedo/talkeat-ui.git
+```
 
-## Running unit tests
+2º Install all dependencies
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+npm install
+```
+## Compile
+Compile the Typescript code
 
-## Running end-to-end tests
+```
+npm run build
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Run
+Run next command for launch application for development
+```
+npm start
+```
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+##Docker
+##### Requirements
+* **Docker v18.x**
+* **Docker compose v1.22.x**
+
+Repository contains a `Dockerfile` for build a docker image with next command at
+root directory.
+```
+docker build -t talkeat-ui . 
+```
+Run next command for run the image built
+```
+docker run -p 4200:80 prueba-ui
+```
+
+

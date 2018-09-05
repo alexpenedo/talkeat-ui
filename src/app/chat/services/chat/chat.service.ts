@@ -28,7 +28,8 @@ export class ChatService {
 
   public initSocket(): void {
     this.socket = io(this.serverUrl, {
-      query: {token: this.userService.getToken()}
+      query: {token: this.userService.getToken()},
+      transports: ['websocket']
     });
     this.socket.on('connect_error', (error) => {
       this.userService.refreshToken().subscribe((userToken: UserToken) => {

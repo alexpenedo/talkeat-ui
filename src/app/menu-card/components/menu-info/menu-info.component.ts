@@ -58,10 +58,10 @@ export class MenuInfoComponent implements OnInit {
       this.classes = 'menu-info animation';
     }
     if (this.state === 'show' || this.state === 'booking') {
-      if (this.average === undefined) {
+      if (!this.average) {
         this.rateService.getRateAverage(this.host._id).subscribe((average: any) => {
           if (average != null) {
-            this.average = average.average;
+            this.average = average;
           }
         });
       }

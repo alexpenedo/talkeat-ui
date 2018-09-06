@@ -9,17 +9,17 @@ import {ToolbarModule} from './toolbar/toolbar.module';
 import {HomeModule} from './home/home.module';
 import {ConfirmDialogComponent} from './common/dialogs/confirm-dialog/confirm-dialog.component';
 import {AppRoutingModule} from './app-routing.module';
-import {MatSnackBarModule} from '@angular/material';
-import {AutofocusDirective} from './common/directives/autofocus/autofocus.directive';
+import {MatButtonModule, MatSnackBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
-    AppComponent, ConfirmDialogComponent, AutofocusDirective
+    AppComponent, ConfirmDialogComponent
   ],
   imports: [
     NgProgressModule.forRoot(),
     NgProgressHttpModule,
     MatSnackBarModule,
+    MatButtonModule,
     HomeModule,
     ToolbarModule,
     AppRoutingModule

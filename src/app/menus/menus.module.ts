@@ -32,6 +32,7 @@ import {RatingsModule} from '../ratings/ratings.module';
 import {RatingModule} from 'ngx-rating';
 import {MenuCardModule} from '../menu-card/menu-card.module';
 import {MenusRoutingModule} from './menus-routing.module';
+import {AutofocusDirective} from '../common/directives/autofocus/autofocus.directive';
 
 @NgModule({
   imports: [
@@ -62,7 +63,7 @@ import {MenusRoutingModule} from './menus-routing.module';
   ],
   declarations: [CreateEditMenuComponent,
     AddDishesComponent, MyMenusComponent,
-    AddressDishsInfoComponent,
+    AddressDishsInfoComponent, AutofocusDirective,
     HostMenuInfoComponent, HeaderMenuInfoComponent],
   providers: [MenuService],
   entryComponents: [ConfirmDialogComponent],

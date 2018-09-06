@@ -33,9 +33,10 @@ export class HttpClientInterceptor implements HttpInterceptor {
               this.refreshToken(request, next);
               break;
             case 400:
-              this.snackBar.open(error.error.error.message, undefined, this.config);
+              this.snackBar.open(error.error.message, undefined, this.config);
               break;
             case 404:
+              console.log(request);
               break;
             default:
               this.snackBar.open(error.error.message, undefined, this.config);

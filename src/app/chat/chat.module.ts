@@ -5,7 +5,8 @@ import {
   MatButtonModule,
   MatCardModule,
   MatChipsModule,
-  MatDialogModule, MatDividerModule,
+  MatDialogModule,
+  MatDividerModule,
   MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
@@ -19,6 +20,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {UsersModule} from '../users/users.module';
 import {FormsModule} from '@angular/forms';
+import {BookingsModule} from '../bookings/bookings.module';
+import {RatingsModule} from '../ratings/ratings.module';
 
 @NgModule({
   declarations: [
@@ -41,11 +44,13 @@ import {FormsModule} from '@angular/forms';
     MatChipsModule,
     MatExpansionModule,
     FormsModule,
-    UsersModule
+    UsersModule,
+    RatingsModule,
+    BookingsModule
   ],
   providers: [ChatService],
   entryComponents: [ChatInfoComponent],
-  exports:[ChatButtonListComponent]
+  exports: [ChatButtonListComponent, ChatInfoComponent]
 })
 export class ChatModule {
 }

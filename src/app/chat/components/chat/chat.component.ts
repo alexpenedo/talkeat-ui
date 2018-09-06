@@ -99,11 +99,16 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
     const message = {
       chat: this.chat,
-      from: this.user._id,
+      from: this.user,
       message: content,
       date: new Date()
     };
     this.chatService.sendMessage(message);
+    this.chat.messages.push({
+      from: this.user,
+      message: content,
+      date: new Date()
+    });
     this.messageContent = null;
   }
 
@@ -113,15 +118,13 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
   }
 
-
   getClass(message: Message) {
     if (!message.from) {
-      console.log(this.chat.booking.menu);
       if (this.chat.booking.menu.canceled) {
         return 'cancel-message message';
       }
       return 'notification-message message';
-    } else if (message.from === this.user._id) {
+    } else if (message.from._id === this.user._id) {
       return 'user-message message';
     } else {
       return 'chat-message message';

@@ -16,7 +16,7 @@
   </span>
   <span *ngIf="user">
     <app-chat-button-list style="float: left" [user]="user" *ngIf="user"></app-chat-button-list>
-    <button style="line-height: 4;" mat-button color="basic" [matMenuTriggerFor]="menu">
+    <button class="btn-menu" mat-button color="basic" [matMenuTriggerFor]="menu">
       <!--<mat-icon *ngIf="!user.picture">account_circle</mat-icon>-->
       <!--<span>-->
       <app-user-image [userId]="user._id" diameter="50px" float="right">

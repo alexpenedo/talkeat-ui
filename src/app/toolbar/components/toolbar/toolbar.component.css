@@ -15,3 +15,7 @@ img {
     font-family: monospace;
     font-size: 25px;
 }
+.btn-menu{
+  line-height: 3.5;
+  padding-top: 10px;
+}

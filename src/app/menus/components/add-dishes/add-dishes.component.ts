@@ -27,7 +27,7 @@ export class AddDishesComponent implements OnInit {
       this.formArray.push(this.formBuilder.group(
         {
           name: [name ? name : '',
-            Validators.compose([Validators.required, Validators.maxLength(20)])]
+            Validators.compose([Validators.required, Validators.maxLength(30)])]
         }));
     }
   }

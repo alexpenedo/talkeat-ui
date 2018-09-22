@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MatButtonModule, MatCardModule, MatDividerModule, MatIconModule, MatListModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatChipsModule, MatDividerModule, MatIconModule, MatListModule} from '@angular/material';
 import {MenuInfoComponent} from './components/menu-info/menu-info.component';
 import {RatingModule} from 'ngx-rating';
 import {UsersModule} from '../users/users.module';
@@ -16,6 +16,7 @@ import {BrowserModule} from '@angular/platform-browser';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    MatChipsModule,
     FormsModule,
     MatDividerModule,
     MatListModule,

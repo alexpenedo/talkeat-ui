@@ -1,6 +1,6 @@
 <div class="col-8 offset-2">
   <mat-tab-group mat-stretch-tabs position="0" (selectedTabChange)="findBookings($event)">
-    <mat-tab label="Pending">
+    <mat-tab label="Pending" i18n-label="@@pending">
       <div class="bookings" infiniteScroll [infiniteScrollDistance]="2"
            [infiniteScrollThrottle]="50" (scrolled)="onScrollPendingDown()" [scrollWindow]="false">
         <div *ngFor="let booking of bookingsPending" class="booking-row">
@@ -8,7 +8,7 @@
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="Finished">
+    <mat-tab label="Finished" i18n-label="finished">
       <div class="bookings" infiniteScroll [infiniteScrollDistance]="2"
            [infiniteScrollThrottle]="50" (scrolled)="onScrollFinishedDown()" [scrollWindow]="false">
         <div *ngFor="let booking of bookingsFinished" class="booking-row">

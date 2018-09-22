@@ -2,9 +2,9 @@
   <mat-card>
     <div class="row">
       <div class="col-12">
-        <h2 *ngIf="ratingHost" class="text-success">Would you like to rate this host?</h2>
-        <h2 *ngIf="!ratingHost" class="text-success">Would you like to rate this guest?</h2>
-        <h5>Your rate will be public.</h5>
+        <h2 *ngIf="ratingHost" class="text-success" i18n="@@rateHostQuestion">Would you like to rate this host?</h2>
+        <h2 *ngIf="!ratingHost" class="text-success" i18n="@@rateGuestQuestion">Would you like to rate this guest?</h2>
+        <h5 i18n="@@rateInfo">Your rate will be public.</h5>
       </div>
     </div>
     <div class="row">
@@ -12,11 +12,11 @@
         <mat-vertical-stepper>
           <mat-step [stepControl]="rate">
             <form [formGroup]="rate">
-              <ng-template *ngIf="ratingHost" matStepLabel>Set a valoration to the host</ng-template>
-              <ng-template *ngIf="!ratingHost" matStepLabel>Set a valoration to the guest</ng-template>
+              <ng-template *ngIf="ratingHost" matStepLabel i18n="@@setRateHost">Set a valoration to the host</ng-template>
+              <ng-template *ngIf="!ratingHost" matStepLabel i18n="@@setRateGuest">Set a valoration to the guest</ng-template>
               <rating [float]="true" fullIcon="◉" emptyIcon="○" formControlName="rate"></rating>
               <div>
-                <button mat-raised-button color="accent" matStepperNext>Next
+                <button mat-raised-button color="accent" matStepperNext i18n="@@next">Next
                   <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
               </div>
@@ -24,36 +24,36 @@
           </mat-step>
           <mat-step [stepControl]="comments">
             <form [formGroup]="comments">
-              <ng-template matStepLabel>If you have comments about this user, tell it us</ng-template>
+              <ng-template matStepLabel i18n="@@rateComments">If you have comments about this user, tell it us</ng-template>
               <mat-form-field>
                   <textarea matInput placeholder="Comments" formControlName="comments" matTextareaAutosize
-                            matAutosizeMinRows="4"
+                            matAutosizeMinRows="4" i18n-placeholder="@@comments"
                             matAutosizeMaxRows="5" maxlength="100"></textarea>
               </mat-form-field>
               <div>
-                <button mat-raised-button color="accent" matStepperNext>Next
+                <button mat-raised-button color="accent" matStepperNext i18n="@@next">Next
                   <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
               </div>
             </form>
           </mat-step>
           <mat-step>
-            <ng-template matStepLabel>Are you sure to send this rating?</ng-template>
-            <button mat-raised-button color="accent" class="valorate" (click)="rateMenu()">
+            <ng-template matStepLabel i18n="@@sureRating">Are you sure to send this rating?</ng-template>
+            <button mat-raised-button color="accent" class="valorate" (click)="rateMenu()" i18n="@@valorate">
               VALORATE
             </button>
           </mat-step>
         </mat-vertical-stepper>
       </div>
       <div *ngIf="!ratingHost" class="guest">
-        <h5>Guest</h5>
+        <h5 i18n="@@guest">Guest</h5>
         <div>
           <app-user-image [userId]="guest._id" [username]="guest.name" diameter="70px" float="left"></app-user-image>
         </div>
       </div>
       <div class="col-4" *ngIf="menu">
         <div *ngIf="!ratingHost">
-          <h5 class="">My menu</h5>
+          <h5 class="" i18n="@@myMenu">My menu</h5>
         </div>
         <app-menu-info state="booking" [date]="menu.date" [guests]="menu.guests" [available]="menu.available"
                        [price]="menu.price"

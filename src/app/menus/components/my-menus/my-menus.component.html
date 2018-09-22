@@ -1,6 +1,6 @@
 <div class="col-8 offset-2">
   <mat-tab-group mat-stretch-tabs position="0" (selectedTabChange)="findMenus($event)">
-    <mat-tab label="Pending">
+    <mat-tab label="Pending" i18n-label="@@pending">
       <!--<perfect-scrollbar style="max-height: 580px;">-->
       <div class="menus" infiniteScroll [infiniteScrollDistance]="2"
            [infiniteScrollThrottle]="50" (scrolled)="onScrollPendingDown()" [scrollWindow]="false">
@@ -10,7 +10,7 @@
       </div>
       <!--</perfect-scrollbar>-->
     </mat-tab>
-    <mat-tab label="Finished">
+    <mat-tab label="Finished" i18n-label="@@finished">
       <div class="menus" infiniteScroll [infiniteScrollDistance]="2"
            [infiniteScrollThrottle]="50" (scrolled)="onScrollFinishedDown()" [scrollWindow]="false">
         <!--<perfect-scrollbar style="max-height: 580px;">-->

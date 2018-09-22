@@ -1,13 +1,29 @@
 <mat-card>
   <img mat-card-image [src]="image">
-  <mat-card-title class="title">{{title}}</mat-card-title>
+  <mat-card-title class="title">
+    <span *ngIf="type==='starters'" i18n="@@starters">
+      Starters
+        </span>
+    <span *ngIf="type==='mains'" i18n="@@mains">
+Mains        </span>
+    <span *ngIf="type==='desserts'" i18n="@@desserts">
+Desserts        </span>
+  </mat-card-title>
   <button mat-fab color="warn" class="addDish" (click)="addItem()">
     <mat-icon>add</mat-icon>
   </button>
   <mat-card-content>
     <div [formGroup]="group">
       <p *ngIf="getControls().length===0">
-        {{description}}
+        <span *ngIf="type==='starters'" i18n="@@startersText">
+          Add here your starters, like a salad or a soup
+        </span>
+        <span *ngIf="type==='mains'" i18n="@@mainsText">
+          Add here your main dishes like a paella or a burger
+        </span>
+        <span *ngIf="type==='desserts'" i18n="@@dessertsText">
+          Add here your desserts like a cheesecake or coffee
+        </span>
       </p>
       <div [formArrayName]="arrayName">
         <div *ngFor="let item of getControls(); let index = index">

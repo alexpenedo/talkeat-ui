@@ -2,20 +2,928 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="persons" datatype="html">
+        <source>Persons</source>
+        <target>Personas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/components/home/home.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/create-booking/create-booking.component.html
+          </context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="date" datatype="html">
+        <source>Date</source>
+        <target>Fecha</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/components/home/home.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="typeOptions" datatype="html">
+        <source>
+          <x id="START_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;mat-option&gt;"/>Lunch
+          <x id="CLOSE_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;/mat-option&gt;"/>
+          <x id="START_TAG_MAT-OPTION_1" ctype="x-mat-option" equiv-text="&lt;mat-option&gt;"/>Dinner
+          <x id="CLOSE_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;/mat-option&gt;"/>
+        </source>
+        <target>
+          <x id="START_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;mat-option&gt;"/>Comida
+          <x id="CLOSE_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;/mat-option&gt;"/>
+          <x id="START_TAG_MAT-OPTION_1" ctype="x-mat-option" equiv-text="&lt;mat-option&gt;"/>Cena
+          <x id="CLOSE_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;/mat-option&gt;"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/components/home/home.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="type" datatype="html">
+        <source>Lunch/Dinner</source>
+        <target>Comida/Cena</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/components/home/home.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sortOptions" datatype="html">
+        <source>
+          <x id="START_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;mat-option&gt;"/>Distance
+          <x id="CLOSE_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;/mat-option&gt;"/>
+          <x id="START_TAG_MAT-OPTION_1" ctype="x-mat-option" equiv-text="&lt;mat-option&gt;"/>Rating
+          <x id="CLOSE_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;/mat-option&gt;"/>
+          <x id="START_TAG_MAT-OPTION_2" ctype="x-mat-option" equiv-text="&lt;mat-option&gt;"/>Price
+          <x id="CLOSE_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;/mat-option&gt;"/>
+        </source>
+        <target>
+          <x id="START_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;mat-option&gt;"/>Distancia
+          <x id="CLOSE_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;/mat-option&gt;"/>
+          <x id="START_TAG_MAT-OPTION_1" ctype="x-mat-option" equiv-text="&lt;mat-option&gt;"/>Valoración
+          <x id="CLOSE_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;/mat-option&gt;"/>
+          <x id="START_TAG_MAT-OPTION_2" ctype="x-mat-option" equiv-text="&lt;mat-option&gt;"/>Precio
+          <x id="CLOSE_TAG_MAT-OPTION" ctype="x-mat-option" equiv-text="&lt;/mat-option&gt;"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/components/home/home.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sort" datatype="html">
+        <source>Sort</source>
+        <target>Orden</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/components/home/home.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="search" datatype="html">
+        <source>SEARCH</source>
+        <target>BUSCAR</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/components/home/home.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="publish-menu" datatype="html">
+        <source>PUBLISH MENU</source>
+        <target>PUBLICAR MENÚ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/toolbar/components/toolbar/toolbar.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="login" datatype="html">
         <source>LOGIN</source>
-        <target>ENTRA</target>
+        <target>ENTRAR</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/components/user/login/login.component.ts</context>
+          <context context-type="sourcefile">app/toolbar/components/toolbar/toolbar.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/login/login.component.html</context>
           <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="signup" datatype="html">
         <source>SIGN UP</source>
-        <target>REGÍSTRATE</target>
+        <target>REGISTRO</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/components/user/login/login.component.ts</context>
+          <context context-type="sourcefile">app/toolbar/components/toolbar/toolbar.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/login/login.component.html</context>
           <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="my-bookings" datatype="html">
+        <source>My bookings</source>
+        <target>Mis reservas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/toolbar/components/toolbar/toolbar.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="my-menus" datatype="html">
+        <source>My menus</source>
+        <target>Mis menús</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/toolbar/components/toolbar/toolbar.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>Logout</source>
+        <target>Salir</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/toolbar/components/toolbar/toolbar.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cancel" datatype="html">
+        <source>Cancel</source>
+        <target>Cancelar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/common/dialogs/confirm-dialog/confirm-dialog.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="delete" datatype="html">
+        <source>Delete</source>
+        <target>Borrar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/common/dialogs/confirm-dialog/confirm-dialog.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="distance" datatype="html">
+        <source>(
+          <x id="INTERPOLATION" equiv-text="{{getDistance()}}"/> away)
+        </source>
+        <target>(a <x id="INTERPOLATION" equiv-text="{{getDistance()}}"/>)
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu-card/components/menu-info/menu-info.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="starters" datatype="html">
+        <source>Starters</source>
+        <target>Entrantes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu-card/components/menu-info/menu-info.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/address-dishs-info/address-dishs-info.component.html
+          </context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/add-dishes/add-dishes.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="mains" datatype="html">
+        <source>Mains</source>
+        <target>Principales</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu-card/components/menu-info/menu-info.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/address-dishs-info/address-dishs-info.component.html
+          </context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/add-dishes/add-dishes.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="desserts" datatype="html">
+        <source>Desserts</source>
+        <target>Postres</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu-card/components/menu-info/menu-info.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/address-dishs-info/address-dishs-info.component.html
+          </context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/add-dishes/add-dishes.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="book" datatype="html">
+        <source>
+          BOOK
+        </source>
+        <target>RESERVAR</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu-card/components/menu-info/menu-info.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="password" datatype="html">
+        <source>Password</source>
+        <target>Contraseña</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/login/login.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/register/register.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="name" datatype="html">
+        <source>Name</source>
+        <target>Nombre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/register/register.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/profile/profile.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fileRequired" datatype="html">
+        <source>This field is required</source>
+        <target>Este campo es obligatorio</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/register/register.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/register/register.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/profile/profile.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/profile/profile.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="surname" datatype="html">
+        <source>Surname</source>
+        <target>Apellido</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/register/register.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/profile/profile.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="email" datatype="html">
+        <source>Email</source>
+        <target>Email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/register/register.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="mobileNumber" datatype="html">
+        <source>Mobile Number</source>
+        <target>Tlfno. Móvil</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/register/register.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/profile/profile.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="postalCode" datatype="html">
+        <source>Postal Code</source>
+        <target>Código postal</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/register/register.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/profile/profile.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="address" datatype="html">
+        <source>Address</source>
+        <target>Dirección</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/register/register.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/profile/profile.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="country" datatype="html">
+        <source>Country</source>
+        <target>País</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/register/register.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/profile/profile.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="changePassword" datatype="html">
+        <source>CHANGE PASSWORD
+        </source>
+        <target>CAMBIAR CONTRASEÑA</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/profile/profile.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="updateProfile" datatype="html">
+        <source>UPDATE PROFILE
+        </source>
+        <target>ACTUALIZAR PERFIL</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/profile/profile.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ratings" datatype="html">
+        <source>Ratings</source>
+        <target>Valoraciones</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/rate-list/rate-list.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/booking-info/booking-info.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="startersText" datatype="html">
+        <source>
+          Add here your starters, like a salad or a soup
+        </source>
+        <target>
+          Añade aquí tus entrantes, como por ejemplo una ensalada o una sopa
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/add-dishes/add-dishes.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="mainsText" datatype="html">
+        <source>
+          Add here your main dishes like a paella or a burger
+        </source>
+        <target>
+          Añade aquí los platos principales, como una paella o una hamburguesa
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/add-dishes/add-dishes.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dessertsText" datatype="html">
+        <source>
+          Add here your desserts like a cheesecake or coffee
+        </source>
+        <target>
+          Añade aquí tus postres, como una tarta de queso o el café
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/add-dishes/add-dishes.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="describeMenu" datatype="html">
+        <source>Describe your menu</source>
+        <target>Describe tu menú</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="description" datatype="html">
+        <source>Description</source>
+        <target>Descripción</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="next" datatype="html">
+        <source>Next
+          <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>keyboard_arrow_right
+          <x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+        </source>
+        <target>Siguiente
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/create-booking/create-booking.component.html
+          </context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addDishes" datatype="html">
+        <source>Add your dishes</source>
+        <target>Añade tus platos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="back" datatype="html">
+        <source>
+          <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>keyboard_arrow_left
+          <x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+          Back
+        </source>
+        <target>
+          Atrás
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="completeData" datatype="html">
+        <source>Complete last data</source>
+        <target>
+          Completa los últimos detalles
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="guests" datatype="html">
+        <source>Guests</source>
+        <target>Invitados</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/host-menu-info/host-menu-info.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="price" datatype="html">
+        <source>Price</source>
+        <target>Precio</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="chooseDate" datatype="html">
+        <source>Choose a date</source>
+        <target>Escoge una fecha</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="time" datatype="html">
+        <source>Time</source>
+        <target>Hora</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="confirmMenu" datatype="html">
+        <source>Confirm your menu</source>
+        <target>Confirma tu menú</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="checkMenu" datatype="html">
+        <source>Your menu is finished. Please check your menu information.</source>
+        <target>Tu menú está listo. Por favor comprueba si la información es correcta.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="publishMenu" datatype="html">
+        <source>
+          PUBLISH YOUR MENU
+        </source>
+        <target>PUBLICA TU MENÚ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="checkUpdateMenu" datatype="html">
+        <source>Your menu is going to be updated. Please check your menu information. We will
+          notify your change to the
+          guests
+        </source>
+        <target>Tu menú va a ser actualizado. Por favor comprueba si la información es correcta. Norificaremos los
+          cambios a tus invidatos.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">145</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="editMenu" datatype="html">
+        <source>
+          UPDATE MENU
+        </source>
+        <target>EDITAR MENÚ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/create-menu/create-edit-menu.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pending" datatype="html">
+        <source>Pending</source>
+        <target>Pendientes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/my-menus/my-menus.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/my-bookings/my-bookings.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="finished" datatype="html">
+        <source>Finished</source>
+        <target>Finalizados</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/my-menus/my-menus.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="edit" datatype="html">
+        <source>Edit</source>
+        <target>Editar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/host-menu-info/host-menu-info.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cancelMenu" datatype="html">
+        <source>Cancel Menu</source>
+        <target>Cancelar menú</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/host-menu-info/host-menu-info.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="noGuessts" datatype="html">
+        <source>There aren&apos;t guests in this menu</source>
+        <target>No hay invitados en este menú</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/host-menu-info/host-menu-info.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="guestRate" datatype="html">
+        <source>
+          Here you can rate the guest
+        </source>
+        <target>Aquí puedes valorar al invitado</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/host-menu-info/host-menu-info.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="valorate" datatype="html">
+        <source>
+          VALORATE
+        </source>
+        <target>Valorar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/host-menu-info/host-menu-info.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/booking-info/booking-info.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="guestNotRate" datatype="html">
+        <source>
+          The guest has not rated you yet
+        </source>
+        <target>El invitado todavía no te ha valorado</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menus/components/host-menu-info/host-menu-info.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rateHostQuestion" datatype="html">
+        <source>Would you like to rate this host?</source>
+        <target>Te gustaría valorar a este anfitrión?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rateGuestQuestion" datatype="html">
+        <source>Would you like to rate this guest?</source>
+        <target>Te gustaría valorar a este invitado?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rateInfo" datatype="html">
+        <source>Your rate will be public.</source>
+        <target>Tu valoración será pública.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="setRateHost" datatype="html">
+        <source>Set a valoration to the host</source>
+        <target>Dale una valoración al anfitrión</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="setRateGuest" datatype="html">
+        <source>Set a valoration to the guest</source>
+        <target>Dale una valoración al invitado</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rateComments" datatype="html">
+        <source>If you have comments about this user, tell it us</source>
+        <target>Si tienes algún comentario sobre este usuario, dínoslo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="comments" datatype="html">
+        <source>Comments</source>
+        <target>Comentarios</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/create-booking/create-booking.component.html
+          </context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sureRating" datatype="html">
+        <source>Are you sure to send this rating?</source>
+        <target>Estás seguro de publicar esta valoración?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="guest" datatype="html">
+        <source>Guest</source>
+        <target>Invitado</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="myMenu" datatype="html">
+        <source>My menu</source>
+        <target>Mi menú</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ratings/components/create-rate/create-rate.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hostRate" datatype="html">
+        <source>Here you can rate the host</source>
+        <target>Aquí puedes valorar al anfitrión</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/booking-info/booking-info.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hostNotRatedYou" datatype="html">
+        <source>The host has not rated you yet</source>
+        <target>El anfitrión todavía no te ha valorado</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/booking-info/booking-info.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookThisMenu" datatype="html">
+        <source>Would you like to book this menu?</source>
+        <target>Te gustaría reservar este menú?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/create-booking/create-booking.component.html
+          </context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookingInfo" datatype="html">
+        <source>You can chat with the host. The host will confirm your book</source>
+        <target>Podrás chatear con el anfitrión. El anfitrión te confirmará la reserva</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/create-booking/create-booking.component.html
+          </context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookingPeople" datatype="html">
+        <source>How many people do you want to book?</source>
+        <target>Para cuantas personas quieres reservar?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/create-booking/create-booking.component.html
+          </context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookingComments" datatype="html">
+        <source>If you have comments, any allergies ...</source>
+        <target>Si tienes comentarios, alergias...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/create-booking/create-booking.component.html
+          </context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sureBooking" datatype="html">
+        <source>Are you sure to book this menu?</source>
+        <target>Estás seguro de que quieres reservar este menú?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/create-booking/create-booking.component.html
+          </context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookMenu" datatype="html">
+        <source>
+          BOOK MENU
+        </source>
+        <target>RESERVAR MENÚ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/create-booking/create-booking.component.html
+          </context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="edcc19a49c950289ffe5d38be4843cdf194e5622" datatype="html">
+        <source>Finished</source>
+        <target>Finalizados</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bookings/components/my-bookings/my-bookings.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">finished</note>
+      </trans-unit>
+      <trans-unit id="noChats" datatype="html">
+        <source>There isn&apos;t active chats</source>
+        <target>No hay chats activos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/chat/components/chat-button-list/chat-button-list.component.html
+          </context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookingCanceled" datatype="html">
+        <source>
+          Booking is canceled
+        </source>
+        <target>La reserva está cancelada</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/chat/components/chat/chat.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookingConfirmed" datatype="html">
+        <source>
+          Booking is confirmed
+        </source>
+        <target>La reserva está confirmada</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/chat/components/chat/chat.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookingNotConfirmed" datatype="html">
+        <source>
+          Booking is not confirmed yet
+        </source>
+        <target>La reserva todavía no está confirmada</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/chat/components/chat/chat.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sendMessage" datatype="html">
+        <source>Send a message</source>
+        <target>Envía un mensaje</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/chat/components/chat/chat.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="messageBookMenu" datatype="html">
+        <source>
+          I would like to book this menu
+        </source>
+        <target>
+          Me gustaría reservar este menú
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/chat/components/message/message.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="messageMenuUpdated" datatype="html">
+        <source>
+          Menu updated by host. Please, check the changes
+        </source>
+        <target>Menu actualizado por el anfitrión. Por favor, comprueba los cambios</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/chat/components/message/message.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="messageMenuCanceled" datatype="html">
+        <source>
+          Menu canceled by host. Sorry.
+        </source>
+        <target>Menú cancelado por el anfitrión. Lo siento</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/chat/components/message/message.component.html</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
     </body>

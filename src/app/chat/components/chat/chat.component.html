@@ -17,10 +17,11 @@
       <mat-icon>close</mat-icon>
     </button>
     <mat-chip-list>
-      <mat-chip class="chip-booking chip-canceled" *ngIf="chat.booking.canceled && maximized">
+      <mat-chip class="chip-booking chip-canceled" *ngIf="chat.booking.canceled && maximized" i18n="@@bookingCanceled">
         Booking is canceled
       </mat-chip>
-      <mat-chip class="chip-booking chip-confirmed" *ngIf="chat.booking.confirmed && maximized">
+      <mat-chip class="chip-booking chip-confirmed" *ngIf="chat.booking.confirmed && maximized"
+                i18n="@@bookingConfirmed">
         Booking is confirmed
       </mat-chip>
     </mat-chip-list>
@@ -29,7 +30,7 @@
     <mat-expansion-panel *ngIf="!chat.booking.canceled && !chat.booking.confirmed" [disabled]="!isHost">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <span *ngIf="!chat.booking.canceled && !chat.booking.confirmed">
+          <span *ngIf="!chat.booking.canceled && !chat.booking.confirmed" i18n="@@bookingNotConfirmed">
             Booking is not confirmed yet
           </span>
         </mat-panel-title>
@@ -41,14 +42,14 @@
     <div *ngIf="(chat.booking.canceled || chat.booking.confirmed)" style="margin-bottom: 20px"></div>
     <div *ngFor="let message of chat.messages" class="message-fill">
       <div [class]="getClass(message)">
-        {{message.message}}
+        <app-message [message]="message"></app-message>
       </div>
     </div>
   </mat-card-content>
   <mat-card-actions *ngIf="maximized">
     <div class="input-group">
       <input [disabled]="chat.booking.canceled" autofocus class="form-control" maxlength="200"
-             placeholder="Send a message" (blur)="onBlur()"
+             placeholder="Send a message" (blur)="onBlur()" i18n-placeholder="@@sendMessage"
              (focus)="onFocus()" [(ngModel)]="messageContent"
              (keyup.enter)="sendMessage(messageContent) ">
       <div class="input-group-append">

@@ -22,12 +22,14 @@ import {UsersModule} from '../users/users.module';
 import {FormsModule} from '@angular/forms';
 import {BookingsModule} from '../bookings/bookings.module';
 import {RatingsModule} from '../ratings/ratings.module';
+import {MessageComponent} from './components/message/message.component';
 
 @NgModule({
   declarations: [
     ChatComponent,
     ChatButtonListComponent,
-    ChatInfoComponent
+    ChatInfoComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,

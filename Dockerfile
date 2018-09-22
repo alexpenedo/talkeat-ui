@@ -3,7 +3,7 @@ COPY package.json package-lock.json ./
 RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
 WORKDIR /ng-app
 COPY . .
-RUN $(npm bin)/ng build --prod
+RUN $(npm bin)/ng build --prod --configuration=es
 
 FROM nginx
 COPY ./nginx-custom.conf /etc/nginx/conf.d/

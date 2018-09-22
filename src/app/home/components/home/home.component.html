@@ -7,7 +7,7 @@
             <div class="col-3">
               <mat-form-field>
                 <mat-icon class="icon-form" matPrefix>person</mat-icon>
-                <mat-select placeholder="Persons" [(ngModel)]="persons" name="persons">
+                <mat-select placeholder="Persons" [(ngModel)]="persons" name="persons" i18n-placeholder="@@persons">
                   <mat-option value="1">1</mat-option>
                   <mat-option value="2">2</mat-option>
                   <mat-option value="3">3</mat-option>
@@ -19,14 +19,15 @@
             <div class="col-4">
               <mat-form-field>
                 <mat-icon matPrefix>calendar_today</mat-icon>
-                <input [min]="minDate" matInput [matDatepicker]="picker" placeholder="Date" [(ngModel)]="date" name="date">
+                <input [min]="minDate" matInput [matDatepicker]="picker" placeholder="Date" [(ngModel)]="date"
+                       name="date" i18n-placeholder="@@date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </div>
             <div class="col-3">
               <mat-form-field>
-                <mat-select placeholder="Lunch/Dinner" [(ngModel)]="type" name="type">
+                <mat-select placeholder="Lunch/Dinner" [(ngModel)]="type" name="type" i18n-placeholder="@@type" i18n="@@typeOptions">
                   <mat-option value="lunch">Lunch</mat-option>
                   <mat-option value="dinner">Dinner</mat-option>
                 </mat-select>
@@ -35,7 +36,7 @@
             </div>
             <div class="col-2">
               <mat-form-field>
-                <mat-select placeholder="Sort" [(ngModel)]="sort" name="sort">
+                <mat-select placeholder="Sort" [(ngModel)]="sort" name="sort" i18n-placeholder="@@sort" i18n="@@sortOptions">
                   <mat-option value="DISTANCE">Distance</mat-option>
                   <mat-option value="RATING">Rating</mat-option>
                   <mat-option value="PRICE">Price</mat-option>
@@ -51,7 +52,7 @@
                              (componentCallback)="autocompleteHandler($event)"></ng4geo-autocomplete>
       </div>
       <div class="col-2" style="float: left; padding: 0;">
-        <button mat-raised-button color="primary" class="search" (click)="find()">SEARCH</button>
+        <button mat-raised-button color="primary" class="search" (click)="find()" i18n="@@search">SEARCH</button>
       </div>
     </div>
   </div>
@@ -68,7 +69,8 @@
                              [price]="menu.price" [name]="menu.name" [description]="menu.description"
                              [starters]="menu.starters" [mains]="menu.mains"
                              [desserts]="menu.desserts" [host]="menu.host" [address]="menu.address"
-                             [personsSelected]="persons" [average]="menu.average" [distance]="menu.distance"></app-menu-info>
+                             [personsSelected]="persons" [average]="menu.average"
+                             [distance]="menu.distance"></app-menu-info>
             </div>
           </div>
           <!-- </perfect-scrollbar> -->

@@ -5,11 +5,11 @@
   <mat-menu #options="matMenu">
     <button mat-menu-item [routerLink]="['/menus/edit',menu._id]">
       <mat-icon>edit</mat-icon>
-      <span>Edit</span>
+      <span i18n="@@edit">Edit</span>
     </button>
     <button mat-menu-item (click)="openDialog()">
       <mat-icon>delete</mat-icon>
-      <span>Cancel Menu</span>
+      <span i18n="@@cancelMenu">Cancel Menu</span>
     </button>
   </mat-menu>
   <app-header-menu-info [name]="menu.name" [date]="menu.date" [price]="menu.price" [guests]="menu.guests"
@@ -23,9 +23,9 @@
           </app-address-dishs-info>
         </div>
       </mat-tab>
-      <mat-tab label="Guests">
+      <mat-tab label="Guests" i18n-label="@@guests">
         <div class="guests mt-3 container-fluid">
-          <h5 *ngIf="(!bookings || bookings.length==0)"> There aren't guests in this menu</h5>
+          <h5 *ngIf="(!bookings || bookings.length==0)" i18n="@@noGuessts"> There aren't guests in this menu</h5>
           <div *ngIf="(bookings && bookings.length!=0)">
             <div *ngFor="let booking of bookings">
               <div class="row" *ngIf="isPast(menu.date)">
@@ -40,17 +40,17 @@
                 </div>
                 <div class="col-5" *ngIf="(booking.confirmed && isPast(menu.date))">
                   <app-rate *ngIf="booking.guestRate" [rate]="booking.guestRate"></app-rate>
-                  <div *ngIf="!booking.guestRate">
+                  <div *ngIf="!booking.guestRate" i18n="@@guestRate">
                     Here you can rate the guest
                   </div>
                   <button mat-raised-button color="accent" *ngIf="!booking.guestRate"
-                          [routerLink]="['/ratings',booking._id,'guest', booking.guest._id]">
+                          [routerLink]="['/ratings',booking._id,'guest', booking.guest._id]" i18n="@@valorate">
                     VALORATE
                   </button>
                 </div>
                 <div class="col-4" *ngIf="(booking.confirmed && isPast(menu.date))">
                   <app-rate *ngIf="booking.hostRate" [rate]="booking.hostRate"></app-rate>
-                  <div *ngIf="!booking.hostRate">
+                  <div *ngIf="!booking.hostRate" i18n="@@guestNotRate">
                     The guest has not rated you yet
                   </div>
                 </div>

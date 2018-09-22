@@ -9,6 +9,7 @@ import {Menu} from '../../../common/models/menu/menu';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {UserToken} from '../../../common/models/user/userToken';
 import {Notification} from '../../../common/enums/notification.enum';
+import {Message} from '../../../common/models/message/message';
 
 
 @Injectable()

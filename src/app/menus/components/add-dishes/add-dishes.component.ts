@@ -9,7 +9,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class AddDishesComponent implements OnInit {
   @Input() image: string;
   @Input() title: string;
-  @Input() description: string;
+  @Input() type: string;
   @Input() group: FormGroup;
   @Input() arrayName: string;
 

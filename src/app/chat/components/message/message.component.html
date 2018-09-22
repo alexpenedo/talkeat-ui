@@ -1,0 +1,13 @@
+<span *ngIf="message.message==='#messageBookMenu'" i18n="@@messageBookMenu">
+  I would like to book this menu
+</span>
+<span *ngIf="message.message==='#messageMenuUpdated'" i18n="@@messageMenuUpdated">
+  Menu updated by host. Please, check the changes
+</span>
+<span *ngIf="message.message==='#messageMenuCanceled'" i18n="@@messageMenuCanceled">
+  Menu canceled by host. Sorry.
+</span>
+<span
+  *ngIf="(message.message!=='#messageBookMenu') && (message.message!=='#messageMenuUpdated') && (message.message!=='#messageMenuCanceled')">
+  {{message.message}}
+</span>

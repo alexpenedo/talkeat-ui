@@ -35,24 +35,33 @@
         </span>
         <span>
           {{address}}</span>
-        <span class="distance" *ngIf="distance">({{getDistance()}} away) </span>
+        <span class="distance" *ngIf="distance" i18n="@@distance">({{getDistance()}} away)</span>
       </mat-card-subtitle>
     </mat-card-header>
     <mat-list>
-      <h3 class="dishs" mat-subheader>Starters
-        <span *ngFor="let dish of starters" class="dish">{{dish.name}}</span>
-      </h3>
-      <mat-divider></mat-divider>
-      <h3 class="dishs" mat-subheader>Mains
-        <span *ngFor="let dish of mains" class="dish">{{dish.name}}</span>
-      </h3>
-      <mat-divider></mat-divider>
-      <h3 class="dishs" mat-subheader>Desserts
-        <span *ngFor="let dish of desserts" class="dish">{{dish.name}}</span>
-      </h3>
+      <div class="row dish-row">
+        <h3 class="dishs" mat-subheader i18n="@@starters">Starters </h3>
+        <mat-chip-list class="col-9">
+          <mat-chip *ngFor="let dish of starters"> {{dish.name}}</mat-chip>
+        </mat-chip-list>
+        <mat-divider style="position: initial"></mat-divider>
+      </div>
+      <div class="row dish-row">
+        <h3 class="dishs" mat-subheader i18n="@@mains">Mains </h3>
+        <mat-chip-list class="col-9">
+          <mat-chip *ngFor="let dish of mains"> {{dish.name}}</mat-chip>
+        </mat-chip-list>
+        <mat-divider style="position: initial"></mat-divider>
+      </div>
+      <div class="row dish-row">
+        <h3 class="dishs" mat-subheader i18n="@@desserts">Desserts </h3>
+        <mat-chip-list class="col-9">
+          <mat-chip *ngFor="let dish of desserts"> {{dish.name}}</mat-chip>
+        </mat-chip-list>
+      </div>
     </mat-list>
   </mat-card-content>
-  <button [@visibility]="visibility" class="book-button" mat-raised-button color="warn">
+  <button [@visibility]="visibility" class="book-button" mat-raised-button color="warn" i18n="@@book">
     BOOK
   </button>
 </mat-card>

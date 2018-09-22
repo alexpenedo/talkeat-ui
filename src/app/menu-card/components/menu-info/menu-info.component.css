@@ -1,148 +1,151 @@
-.address{
-    margin-bottom: 10px;
+.address {
+  margin-bottom: 10px;
 }
+
 .time {
-    background: #673ab7;
-    color: white;
-    font-size: 30px;
-    padding: 10px;
+  background: #673ab7;
+  color: white;
+  font-size: 30px;
+  padding: 10px;
 }
 
-.dish {
-    color: black;
-    font-weight: normal;
-    padding: 10px;
-    background: #d2f3ff;
-    border-radius: 20px;
-    margin: 0px 5px;
-    font-size: 12px;
-}
-
-.vertical-divider {
-    border-top-width: 0;
-    border-right-width: 1px;
-    border-right-style: solid;
-    margin: 0px 8px;
-}
-
-.dishs{
+.dishs {
   padding: 0;
 }
 
 mat-card-title {
-    margin-top: -60px !important;
-    color: white;
-    position: relative;
+  margin-top: -60px !important;
+  color: white;
+  position: relative;
 }
-.highlight{
-    border: 5px red solid;
+
+mat-card-content {
+  margin-bottom: 5px;
+}
+mat-chip{
+  background: #d2f3ff;
+}
+.highlight {
+  border: 5px red solid;
 }
 
 .mat-card-image {
-    margin-top: -120px !important;
-    filter: brightness(0.4);
+  margin-top: -120px !important;
+  filter: brightness(0.4);
 }
 
 .user-picture {
-    height: 70px !important;
-    width: 70px !important;
-    float: right;
+  height: 70px !important;
+  width: 70px !important;
+  float: right;
 }
 
 .chip {
-    position: absolute;
-    z-index: 1;
-    top: 2px;
-    left: 2px;
+  position: absolute;
+  z-index: 1;
+  top: 2px;
+  left: 2px;
 }
 
 .menu-info {
-    overflow: hidden;
-    margin-bottom:20px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .animation {
-    transition: all 0ms ease-in;
-    transform: scale(0.97);
+  transition: all 0ms ease-in;
+  transform: scale(0.97);
 }
 
-.marked{
+.marked {
   outline: 2px solid #173968;
 }
+
 .animation:hover {
-    transition: all 200ms ease-in;
-    transform: scale(1.00);
-    cursor: pointer;
+  transition: all 200ms ease-in;
+  transform: scale(1.00);
+  cursor: pointer;
 }
 
 .price {
-    position: absolute;
-    top: -3px;
-    right: -3px;
-    font-size: 25px;
-    background: #edc73c;
-    padding: 7px;
-    border-radius: 10px;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  font-size: 25px;
+  background: #edc73c;
+  padding: 7px;
+  border-radius: 10px;
 }
+
 .persons {
-    position: absolute;
-    top: 35px;
-    right: -3px;
-    font-size: 25px;
-    color: white;
-    padding: 7px;
-    border-radius: 10px;
+  position: absolute;
+  top: 35px;
+  right: -3px;
+  font-size: 25px;
+  color: white;
+  padding: 7px;
+  border-radius: 10px;
 }
-.available{
-    font-weight: bold; 
-    font-size:40px;
+
+.available {
+  font-weight: bold;
+  font-size: 40px;
 }
 
 .description {
-    font-size: 11px;
-    text-align: justify;
-    padding: 5px;
-    margin: 0;
+  font-size: 11px;
+  text-align: justify;
+  padding: 5px;
+  margin: 0;
 }
 
 .datetime {
-    position: absolute;
-    top: 12px;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 7px;
-    left: 13px;
-    color: #8a8a9c;
-    font-weight: bold;
-    font-size: 20px;
+  position: absolute;
+  top: 12px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 7px;
+  left: 13px;
+  color: #8a8a9c;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .time-icon {
-    font-size: 27px;
-    margin-right: 10px;
-    float: left;
-    color: #893737;
+  font-size: 27px;
+  margin-right: 10px;
+  float: left;
+  color: #893737;
 }
 
-.book-button{
-    width: 100%;
-    position: absolute;
-    padding: 0;
-    margin-left: -24px;
-    margin-top: -15px;
-    font-size: 18px;
-    height: 40px;
+.book-button {
+  width: 100%;
+  position: absolute;
+  padding: 0;
+  margin-left: -24px;
+  margin-top: -15px;
+  font-size: 18px;
+  height: 40px;
 }
 
-.rate{
-    font-size:12px;
-    top:60px;
-    position: absolute;
+.rate {
+  font-size: 12px;
+  top: 60px;
+  position: absolute;
 }
-.distance{
+
+.distance {
   font-weight: bold;
   color: #dc3545;
   position: absolute;
   right: 24px;
   margin-top: 8px;
+}
+
+.chip-list {
+  margin: -45px 0px 10px 60px;
+}
+
+.dish-row {
+  padding: 10px 0px;
 }

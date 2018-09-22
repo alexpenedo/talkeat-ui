@@ -5,46 +5,58 @@
         <div class="col-6">
           <div class="input-group">
             <mat-form-field>
-              <input matInput type="text" name="name" required [(ngModel)]="user.name" id="name" placeholder="Name">
-              <mat-error>This field is required</mat-error>
+              <input matInput type="text" name="name" required [(ngModel)]="user.name" id="name" placeholder="Name"
+                     i18n-placeholder="@@name">
+              <mat-error i18n="@@fileRequired">This field is required</mat-error>
             </mat-form-field>
           </div>
           <div class="input-group">
             <mat-form-field>
-              <input matInput type="text" name="surname" required [(ngModel)]="user.surname" id="surname" placeholder="Surname">
-              <mat-error>This field is required</mat-error>
+              <input matInput type="text" name="surname" required [(ngModel)]="user.surname" id="surname"
+                     placeholder="Surname"
+                     i18n-placeholder="@@surname">
+              <mat-error i18n="@@fileRequired">This field is required</mat-error>
             </mat-form-field>
           </div>
           <div class="input-group">
             <mat-form-field>
-              <input matInput type="email" name="email" [(ngModel)]="user.email" id="email" placeholder="Email">
+              <input matInput type="email" name="email" [(ngModel)]="user.email" id="email" placeholder="Email"
+                     i18n-placeholder="@@email">
             </mat-form-field>
           </div>
           <div class="input-group">
             <mat-form-field>
-              <input matInput type="text" name="mobileNumber" [(ngModel)]="user.mobileNumber" id="mobileNumber" placeholder="Mobile Number">
+              <input matInput type="text" name="mobileNumber" [(ngModel)]="user.mobileNumber" id="mobileNumber"
+                     placeholder="Mobile Number"
+                     i18n-placeholder="@@mobileNumber">
             </mat-form-field>
           </div>
         </div>
         <div class="col-6">
           <div class="input-group">
             <mat-form-field>
-              <input matInput type="text" name="postalCode" [(ngModel)]="user.postalCode" id="postalCode" placeholder="Postal Code">
+              <input matInput type="text" name="postalCode" [(ngModel)]="user.postalCode" id="postalCode"
+                     placeholder="Postal Code"
+                     i18n-placeholder="@@postalCode">
             </mat-form-field>
           </div>
           <div class="input-group">
             <mat-form-field>
-              <input matInput type="text" name="address" [(ngModel)]="user.address" id="address" placeholder="Address">
+              <input matInput type="text" name="address" [(ngModel)]="user.address" id="address" placeholder="Address"
+                     i18n-placeholder="@@address">
             </mat-form-field>
           </div>
           <div class="input-group">
             <mat-form-field>
-              <input matInput type="text" name="country" [(ngModel)]="user.country" id="country" placeholder="Country">
+              <input matInput type="text" name="country" [(ngModel)]="user.country" id="country" placeholder="Country"
+                     i18n-placeholder="@@country">
             </mat-form-field>
           </div>
           <div class="input-group">
             <mat-form-field>
-              <input matInput type="password" name="password" [(ngModel)]="user.password" id="password" placeholder="Password">
+              <input matInput type="password" name="password" [(ngModel)]="user.password" id="password"
+                     placeholder="Password"
+                     i18n-placeholder="@@password">
             </mat-form-field>
           </div>
         </div>
@@ -52,7 +64,8 @@
       <br>
       <div class="col-6 offset-3">
         <div class="input-group">
-          <button mat-raised-button color="primary" type="submit" name="action">SIGN UP</button>
+          <button mat-raised-button color="primary" type="submit" name="action" i18n-placeholder="@@signup">SIGN UP
+          </button>
         </div>
       </div>
     </form>

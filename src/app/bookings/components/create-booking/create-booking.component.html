@@ -2,8 +2,8 @@
   <mat-card>
     <div class="row">
       <div class="col-12">
-        <h2 class="text-success">Would you like to book this menu?</h2>
-        <h5>You can chat with the host. The host will confirm your book</h5>
+        <h2 class="text-success" i18n="@@bookThisMenu">Would you like to book this menu?</h2>
+        <h5 i18n="@@bookingInfo">You can chat with the host. The host will confirm your book</h5>
       </div>
     </div>
     <div class="row">
@@ -11,9 +11,9 @@
         <mat-vertical-stepper>
           <mat-step [stepControl]="persons">
             <form [formGroup]="persons">
-              <ng-template matStepLabel>How many people do you want to book?</ng-template>
+              <ng-template matStepLabel i18n="@@bookingPeople">How many people do you want to book?</ng-template>
               <mat-form-field>
-                <mat-select placeholder="Persons" required formControlName="persons">
+                <mat-select placeholder="Persons" required formControlName="persons" i18n-placeholder="@@persons">
                   <mat-option *ngFor="let person of available" [value]="person">{{person}}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -26,22 +26,22 @@
           </mat-step>
           <mat-step [stepControl]="comments">
             <form [formGroup]="comments">
-              <ng-template matStepLabel>If you have comments, any allergies ...</ng-template>
+              <ng-template matStepLabel i18n="@@bookingComments">If you have comments, any allergies ...</ng-template>
               <mat-form-field>
                   <textarea matInput placeholder="Comments" formControlName="comments" matTextareaAutosize
-                            matAutosizeMinRows="4"
+                            matAutosizeMinRows="4" i18n-placeholder="@@comments"
                             matAutosizeMaxRows="5" maxlength="100"></textarea>
               </mat-form-field>
               <div>
-                <button mat-raised-button color="accent" matStepperNext>Next
+                <button mat-raised-button color="accent" matStepperNext i18n="@@next">Next
                   <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
               </div>
             </form>
           </mat-step>
           <mat-step>
-            <ng-template matStepLabel>Are you sure to book this menu?</ng-template>
-            <button mat-raised-button color="warn" class="booking" (click)="bookMenu()">
+            <ng-template matStepLabel i18n="@@sureBooking">Are you sure to book this menu?</ng-template>
+            <button mat-raised-button color="warn" class="booking" (click)="bookMenu()" i18n="@@bookMenu">
               BOOK MENU
             </button>
           </mat-step>

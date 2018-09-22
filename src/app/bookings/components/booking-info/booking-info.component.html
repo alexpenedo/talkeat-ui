@@ -11,19 +11,19 @@
           </app-address-dishs-info>
         </div>
       </mat-tab>
-      <mat-tab label="RATINGS" *ngIf="isPast(booking.menu.date)">
+      <mat-tab label="RATINGS" *ngIf="isPast(booking.menu.date)" i18n-label="@@ratings">
         <div class="container-fluid mt-3">
           <div class="row">
             <app-rate *ngIf="hostRate" class="col-6" [rate]="hostRate"></app-rate>
             <div *ngIf="!hostRate" class="col-6 mx-auto">
-              <h6>Here you can rate the host</h6>
-              <button mat-raised-button color="accent" [routerLink]="['/ratings',booking._id]">
+              <h6 i18n="@@hostRate">Here you can rate the host</h6>
+              <button mat-raised-button color="accent" [routerLink]="['/ratings',booking._id]" i18n="@@valorate">
                 VALORATE
               </button>
             </div>
             <app-rate *ngIf="guestRate" class="col-6" [rate]="guestRate"></app-rate>
             <div *ngIf="!guestRate" class="col-6 mx-auto">
-              <h6>The host has not rated you yet</h6>
+              <h6 i18n="@@hostNotRatedYou">The host has not rated you yet</h6>
             </div>
           </div>
         </div>

@@ -118,6 +118,10 @@
           <context context-type="sourcefile">app/users/components/login/login.component.html</context>
           <context context-type="linenumber">22</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/components/register/register.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="my-bookings" datatype="html">
         <source>My bookings</source>

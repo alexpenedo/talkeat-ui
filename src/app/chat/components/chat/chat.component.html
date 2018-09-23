@@ -35,8 +35,8 @@
           </span>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <button mat-raised-button color="primary" class="btn-confirm" (click)="confirmBooking()">Confirm</button>
-      <button mat-raised-button color="warn" (click)="cancelBooking()">Cancel</button>
+      <button mat-raised-button color="primary" class="btn-confirm" (click)="confirmBooking()" i18n="@@confirm">Confirm</button>
+      <button mat-raised-button color="warn" (click)="cancelBooking()" i18n="@@cancel">Cancel</button>
     </mat-expansion-panel>
     <div *ngIf="!chat.booking.canceled && !chat.booking.confirmed" style="margin-bottom: 60px"></div>
     <div *ngIf="(chat.booking.canceled || chat.booking.confirmed)" style="margin-bottom: 20px"></div>

@@ -4,7 +4,7 @@
       <!--<perfect-scrollbar style="max-height: 580px;">-->
       <div class="menus" infiniteScroll [infiniteScrollDistance]="2"
            [infiniteScrollThrottle]="50" (scrolled)="onScrollPendingDown()" [scrollWindow]="false">
-        <div *ngFor="let menu of menusPending">
+        <div *ngFor="let menu of menusPending" class="menu-row">
           <app-host-menu-info [menu]="menu" state="info" (cancelEmitter)="onCancel($event)"></app-host-menu-info>
         </div>
       </div>

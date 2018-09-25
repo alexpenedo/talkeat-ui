@@ -10,7 +10,7 @@
     <rating fullIcon="◉" emptyIcon="○" [(ngModel)]="average" [readonly]="true"></rating>
   </div>
   <div class="price">{{+price | number : '1.2-2'}}
-    <mat-icon style="font-size: 20px;">attach_money</mat-icon>
+    <span style="font-size: 25px;" i18n="@@money">$</span>
   </div>
   <div class="persons">
     <span style="font-size: 30px;">

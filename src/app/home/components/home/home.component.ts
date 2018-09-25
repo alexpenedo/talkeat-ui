@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
     this.currentPage = 0;
     this.minDate = new Date();
     this.date = new Date();
+    this.date.setHours(0, 0, 0, 0);
     this.sort = Sort.DISTANCE;
     this.type = this.date.getHours() > 17 ? 'dinner' : 'lunch';
     const lastCoordinates: Coordinates = this.geolocationService.getLastCoordinatesSearch();

@@ -9,3 +9,9 @@
 .publish-container{
     padding: 60px;
 }
+.money{
+  font-size: 23px;
+  position: absolute;
+  right: 15px;
+  top: 0px;
+}

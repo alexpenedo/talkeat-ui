@@ -914,6 +914,7 @@
       </trans-unit>
       <trans-unit id="confirm" datatype="html">
         <source>Confirm</source>
+        <source>Confirmar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/chat/components/chat/chat.component.html</context>
           <context context-type="linenumber">38</context>

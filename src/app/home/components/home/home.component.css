@@ -12,7 +12,7 @@
 }
 
 .menu-cards{
-    max-height: 460px;
+    max-height: calc(100vh - 255px);
     padding: 0px 45px;
     overflow: auto;
 }

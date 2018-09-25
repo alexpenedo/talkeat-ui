@@ -62,7 +62,7 @@ export class CreateRateComponent implements OnInit {
               self.rates = rates;
             });
           } else {
-            self.rateService.getRatesByGuestId(this.booking.menu.host._id).subscribe((rates: Rate[]) => {
+            self.rateService.getRatesByGuestId(this.booking.guest._id).subscribe((rates: Rate[]) => {
               self.rates = rates;
             });
           }

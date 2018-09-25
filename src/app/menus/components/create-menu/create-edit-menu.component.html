@@ -1,7 +1,7 @@
 <div class="col-10 offset-1">
   <mat-horizontal-stepper linear>
     <mat-step [stepControl]="menuDescription">
-      <form [formGroup]="menuDescription">
+      <form [formGroup]="menuDescription" autocomplete="off">
         <ng-template matStepLabel i18n="@@describeMenu">Describe your menu</ng-template>
         <mat-form-field>
           <input matInput placeholder="Name" required formControlName="name" required maxlength="24"
@@ -65,7 +65,7 @@
           </div>
           <div class="col-3">
             <mat-form-field>
-              <input matInput placeholder="Price" required formControlName="price" i18n-placeholder="@@price">
+              <input matInput placeholder="Price" required formControlName="price" i18n-placeholder="@@price" autocomplete="off">
               <span class="money" i18n="@@money">$</span>
             </mat-form-field>
           </div>

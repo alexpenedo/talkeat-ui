@@ -28,7 +28,7 @@ Desserts        </span>
       <div [formArrayName]="arrayName">
         <div *ngFor="let item of getControls(); let index = index">
           <mat-form-field [formGroupName]="index">
-            <input matInput formControlName="name" appAutofocus required maxlength="30">
+            <input matInput formControlName="name" appAutofocus required maxlength="30" autocomplete="off">
             <button mat-button matSuffix mat-icon-button class="removeItem" (click)="removeItem(index)" color="warn">
               <mat-icon>close</mat-icon>
             </button>
